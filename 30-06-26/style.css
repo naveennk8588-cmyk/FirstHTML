@@ -5,5 +5,12 @@
     font-weight: bold;
     text-transform: uppercase;
    }
+   .login-heading {
+    color: blue;
+    font-family: 'segoe ui', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+   }
 
 
