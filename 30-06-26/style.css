@@ -1,19 +1,9 @@
-p {
-    color: black;
-    font-size: 16px;
-    line-height: 1.5;
-    margin: 20px;
-}
-h1 {
-    color: blue;
-    front-family: Arial, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-.text {
-    front-family: 'verdana', sans-serif;
+
+main-title {
     color: green;
-    line-height: 1.8;
-    font-size: 14px;
-}
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+   }
+
 
