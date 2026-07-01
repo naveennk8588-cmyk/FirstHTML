@@ -4,3 +4,9 @@ p {
     line-height: 1.5;
     margin: 20px;
 }
+h1 {
+    color: blue;
+    front-family: Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
