@@ -1,18 +1,15 @@
-
-#main-title {
-    color: green;
-    font-size: 24px;
-    font-weight: bold;
-    text-transform: uppercase;
-   }
-   .login-heading {
-    color: blue;
-    font-family: 'segoe ui', sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-    text-transform: capitalize;
-   }
-    body {
-    background-color: #yellow;
-
-
+body {
+    background-color: rgb(132, 196, 218);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+}
+#page-title {
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+.text {
+    color: rgb(43, 134, 84);
+    line-height: 1.5;
+    front-size: 18px;
+    
+}
