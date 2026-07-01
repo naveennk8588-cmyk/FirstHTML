@@ -1,5 +1,5 @@
 p {
-    color: red;
+    color: black;
     font-size: 16px;
     line-height: 1.5;
     margin: 20px;
@@ -10,3 +10,10 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
+.text {
+    front-family: 'verdana', sans-serif;
+    color: green;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
