@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Gallery Layout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .gallery-row {
+      text-align: center;      
+      margin-bottom: 20px;
+    }
+
+    .gallery-item {
+      display: inline-block;   
+      width: 160px;
+      margin: 8px;             
+      vertical-align: top;
+      transition: margin 0.2s ease, transform 0.2s ease;
+    }
+
+    .gallery-item img {
+      width: 160px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+
+    
+    .gallery-item:hover {
+      margin: 12px;            
+      transform: scale(1.05);   
+      z-index: 1;
+    }
+
+    .gallery-item:hover img {
+      border: 2px solid #2196F3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Image Gallery</h1>
+
+ 
+  <div class="gallery-row">
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/FF9800/ffffff?text=1" alt="Image 1" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/4CAF50/ffffff?text=2" alt="Image 2" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/2196F3/ffffff?text=3" alt="Image 3" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/e53935/ffffff?text=4" alt="Image 4" />
+    </div>
+  </div>
+
+  <div class="gallery-row">
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/9c27b0/ffffff?text=5" alt="Image 5" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/00bcd4/ffffff?text=6" alt="Image 6" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/ffeb3b/333333?text=7" alt="Image 7" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/795548/ffffff?text=8" alt="Image 8" />
+    </div>
+  </div>
+
+  
+  <div class="gallery-row">
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/607d8b/ffffff?text=9" alt="Image 9" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/ec407a/ffffff?text=10" alt="Image 10" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/009688/ffffff?text=11" alt="Image 11" />
+    </div>
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/160x120/ff5722/ffffff?text=12" alt="Image 12" />
+    </div>
+  </div>
+
+</body>
+</html>
