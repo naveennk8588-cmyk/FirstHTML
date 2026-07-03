@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,197 +38,213 @@
         box-sizing: border-box;
     }
 
-    <style>
-        .visible {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            margin: 10px;
-        }
-        .hidden {
-            display: none;
-            background-color: #f44336;
-            color: white;
-            padding: 15px;
-            margin: 10px;
-        }
-    </style>
-     
-     <style>
-        .container {
-            width: 300px;
-            height: 150px;
-            background-color: #e0e0e0;
-            position: relative;
-            padding: 20px;
-        }
-        .relative-box {
-            position: relative;
-            width: 100px;
-            height: 60px;
-            background-color: #2196F3;
-            color: white;
-            text-align: center;
-            line-height: 60px;
-            top: 30px;
-            left: 50px;
-        }
-     </style>
-
-     <style>
-        .parent {
-            width: 300px;
-            height: 200px;
-            background-color: #e0e0e0;
-            position: relative;
-            padding: 20px;
-        }
-        .absolute-box {
-            position: absolute;
-            width: 100px;
-            height: 60px;
-            background-color: #b50990;
-            color: white;
-            text-align: center;
-            line-height: 60px;
-            top: 30px;
-            left: 50px;
-        }
-     </style>
-
-     <style>
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #a34049;
-            color: white;
-            text-align: center;
-            padding: 12px 0;
-            z-index: 1000;
-        }
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-        .navbar a:hover {
-            text-decoration: underline;
-
-        }
-        body {
-    margin-top: 60px;
+    <style>.visible {
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px;
+        margin: 10px;
     }
-       .content {
-    padding: 20px;
+
+    .hidden {
+        display: none;
+        background-color: #f44336;
+        color: white;
+        padding: 15px;
+        margin: 10px;
     }
-     </style>
+</style>
 
-     <style>
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            background-color: #2db3d4;
-            color: white;
-            padding: 12px 0;
-            text-align: center;
-            z-index: 1000;
-        }
-        .sticky-header a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-        .sticky-header a:hover {
-            text-decoration: underline;
-        }
-        .content {
-            padding: 20px;
-        }
-     </style>
-     <style>
-        .container {
-            width: 320px;
-            height: 220px;
-            background-color: #e0e0e0;
-            position: relative;
-            padding: 15px;
-        }
-        .inline-box {
-            display: inline-block;
-            width: 90px;
-            height: 50px;
-            background-color: #74083e;
-            color: white;
-            text-align: center;
-            line-height: 50px;
-            margin: 5px;
-            vertical-align: top;
-        }
-        .absolute-box {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 100px;
-            background-color: #2196f3;
-            color:white;
-            text-align: center;
-            line-height:60px;
-            z-inder: 10;
+<style>
+    .container {
+        width: 300px;
+        height: 150px;
+        background-color: #e0e0e0;
+        position: relative;
+        padding: 20px;
+    }
 
-        }
-     </style>
+    .relative-box {
+        position: relative;
+        width: 100px;
+        height: 60px;
+        background-color: #2196F3;
+        color: white;
+        text-align: center;
+        line-height: 60px;
+        top: 30px;
+        left: 50px;
+    }
+</style>
 
-     <style>
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #48b6de;
-            color: white;
-            padding: 12px 0;
-            text-align: center;
-            z-index: 1000;
-        }
-        .header a:hover {
-            text-decoration: underline;
-        }
+<style>
+    .parent {
+        width: 300px;
+        height: 200px;
+        background-color: #e0e0e0;
+        position: relative;
+        padding: 20px;
+    }
 
-        .sidebar {
-            position:absolute;
-            top: 60px;
-            left: 0;
-            width: 180px;
-            height: calc(100vh-120px);
-            background-color: #f5f5f5;
-            padding: 15px;
-            box-sizing: border-box;
-        }
-        .sidebar a {
-            display: block;
-            color: #b59a9a;
-            text-decoration: none;
-            margin: 6px 0;
-        }
-        .sidebar a:hover {
-            text-decoration: underline;
-        }
-        .content {
-            margin-left: 180px;
-            padding: 20px;
-            min-height: 400px;
-        }
-        .footer {
-            background-color: #222;
-            color: white;
-            text-align: center;
-            padding: 15px 0;
-            margin-left: 180px;
-        }
- 
-     </style>
+    .absolute-box {
+        position: absolute;
+        width: 100px;
+        height: 60px;
+        background-color: #b50990;
+        color: white;
+        text-align: center;
+        line-height: 60px;
+        top: 30px;
+        left: 50px;
+    }
+</style>
+
+<style>
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #a34049;
+        color: white;
+        text-align: center;
+        padding: 12px 0;
+        z-index: 1000;
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+    }
+
+    .navbar a:hover {
+        text-decoration: underline;
+
+    }
+
+    body {
+        margin-top: 60px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+</style>
+
+<style>
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        background-color: #2db3d4;
+        color: white;
+        padding: 12px 0;
+        text-align: center;
+        z-index: 1000;
+    }
+
+    .sticky-header a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+    }
+
+    .sticky-header a:hover {
+        text-decoration: underline;
+    }
+
+    .content {
+        padding: 20px;
+    }
+</style>
+<style>
+    .container {
+        width: 320px;
+        height: 220px;
+        background-color: #e0e0e0;
+        position: relative;
+        padding: 15px;
+    }
+
+    .inline-box {
+        display: inline-block;
+        width: 90px;
+        height: 50px;
+        background-color: #74083e;
+        color: white;
+        text-align: center;
+        line-height: 50px;
+        margin: 5px;
+        vertical-align: top;
+    }
+
+    .absolute-box {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 100px;
+        background-color: #2196f3;
+        color: white;
+        text-align: center;
+        line-height: 60px;
+        z-inder: 10;
+
+    }
+</style>
+
+<style>
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #48b6de;
+        color: white;
+        padding: 12px 0;
+        text-align: center;
+        z-index: 1000;
+    }
+
+    .header a:hover {
+        text-decoration: underline;
+    }
+
+    .sidebar {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 180px;
+        height: calc(100vh-120px);
+        background-color: #f5f5f5;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .sidebar a {
+        display: block;
+        color: #b59a9a;
+        text-decoration: none;
+        margin: 6px 0;
+    }
+
+    .sidebar a:hover {
+        text-decoration: underline;
+    }
+
+    .content {
+        margin-left: 180px;
+        padding: 20px;
+        min-height: 400px;
+    }
+
+    .footer {
+        background-color: #222;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        margin-left: 180px;
+    }
+</style>
+
 <body>
     <div class="navbar">
         <a href="#">Home</a>
@@ -242,106 +259,119 @@
         <div class="block">Block 2</div>
         <div class="block">Block 3</div>
         <p>Each block element has a unique background color and text color.</p>
-    
-    <h2>Inline Element (Task 2)</h2>
-    <p>Below are three inline elements:</p>
-    <span class="inline-span">Inline 1</span>
-    <span class="inline-span">Inline 2</span>
-    <span class="inline-span">Inline 3</span>
-    <p>Each inline element has a unique background color and text color.</p>
 
-    <h2>Inline-Block Boxes with Width and Height (Task 3)</h2>
+        <h2>Inline Element (Task 2)</h2>
+        <p>Below are three inline elements:</p>
+        <span class="inline-span">Inline 1</span>
+        <span class="inline-span">Inline 2</span>
+        <span class="inline-span">Inline 3</span>
+        <p>Each inline element has a unique background color and text color.</p>
 
-    <p>
+        <h2>Inline-Block Boxes with Width and Height (Task 3)</h2>
+
+        <p>
         <div class="ibox">Box 1</div>
         <div class="ibox">Box 2</div>
         <div class="ibox">Box 3</div>
-    </p>
-    <p>These boxes have fixed width and height.</p>
-    
-    <h2>Visible and Hidden Elements (Task 4)</h2>
+        </p>
+        <p>These boxes have fixed width and height.</p>
 
-    <div class="visible">Visible Box 1</div>
-    <div class="hidden">This box is hidden (display:none)</div>
-    <div class="visible">Visible Box 2</div>
-    <p>The red box with "display:none" is completely removed from the layout and does not take up any space.</p>
-    
-    <h2>Relative Positioning (Task 5)</h2>
-    <div class="container">
-        <div class="relative-box">Moved Box</div>
-    </div>
-    <p>The blue box is positioned relative to its normal position, then moved 30px down and 50px right.</p>
+        <h2>Visible and Hidden Elements (Task 4)</h2>
 
-    <h2>Absolute Box Inside a parent Container (Task 6)</h2>
-    <div class="parent">
-        <div class="absolute-box">Absolute Box</div>
-    </div>
-    <p>The purple box is absolutely positioned relative to the gray parent, not the page.</p>
+        <div class="visible">Visible Box 1</div>
+        <div class="hidden">This box is hidden (display:none)</div>
+        <div class="visible">Visible Box 2</div>
+        <p>The red box with "display:none" is completely removed from the layout and does not take up any space.</p>
 
-    <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <a href="#">Services</a>
-    </div>
-    <div class="content">
-        <h2>Scrollable Content (Task 7)</h2>
-        <p>Scroll down to see that the navbar stays fixed at the top of the page.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <!-- Add more content here to make it scrollable -->
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div class="sticky-header">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <a href="#">Services</a>
-    </div>
-    <div class="content">
-        <h2>Sticky Header Example (Task 8)</h2>
-        <p>Scroll down: the header will stay at the top once it reaches the top of the viewport.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <!-- Add more content here to make it scrollable -->
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
-        <p>Keep scrolling to see the sticky behavior in action.</p>
-
-        <h2>Combined display + position Layout (Task 9)</h2>
+        <h2>Relative Positioning (Task 5)</h2>
         <div class="container">
-            <div class="inline-box">Box 1</div>
-            <div class="inline-box">Box 2</div>
-            <div class="inline-box">Box 3</div>
-     </div>
+            <div class="relative-box">Moved Box</div>
+        </div>
+        <p>The blue box is positioned relative to its normal position, then moved 30px down and 50px right.</p>
 
-     <div class="header">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-    </div>
-    <div class="sidebar">
-        <h3>Menu</h3>
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-        <a href="#">Link 4</a>
-    </div>
-    <div class="content">
-        <h2>Page Content</h2>
-      <p>
-        This is the main content area. It uses normal block layout and flows below the header,
-      to the right of the sidebar.
-      </p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-      Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      (Add more text here to make the page scrollable.)
-    </p>
+        <h2>Absolute Box Inside a parent Container (Task 6)</h2>
+        <div class="parent">
+            <div class="absolute-box">Absolute Box</div>
+        </div>
+        <p>The purple box is absolutely positioned relative to the gray parent, not the page.</p>
 
-    <div class="footer">
-        &copy; 2026 My website
-     </div> 
+        <div class="navbar">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Services</a>
+        </div>
+        <div class="content">
+            <h2>Scrollable Content (Task 7)</h2>
+            <p>Scroll down to see that the navbar stays fixed at the top of the page.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</p>
+            <!-- Add more content here to make it scrollable -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</p>
+        </div>
+        <div class="sticky-header">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Services</a>
+        </div>
+        <div class="content">
+            <h2>Sticky Header Example (Task 8)</h2>
+            <p>Scroll down: the header will stay at the top once it reaches the top of the viewport.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</p>
+            <!-- Add more content here to make it scrollable -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.</p>
+            <p>Keep scrolling to see the sticky behavior in action.</p>
+
+            <h2>Combined display + position Layout (Task 9)</h2>
+            <div class="container">
+                <div class="inline-box">Box 1</div>
+                <div class="inline-box">Box 2</div>
+                <div class="inline-box">Box 3</div>
+            </div>
+
+            <div class="header">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="sidebar">
+                <h3>Menu</h3>
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+                <a href="#">Link 4</a>
+            </div>
+            <div class="content">
+                <h2>Page Content</h2>
+                <p>
+                    This is the main content area. It uses normal block layout and flows below the header,
+                    to the right of the sidebar.
+                </p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                (Add more text here to make the page scrollable.)
+                </p>
+
+                <div class="footer">
+                    &copy; 2026 My website
+                </div>
 </body>
+
 </html>
 
 
