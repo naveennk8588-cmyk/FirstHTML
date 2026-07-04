@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Docments</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background: #5757eb;
+            padding: 0 20px;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 20px; 
+            justify-content: flex-start;
+        }
+
+        .menu li a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 10px;
+            font-size: 15px;
+        }
+
+        .menu li a:hover {
+            background: #444;
+        }
+
+        .menu li a.active {
+            background: #2ab927;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="menu">
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>
