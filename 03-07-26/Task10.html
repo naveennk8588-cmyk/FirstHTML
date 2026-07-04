@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Docments</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    .dashboard {
+      display: flex;          
+      height: 100vh;           
+    }
+
+   
+    .sidebar {
+      display: flex;
+      flex-direction: column;  
+      width: 240px;            
+      background: #789d55;
+      color: #fff;
+      overflow-y: auto;       
+    }
+
+    .sidebar-header {
+      padding: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      border-bottom: 1px solid #333;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+      list-style: none;
+    }
+
+    .nav-menu li a {
+      display: block;
+      color: #cccccc;
+      text-decoration: none;
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+
+    .nav-menu li a:hover,
+    .nav-menu li a.active {
+      background: #333;
+      color: #fff;
+    }
+
+   
+    .content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;                 
+      overflow-y: auto;        
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .header h1 {
+      font-size: 20px;
+    }
+
+    .main {
+      padding: 24px;
+      overflow-y: auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+     <aside class="sidebar">
+      <div class="sidebar-header">Dashboard</div>
+      <ul class="nav-menu">
+        <li><a href="#" class="active">Overview</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Tasks</a></li>
+        <li><a href="#">Reports</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </aside>
+
+   
+    <main class="content">
+      <header class="header">
+        <h1>Overview</h1>
+        <div>User: Naveen</div>
+      </header>
+
+      <div class="main">
+        <div class="card">
+          <h2>Project Stats</h2>
+          <p>This is sample content for the dashboard. You can add charts, tables, etc.</p>
+        </div>
+
+        <div class="card">
+          <h2>Recent Tasks</h2>
+          <p>List of recent tasks or activities goes here.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
