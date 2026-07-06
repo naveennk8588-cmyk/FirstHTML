@@ -8,27 +8,41 @@
 </head>
 <style>
     .container {
+        flex-grow: 2;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         height: 100vh;
         background: #f0f0f0;
     }
 
-    .item {
+    .box {
+        width: 250px;
+        height: 250px;
         padding: 20px;
         background: #4a90e2;
         color: white;
         margin: 10px;
         border-radius: 6px;
     }
+    .box img {
+        width: 150px;
+        height: 150px;
+
+    }
 </style>
 
 <body>
     <div class="container">
-        <div class="item">Item 1</div>
-        <div class="item">Item 2</div>
-        <div class="item">Item 3</div>
+        <div class="box"><img src="images (1).jpg" alt=""></div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+        <div class="box">Box 4</div>
+        <div class="box">Box 5</div>
+        <div class="box">Box 6</div>
+        <div class="box">Box 6</div>
+        <div class="box">Box 6</div>
     </div>
 
 </body>

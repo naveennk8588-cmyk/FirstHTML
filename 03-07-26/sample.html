@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    .bar {
+  display: flex;
+}
+
+.item {
+  flex: 1;
+  padding: 20px;
+  margin: 5px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Change visual order */
+.item-1 { order: 3; }  /* 3 → last */
+.item-2 { order: 1; }  /* 1 → first among 1,2,3 */
+.item-3 { order: 2; }  /* 2 → middle */
+.item-4 { order: 0; }  /* 0 → before 1 */
+    
+</body>
+</html>
