@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Vertical Center with align-items</title>
+  <style>
+    .container {
+      display: flex;
+      height: 100vh;          /* full viewport height */
+      align-items: center;    /* vertical centering */
+      gap: 16px;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+
+    .item {
+      background: #4a90d9;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+  </style>
 </head>
-<body> 
-    .bar {
-  display: flex;
-}
-
-.item {
-  flex: 1;
-  padding: 20px;
-  margin: 5px;
-  text-align: center;
-  background: #ddd;
-}
-
-/* Change visual order */
-.item-1 { order: 3; }  /* 3 → last */
-.item-2 { order: 1; }  /* 1 → first among 1,2,3 */
-.item-3 { order: 2; }  /* 2 → middle */
-.item-4 { order: 0; }  /* 0 → before 1 */
-    
+<body>
+  <div class="container">
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+  </div>
 </body>
 </html>
