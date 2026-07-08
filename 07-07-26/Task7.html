@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Cards Grid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f6fb;
+            padding: 20px;
+            color: #111827;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard h1 {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            min-height: 140px;
+            
+        }
+
+        .card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #6b7280;
+        }
+
+        .card .value {
+            font-size: 30px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+
+        .card .desc {
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .card.big {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card.big {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card.big {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <h1>Dashboard</h1>
+        <div class="cards">
+            <div class="card">
+                <h3>Total Users</h3>
+                <div class="value">1,245</div>
+                <div class="desc">Active users this month</div>
+            </div>
+
+            <div class="card">
+                <h3>Revenue</h3>
+                <div class="value">$12,480</div>
+                <div class="desc">Monthly earnings</div>
+            </div>
+
+            <div class="card">
+                <h3>Orders</h3>
+                <div class="value">356</div>
+                <div class="desc">New orders received</div>
+            </div>
+
+            <div class="card">
+                <h3>Comments</h3>
+                <div class="value">89</div>
+                <div class="desc">New comments today</div>
+            </div>
+
+            <div class="card big">
+                <h3>Sales Overview</h3>
+                <div class="value">87%</div>
+                <div class="desc">Growth compared to last month</div>
+            </div>
+
+            <div class="card big">
+                <h3>Performance</h3>
+                <div class="value">92%</div>
+                <div class="desc">System health and uptime</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
