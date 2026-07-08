@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Grid Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            padding: 20px;
+            color: #111827;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 32px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .content {
+            padding: 16px;
+        }
+
+        .content h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            color: #2563eb;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            color: #4b5563;
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+
+        .content button {
+            width: 100%;
+            background: #111827;
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .content button:hover {
+            background: #1f2937;
+        }
+
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Product Grid</h1>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+                    alt="Smart Watch">
+                <div class="content">
+                    <h3>Smart Watch</h3>
+                    <div class="price">$99.99</div>
+                    <p>Modern smart watch with fitness tracking and notifications.</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+                    alt="Mobile Phone">
+                <div class="content">
+                    <h3>Mobile Phone</h3>
+                    <div class="price">$499.99</div>
+                    <p>Fast performance, sharp display, and premium design.</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
+                    alt="Headphones">
+                <div class="content">
+                    <h3>Headphones</h3>
+                    <div class="price">$79.99</div>
+                    <p>Comfortable wireless headphones with deep sound quality.</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+                    alt="Running Shoes">
+                <div class="content">
+                    <h3>Running Shoes</h3>
+                    <div class="price">$89.99</div>
+                    <p>Lightweight and durable shoes for daily running.</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1585386959984-a41552231693?auto=format&fit=crop&w=800&q=80"
+                    alt="Camera">
+                <div class="content">
+                    <h3>Camera</h3>
+                    <div class="price">$299.99</div>
+                    <p>Capture beautiful photos with high-quality optics.</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?auto=format&fit=crop&w=800&q=80"
+                    alt="Laptop">
+                <div class="content">
+                    <h3>Laptop</h3>
+                    <div class="price">$899.99</div>
+                    <p>Powerful laptop for work, study, and everyday use.</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
