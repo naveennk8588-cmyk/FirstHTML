@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid repeat</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            padding: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .box {
+            background: #4f46e5;
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">Box 1</div>
+        <div class="box">Box 2</div>
+        <div class="box">Box 3</div>
+        <div class="box">Box 4</div>
+        <div class="box">Box 5</div>
+        <div class="box">Box 6</div>
+        <div class="box">Box 7</div>
+        <div class="box">Box 8</div>
+    </div>
+</body>
+
+</html>
