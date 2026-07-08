@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Home Layout</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #111827;
+            min-height: 100vh;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: #111827;
+            color: white;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .main-content h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .main-content p {
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .cta {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .sidebar {
+            background: #e0e7ff;
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 16px;
+            color: #1d4ed8;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+
+        .sidebar li {
+            background: white;
+            padding: 12px 14px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 18px 24px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <div class="logo">MyWebsite</div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+
+        <main class="hero">
+            <div class="hero-grid">
+                <section class="main-content">
+                    <h1>Welcome to Our Website</h1>
+                    <p>
+                        This is a simple home page layout built with Flexbox for the header,
+                        CSS Grid for the main content section, and a clean footer at the bottom.
+                        It is responsive and easy to customize for practice.
+                    </p>
+                    <a href="#" class="cta">Get Started</a>
+                </section>
+
+                <aside class="sidebar">
+                    <h2>Highlights</h2>
+                    <ul>
+                        <li>Modern layout</li>
+                        <li>Responsive design</li>
+                        <li>Easy to edit</li>
+                        <li>Beginner friendly</li>
+                    </ul>
+                </aside>
+                </aside>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 MyWebsite. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
