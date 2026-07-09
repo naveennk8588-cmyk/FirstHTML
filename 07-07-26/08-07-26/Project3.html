@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-commerce Layout</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        .page {
+            display: grid;
+            grid-template-areas:
+                "header header"
+                "sidebar content";
+            grid-template-columns: 260px 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 16px;
+            min-height: 100vh;
+            padding: 16px;
+        }
+
+        .header {
+            grid-area: header;
+            background: #2563eb;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            align-self: start;
+            position: sticky;
+            top: 16px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+
+        .filter-group {
+            margin-bottom: 18px;
+        }
+
+        .filter-group h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .content {
+            grid-area: content;
+            min-width: 0;
+        }
+
+        .content-header {
+            background: white;
+            padding: 18px 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-image {
+            height: 180px;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            display: grid;
+            place-items: center;
+            font-weight: bold;
+            color: #1d4ed8;
+        }
+
+        .product-info {
+            padding: 16px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #16a34a;
+            font-size: 18px;
+        }
+
+        .btn {
+            border: none;
+            background: #2563eb;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 850px) {
+            .page {
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "content";
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <h1>Shop Now</h1>
+            <p>Browse trending products and use filters to refine your search.</p>
+        </header>
+
+        <aside class="sidebar">
+            <h2>Filters</h2>
+
+            <div class="filter-group">
+                <h3>Category</h3>
+                <label><input type="checkbox" /> Electronics</label>
+                <label><input type="checkbox" /> Fashion</label>
+                <label><input type="checkbox" /> Home & Kitchen</label>
+                <label><input type="checkbox" /> Beauty</label>
+            </div>
+
+            <div class="filter-group">
+                <h3>Price</h3>
+                <label><input type="radio" name="price" /> Under $50</label>
+                <label><input type="radio" name="price" /> $50 - $100</label>
+                <label><input type="radio" name="price" /> Above $100</label>
+            </div>
+        </aside>
+
+        <main class="content">
+            <section class="content-header">
+                <h2>Product Grid</h2>
+                <p>Responsive product cards inside the main content area.</p>
+            </section>
+
+            <section class="products">
+                <article class="product-card">
+                    <div class="product-image">Product 1</div>
+                    <div class="product-info">
+                        <h3>Wireless Headphones</h3>
+                        <p class="price">$79.99</p>
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">Product 2</div>
+                    <div class="product-info">
+                        <h3>Smart Watch</h3>
+                        <p class="price">$129.99</p>
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">Product 3</div>
+                    <div class="product-info">
+                        <h3>Running Shoes</h3>
+                        <p class="price">$59.99</p>
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-image">Product 4</div>
+                    <div class="product-info">
+                        <h3>Backpack</h3>
+                        <p class="price">$44.99</p>
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
