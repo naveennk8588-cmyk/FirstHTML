@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Layout Tasks</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .wrap {
+            width: min(1100px, 96%);
+            margin: 24px auto 40px;
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: 28px;
+        }
+
+        h2 {
+            margin: 28px 0 12px;
+            font-size: 20px;
+        }
+
+        .demo {
+            display: grid;
+            gap: 12px;
+        }
+
+        .box {
+            padding: 16px;
+            border-radius: 12px;
+            color: #fff;
+            min-height: 72px;
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+        }
+
+        .header {
+            background: #2563eb;
+        }
+
+        .sidebar {
+            background: #7c3aed;
+        }
+
+        .content {
+            background: #0f766e;
+        }
+
+        .footer {
+            background: #334155;
+        }
+
+        .main {
+            background: #059669;
+        }
+
+        .aside {
+            background: #f97316;
+        }
+
+        .card {
+            background: #db2777;
+        }
+
+        /* Task 1 */
+        .task1 {
+            grid-template-columns: 220px 1fr;
+            grid-template-areas:
+                "header header"
+                "sidebar content"
+                "footer footer";
+        }
+
+        .task1 .header {
+            grid-area: header;
+        }
+
+        .task1 .sidebar {
+            grid-area: sidebar;
+            min-height: 220px;
+        }
+
+        .task1 .content {
+            grid-area: content;
+            min-height: 220px;
+        }
+
+        .task1 .footer {
+            grid-area: footer;
+        }
+
+        /* Task 2 */
+        .task2 {
+            grid-template-columns: 220px 1fr;
+            grid-template-areas:
+                "header header"
+                "sidebar content"
+                "footer footer";
+        }
+
+        .task2 .header {
+            grid-area: header;
+        }
+
+        .task2 .sidebar {
+            grid-area: sidebar;
+            min-height: 160px;
+        }
+
+        .task2 .content {
+            grid-area: content;
+            min-height: 160px;
+        }
+
+        .task2 .footer {
+            grid-area: footer;
+        }
+
+        /* Task 3 */
+        .task3 {
+            grid-template-columns: 1fr 2fr;
+            grid-template-areas:
+                "sidebar content"
+                "sidebar footer";
+        }
+
+        .task3 .sidebar {
+            grid-area: sidebar;
+            min-height: 180px;
+        }
+
+        .task3 .content {
+            grid-area: content;
+            min-height: 80px;
+        }
+
+        .task3 .footer {
+            grid-area: footer;
+            min-height: 80px;
+        }
+
+        /* Task 4 */
+        .task4 {
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-areas:
+                "header header ."
+                "sidebar content content"
+                "footer footer footer";
+        }
+
+        .task4 .header {
+            grid-area: header;
+        }
+
+        .task4 .sidebar {
+            grid-area: sidebar;
+            min-height: 140px;
+        }
+
+        .task4 .content {
+            grid-area: content;
+            min-height: 140px;
+        }
+
+        .task4 .footer {
+            grid-area: footer;
+        }
+
+        /* Task 6 */
+        .task6 {
+            grid-template-columns: 240px 1fr 260px;
+            grid-template-areas:
+                "header header header"
+                "sidebar main aside"
+                "sidebar card card"
+                "footer footer footer";
+        }
+
+        .task6 .header {
+            grid-area: header;
+        }
+
+        .task6 .sidebar {
+            grid-area: sidebar;
+            min-height: 220px;
+        }
+
+        .task6 .main {
+            grid-area: main;
+            min-height: 120px;
+        }
+
+        .task6 .aside {
+            grid-area: aside;
+            min-height: 120px;
+        }
+
+        .task6 .card {
+            grid-area: card;
+            min-height: 120px;
+        }
+
+        .task6 .footer {
+            grid-area: footer;
+        }
+
+        /* Task 7 */
+        .task7 {
+            grid-template-columns: 240px 1fr;
+            grid-template-areas:
+                "sidebar header"
+                "sidebar content"
+                "sidebar footer";
+        }
+
+        .task7 .sidebar {
+            grid-area: sidebar;
+            min-height: 320px;
+        }
+
+        .task7 .header {
+            grid-area: header;
+        }
+
+        .task7 .content {
+            grid-area: content;
+            min-height: 180px;
+        }
+
+        .task7 .footer {
+            grid-area: footer;
+        }
+
+        /* Task 8 */
+        .task8 {
+            grid-template-columns: 240px 1fr;
+            grid-template-areas:
+                "header header"
+                "sidebar content"
+                "sidebar footer";
+        }
+
+        .task8 .header {
+            grid-area: header;
+        }
+
+        .task8 .sidebar {
+            grid-area: sidebar;
+            min-height: 220px;
+        }
+
+        .task8 .content {
+            grid-area: content;
+            min-height: 150px;
+        }
+
+        .task8 .footer {
+            grid-area: footer;
+        }
+
+        /* Task 9 and 10 */
+        .task9,
+        .task10 {
+            grid-template-columns: 240px 1fr;
+            grid-template-areas:
+                "header header"
+                "sidebar content"
+                "footer footer";
+        }
+
+        .task9 .header,
+        .task10 .header {
+            grid-area: header;
+        }
+
+        .task9 .sidebar,
+        .task10 .sidebar {
+            grid-area: sidebar;
+            min-height: 200px;
+        }
+
+        .task9 .content,
+        .task10 .content {
+            grid-area: content;
+            min-height: 200px;
+        }
+
+        .task9 .footer,
+        .task10 .footer {
+            grid-area: footer;
+        }
+
+        @media (max-width: 768px) {
+
+            .task1,
+            .task2,
+            .task3,
+            .task4,
+            .task6,
+            .task7,
+            .task8,
+            .task9,
+            .task10 {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "content"
+                    "footer";
+            }
+
+            .task6 {
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "main"
+                    "aside"
+                    "card"
+                    "footer";
+            }
+
+            .task7,
+            .task8 {
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "content"
+                    "footer";
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h1>CSS Grid Area Layout Tasks</h1>
+
+        <h2>Task 1</h2>
+        <section class="demo task1">
+            <div class="box header">Header</div>
+            <div class="box sidebar">Sidebar</div>
+            <div class="box content">Content</div>
+            <div class="box footer">Footer</div>
+        </section>
+
+        <h2>Task 2</h2>
+        <section class="demo task2">
+            <div class="box header">Header spans full width</div>
+            <div class="box sidebar">Sidebar</div>
+            <div class="box content">Content</div>
+            <div class="box footer">Footer</div>
+        </section>
+
+        <h2>Task 3</h2>
+        <section class="demo task3">
+            <div class="box sidebar">Sidebar</div>
+            <div class="box content">Content</div>
+            <div class="box footer">Footer</div>
+        </section>
+
+        <h2>Task 4</h2>
+        <section class="demo task4">
+            <div class="box header">Header</div>
+            <div class="box sidebar">Sidebar</div>
+            <div class="box content">Content</div>
+            <div class="box footer">Footer</div>
+        </section>
+
+        <h2>Task 5</h2>
+        <p>Different colors are already applied to each grid area using separate classes.</p>
+
+        <h2>Task 6</h2>
+        <section class="demo task6">
+            <div class="box header">Admin Header</div>
+            <div class="box sidebar">Menu</div>
+            <div class="box main">Stats</div>
+            <div class="box aside">Notifications</div>
+            <div class="box card">Reports</div>
+            <div class="box footer">Admin Footer</div>
+        </section>
+
+        <h2>Task 7</h2>
+        <section class="demo task7">
+            <div class="box sidebar">Fixed Sidebar</div>
+            <div class="box header">Website Header</div>
+            <div class="box content">Website Content</div>
+            <div class="box footer">Website Footer</div>
+        </section>
+
+        <h2>Task 8</h2>
+        <section class="demo task8">
+            <div class="box header">Flex to Grid Area Header</div>
+            <div class="box sidebar">Flex Sidebar</div>
+            <div class="box content">Flex Content</div>
+            <div class="box footer">Flex Footer</div>
+        </section>
+
+        <h2>Task 9</h2>
+        <section class="demo task9">
+            <div class="box header">Responsive Header</div>
+            <div class="box sidebar">Responsive Sidebar</div>
+            <div class="box content">Responsive Content</div>
+            <div class="box footer">Responsive Footer</div>
+        </section>
+
+        <h2>Task 10</h2>
+        <section class="demo task10">
+            <div class="box header">Header</div>
+            <div class="box sidebar">Sidebar Menu</div>
+            <div class="box content">Main Content</div>
+            <div class="box footer">Footer</div>
+        </section>
+    </div>
+</body>
+
+</html>
