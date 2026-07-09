@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard UI</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-areas:
+                "sidebar main"
+                "sidebar footer";
+            grid-template-columns: 260px 1fr;
+            grid-template-rows: 1fr auto;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background: #111827;
+            color: #fff;
+            padding: 24px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .nav {
+            list-style: none;
+        }
+
+        .nav li {
+            margin-bottom: 14px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: #1f2937;
+        }
+
+        .nav li:hover {
+            background: #374151;
+        }
+
+        .main {
+            grid-area: main;
+            padding: 24px;
+        }
+
+        .header-card {
+            background: #2563eb;
+            color: white;
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+        }
+
+        .analytics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            min-height: 120px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .chart {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            min-height: 260px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .footer {
+            grid-area: footer;
+            background: #334155;
+            color: white;
+            padding: 18px 24px;
+        }
+
+        @media (max-width: 900px) {
+            .dashboard {
+                grid-template-areas:
+                    "sidebar"
+                    "main"
+                    "footer";
+                grid-template-columns: 1fr;
+            }
+
+            .analytics {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul class="nav">
+                <li>Dashboard</li>
+                <li>Analytics</li>
+                <li>Users</li>
+                <li>Orders</li>
+                <li>Settings</li>
+            </ul>
+        </aside>
+
+        <main class="main">
+            <div class="header-card">
+                <h1>Main Analytics Section</h1>
+                <p>Track sales, users, performance, and reports in one place.</p>
+            </div>
+
+            <section class="analytics">
+                <div class="card">
+                    <h3>Revenue</h3>
+                    <p>$12,480</p>
+                </div>
+                <div class="card">
+                    <h3>Users</h3>
+                    <p>8,240</p>
+                </div>
+                <div class="card">
+                    <h3>Orders</h3>
+                    <p>1,530</p>
+                </div>
+            </section>
+
+            <section class="chart">
+                <h3>Performance Chart Area</h3>
+                <p>This section can hold graphs, tables, or reports.</p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            Footer
+        </footer>
+    </div>
+</body>
+
+</html>
