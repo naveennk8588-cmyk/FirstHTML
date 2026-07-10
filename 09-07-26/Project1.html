@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Profile Page</title>
+    <img src="image(1).jpg" alt="">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        .profile-page {
+            width: min(1000px, 92%);
+            margin: 30px auto;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .profile-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 24px;
+        }
+
+        .profile-image {
+            width: 100%;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            object-fit: cover;
+        }
+
+        .profile-info h2 {
+            margin: 0 0 10px;
+            font-size: 32px;
+        }
+
+        .profile-info p {
+            line-height: 1.7;
+            margin: 0 0 16px;
+            color: #555;
+        }
+
+        .details {
+            display: grid;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .detail-box {
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            padding: 14px 16px;
+            border-radius: 12px;
+        }
+
+        .detail-box strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #111827;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2563eb;
+            border-color: #2563eb;
+        }
+
+        .profile-footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            font-size: 14px;
+        }
+
+        @media (min-width: 768px) {
+            .profile-content {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .profile-image,
+            .profile-info {
+                flex: 1;
+            }
+
+            .profile-info h2 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .profile-header h1 {
+                font-size: 24px;
+            }
+
+            .profile-info h2 {
+                font-size: 26px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="profile-page">
+        <header class="profile-header">
+            <h1>My Profile</h1>
+            <p>Responsive mobile-friendly profile page</p>
+        </header>
+
+        <section class="profile-content">
+            <div class="profile-image">
+            </div>
+
+            <div class="profile-info">
+                <h2>Naveen Kumar</h2>
+                <p>
+                    I am a frontend developer focused on responsive layouts, CSS Flexbox,
+                    and clean user interface design. This profile page stacks nicely on
+                    mobile and becomes a two-column layout on desktop.
+                </p>
+
+                <div class="details">
+                    <div class="detail-box">
+                        <strong>Location</strong>
+                        Coimbatore, Tamil Nadu
+                    </div>
+                    <div class="detail-box">
+                        <strong>Skills</strong>
+                        HTML, CSS, Flexbox, Responsive Design
+                    </div>
+                    <div class="detail-box">
+                        <strong>Interest</strong>
+                        UI Layouts and Web Development Practice
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <a href="#" class="btn btn-primary">Hire Me</a>
+                    <a href="#" class="btn btn-secondary">View Work</a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="profile-footer">
+            <p>© 2026 My Profile Page</p>
+        </footer>
+    </main>
+</body>
+
+</html>
