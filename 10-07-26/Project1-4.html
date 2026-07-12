@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyBrand</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0f172a;
+      color: white;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #111827;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #06b6d4, #7c3aed);
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #cbd5e1;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+                  url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop") center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px 60px;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero-content img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 16px;
+      margin-top: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      transition: 0.3s;
+    }
+
+    .hero-content img:hover {
+      transform: scale(1.03);
+    } 
+
+    section {
+      padding: 90px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 32px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .service-box {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 14px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .service-box:hover {
+      transform: translateY(-6px);
+    }
+
+    .service-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+      transition: 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.04);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.5);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: #111827;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="brand">
+      <div class="logo">M</div>
+      <div>
+        <div>MyBrand</div>
+        <small style="color:#94a3b8;">Creative Studio</small>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#work">Work</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Welcome to MyBrand</h1>
+      <p>Modern website with smooth scroll, hover effects, sticky navbar, and gallery section.</p>
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" alt="Hero Image">
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2>Services</h2>
+      <div class="services">
+        <div class="service-box">
+          <div class="service-icon">🎨</div>
+          <h3>Design</h3>
+          <p>Clean and modern UI design.</p>
+        </div>
+        <div class="service-box">
+          <div class="service-icon">💻</div>
+          <h3>Development</h3>
+          <p>Responsive frontend coding.</p>
+        </div>
+        <div class="service-box">
+          <div class="service-icon">⚡</div>
+          <h3>Fast Support</h3>
+          <p>Quick and reliable service.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <h2>Image Gallery</h2>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Gallery 1">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Gallery 2">
+        <img src="https://img.magnific.com/free-photo/web-design-technology-browsing-programming-concept_53876-163260.jpg" alt="Gallery 3">
+        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop" alt="Gallery 4">
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="container">
+      <h2>Cards</h2>
+      <div class="cards">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="card-body">
+            <h3>Project One</h3>
+            <p>Card layout using CSS Grid.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="">
+          <div class="card-body">
+            <h3>Project Two</h3>
+            <p>Shadow effect and hover animation.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://img.magnific.com/free-photo/web-design-technology-browsing-programming-concept_53876-163260.jpg" alt="">
+          <div class="card-body">
+            <h3>Project Three</h3>
+            <p>Responsive and modern design.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 MyBrand
+  </footer>
+
+</body>
+</html>
