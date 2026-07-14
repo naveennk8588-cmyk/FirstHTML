@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Task 1 //
+        for (let i = 1; i <= 10; i++) {
+            console.log(i);
+        }
+
+        // Task 2 //
+        for (let i = 2; i <= 20; i += 2) {
+            console.log(i);
+        }
+
+        // Task 3 //
+        for (let i = 10; i >= 1; i--) {
+            console.log(i);
+        }
+
+        // Task 4 //
+        let i = 1;
+        while (i <= 5) {
+            console.log(i);
+            i++;
+        }
+
+        // Task 5 //
+        let j = 1;
+        do {
+            console.log(j);
+            j++;
+        } while (j <= 5);
+
+        // Task 6 //
+        for (let k = 1; k <= 10; k++) {
+            console.log("5 x " + k + " = " + (5 * k));
+        }
+
+        // Task 7 //
+        let names = ["Naveen", "Arun", "Ravi", "Kumar", "Priya"];
+        for (let n = 0; n < names.length; n++) {
+            console.log(names[n]);
+        }
+
+        // Task 8 //
+        let sum = 0;
+        for (let s = 1; s <= 10; s++) {
+            sum += s;
+        }
+        console.log("Sum =", sum);
+
+        // Task 9 //
+        for (let o = 1; o <= 20; o++) {
+            if (o % 2 !== 0) {
+                console.log(o);
+            }
+        }
+
+        // Task 10 //
+        let correctUsername = "admin";
+        let correctPassword = "1234";
+        let success = false;
+
+        for (let attempt = 1; attempt <= 3; attempt++) {
+            let username = prompt("Enter username (Attempt " + attempt + " of 3)");
+            let password = prompt("Enter password");
+
+            if (username === correctUsername && password === correctPassword) {
+                console.log("Login success");
+                success = true;
+                break;
+            } else {
+                console.log("Wrong username or password");
+            }
+        }
+
+        if (!success) {
+            console.log("System locked");
+        }
+    </script>
+
+</body>
+
+</html>
