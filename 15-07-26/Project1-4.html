@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Project 1: Number Counter App
+        for (let i = 1; i <= 100; i++) {
+            console.log(i);
+        }
+
+        // Project 2: Product List Display
+        let products = ["Apple", "Banana", "Mango", "Orange", "Grapes"];
+        for (let i = 0; i < products.length; i++) {
+            console.log(products[i]);
+        }
+
+        // Project 3: Multiplication Table Generator
+        let number = 5; // change this value if needed
+        for (let i = 1; i <= 10; i++) {
+            console.log(number + " x " + i + " = " + (number * i));
+        }
+
+        // Project 4 //
+        let correctUsername = "admin";
+        let correctPassword = "1234";
+        let success = false;
+
+        for (let attempt = 1; attempt <= 3; attempt++) {
+            let username = prompt("Enter username (Attempt " + attempt + " of 3)");
+            let password = prompt("Enter password");
+
+            if (username === correctUsername && password === correctPassword) {
+                console.log("Login success");
+                success = true;
+                break;
+            } else {
+                console.log("Wrong username or password");
+            }
+        }
+
+        if (!success) {
+            console.log("System locked");
+        }
+    </script>
+
+</body>
+
+</html>
