@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+            // Project 1: Calculator Functions
+            function add(a, b) {
+                return a + b;
+            }
+
+        function subtract(a, b) {
+            return a - b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function divide(a, b) {
+            if (b === 0) {
+                return "Cannot divide by zero";
+            }
+            return a / b;
+        }
+
+        console.log("Calculator:");
+        console.log(add(10, 5));
+        console.log(subtract(10, 5));
+        console.log(multiply(10, 5));
+        console.log(divide(10, 5));
+
+        // Project 2: User Validation System
+        function login(username, password) {
+            if (username === "admin" && password === "1234") {
+                return "Login success";
+            } else {
+                return "Login failed";
+            }
+        }
+
+        console.log("Login:");
+        console.log(login("admin", "1234"));
+
+        // Project 3: Grade Calculator
+        function gradeCalculator(marks) {
+            if (marks >= 90) {
+                return "Grade A";
+            } else if (marks >= 80) {
+                return "Grade B";
+            } else if (marks >= 70) {
+                return "Grade C";
+            } else if (marks >= 60) {
+                return "Grade D";
+            } else {
+                return "Grade F";
+            }
+        }
+
+        console.log("Grade:");
+        console.log(gradeCalculator(85));
+
+        // Project 4: Shopping Cart Total
+        function shoppingCartTotal(price1, price2, price3) {
+            return price1 + price2 + price3;
+        }
+
+        console.log("Cart Total:");
+        console.log(shoppingCartTotal(100, 250, 150));
+    </script>
+</body>
+
+</body>
+
+</html>
