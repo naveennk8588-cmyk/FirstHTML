@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Project 1: Product List Manager //
+        let products = ["Laptop", "Mouse", "Keyboard", "Monitor", "Headphones"];
+
+        // Add a product //
+        products.push("Webcam");
+        console.log("After adding:", products);
+
+        // Remove a product (remove first item) //
+        products.shift();
+        console.log("After removing:", products);
+
+        // Display list //
+        console.log("Final Product List:");
+        for (let p of products) {
+            console.log("- " + p);
+        }
+
+        // Project 2: Student List System
+        let students = ["Arun", "Priya", "Karthik", "Divya", "Rahul"];
+
+        // Store and display
+        console.log("Student List:");
+        for (let s of students) {
+            console.log("- " + s);
+        }
+
+        // Project 3: Shopping Cart System
+        let cart = ["Book", "Pen", "Notebook", "Bag", "Bottle"];
+
+        // Add an item
+        cart.push("Lunch Box");
+        console.log("After adding:", cart);
+
+        // Remove an item (remove last item)
+        cart.pop();
+        console.log("After removing:", cart);
+
+        // Show total count
+        console.log("Total items in cart:", cart.length);
+
+        // Display cart
+        console.log("Shopping Cart:");
+        for (let item of cart) {
+            console.log("- " + item);
+        }
+
+        // Project 4: Menu System
+        let menu = ["Biryani", "Pizza", "Burger", "Dosa", "Ice Cream"];
+
+        // Display menu using loop
+        console.log("===== FOOD MENU =====");
+        for (let i = 0; i < menu.length; i++) {
+            console.log((i + 1) + ". " + menu[i]);
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
