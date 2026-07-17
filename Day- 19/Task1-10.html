@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // --- Task 1: Create array of 5 fruits ---
+        let fruits = ["Apple", "Banana", "Orange", "Mango", "Grapes"];
+        console.log("Task 1 - Fruits Array:", fruits);
+
+        // --- Task 2: Print first and last element ---
+        console.log("Task 2 - First Element:", fruits[0]);
+        console.log("Task 2 - Last Element:", fruits[fruits.length - 1]);
+
+        // --- Task 3: Update second element ---
+        fruits[1] = "Blueberry";
+        console.log("Task 3 - Updated Array:", fruits);
+
+        // --- Task 4: Add new item using push() ---
+        fruits.push("Pineapple");
+        console.log("Task 4 - After Push:", fruits);
+
+        // --- Task 5: Remove last item using pop() ---
+        let removed = fruits.pop();
+        console.log("Task 5 - After Pop (Removed:", removed + "):", fruits);
+
+        // --- Task 6: Loop array using for loop ---
+        console.log("Task 6 - For Loop:");
+        for (let i = 0; i < fruits.length; i++) {
+            console.log(fruits[i]);
+        }
+
+        // --- Task 7: Loop array using for...of ---
+        console.log("Task 7 - For...of Loop:");
+        for (let f of fruits) {
+            console.log(f);
+        }
+
+        // --- Task 8: Find length of array ---
+        console.log("Task 8 - Array Length:", fruits.length);
+
+        // --- Task 9: Create array of 5 student names and print them ---
+        let students = ["Arun", "Priya", "Karthik", "Divya", "Rahul"];
+        console.log("Task 9 - Student Names:");
+        for (let s of students) {
+            console.log(s);
+        }
+
+        // --- Task 10 (Challenge): Product list system ---
+        let products = ["Laptop", "Mouse", "Keyboard", "Monitor", "Headphones"];
+        console.log("Task 10 - Initial Products:", products);
+
+        // Add new product
+        products.push("Webcam");
+        console.log("Task 10 - After Adding:", products);
+
+        // Remove one product
+        products.shift(); // removes first item
+        console.log("Task 10 - After Removing:", products);
+
+        // Print final list
+        console.log("Task 10 - Final Product List:", products);
+
+    </script>
+
+</body>
+
+</html>
