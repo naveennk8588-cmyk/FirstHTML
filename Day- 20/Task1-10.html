@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Task 1: Create object for student details
+        let student = {
+            name: "Naveen Kumar",
+            age: 22,
+            course: "B.Sc. Computer Science",
+            city: "Salem"
+        };
+
+        // Task 2: Access object properties using dot notation
+        console.log("Student Name:", student.name);
+        console.log("Student Age:", student.age);
+
+        // Task 3: Access using bracket notation
+        console.log("Student Course:", student["course"]);
+        console.log("Student City:", student["city"]);
+
+        // Task 4: Update object value
+        student.age = 23;
+        console.log("Updated Age:", student.age);
+
+        // Task 5: Add new property
+        student.email = "naveen.nk8588@gmail.com";
+        console.log("Added Email:", student.email);
+
+        // Task 6: Delete one property
+        delete student.city;
+        console.log("After Delete City:", student);
+
+        // Task 7: Loop object using for...in
+        console.log("All Student Details:");
+        for (let key in student) {
+            console.log(key + ":", student[key]);
+        }
+
+        // Task 8: Convert object to JSON
+        const studentJSON = JSON.stringify(student);
+        console.log("JSON String:", studentJSON);
+
+        // Task 9: Convert JSON to object
+        const studentObject = JSON.parse(studentJSON);
+        console.log("JSON to Object:", studentObject);
+
+        // Task 10: Create employee object and print all details
+        const employee = {
+            Id: 101,
+            name: "Naveen Kumar",
+            job: "Frontend Developer",
+            salary: 30000,
+            place: "Salem",
+
+
+            details: function () {
+                return this.name + " works as a " + this.job + " in " + this.place;
+            }
+        };
+
+        console.log("Employee ID:", employee.Id);
+        console.log("Employee Name:", employee.name);
+        console.log("Employee Job:", employee.job);
+        console.log("Employee Salary:", employee.salary);
+        console.log("Employee Place:", employee.place);
+        console.log("Employee Details Method:", employee.details());
+    </script>
+
+</body>
+
+</html>
