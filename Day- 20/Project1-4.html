@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ===== PROJECT 1: Student Profile System =====
+        const student = {
+            name: "Naveen Kumar",
+            age: 22,
+            marks: 85,
+            course: "B.Sc. Computer Science",
+
+            // Simple method
+            show: function () {
+                console.log("=== STUDENT ===");
+                console.log("Name:", this.name);
+                console.log("Age:", this.age);
+                console.log("Marks:", this.marks);
+                console.log("Course:", this.course);
+            }
+        };
+
+        //  PROJECT 2: Product Details System //
+        const product = {
+            productName: "Wireless Mouse",
+            price: 499,
+            category: "Electronics",
+            stock: 120,
+
+            // Simple methods //
+            show: function () {
+                console.log("=== PRODUCT ===");
+                console.log("Product:", this.productName);
+                console.log("Price:", this.price);
+                console.log("Category:", this.category);
+                console.log("Stock:", this.stock);
+            },
+
+            addStock: function (qty) {
+                this.stock += qty;
+                console.log("Added stock. Total:", this.stock);
+            }
+        };
+
+        // PROJECT 3: Employee Management Data //
+        const employee = {
+            employeeId: "E1001",
+            name: "Naveen Kumar",
+            department: "Web Development",
+            salary: 45000,
+
+            // Simple methods //
+            show: function () {
+                console.log("=== EMPLOYEE ===");
+                console.log("ID:", this.employeeId);
+                console.log("Name:", this.name);
+                console.log("Department:", this.department);
+                console.log("Salary:", this.salary);
+            },
+
+            hikeSalary: function (percent) {
+                const increase = (this.salary * percent) / 100;
+                this.salary += increase;
+                console.log("Salary after hike:", this.salary);
+            }
+        };
+
+        // PROJECT 4: API Data Simulator (JSON) //
+        const apiData = {
+            users: [
+                { id: 1, name: "Naveen", email: "naveen@gmail.com" },
+                { id: 2, name: "Kavitha", email: "kavitha@gmail.com" }
+            ],
+            products: [
+                { id: 101, name: "Laptop", price: 45000 },
+                { id: 102, name: "Keyboard", price: 899 }
+            ],
+            courses: [
+                { id: 1, name: "HTML & CSS", level: "beginner" },
+                { id: 2, name: "JavaScript", level: "intermediate" }
+            ],
+
+            // Simple method //
+            showJSON: function () {
+                console.log("=== API JSON DATA ===");
+                console.log(JSON.stringify(this, null, 2));
+            }
+        };
+
+        // RUN ALL PROJECTS //
+        student.show();
+        product.show();
+        product.addStock(30);
+        employee.show();
+        employee.hikeSalary(10);
+        apiData.showJSON();
+    // </script>
+
+</body>
+
+</html>
