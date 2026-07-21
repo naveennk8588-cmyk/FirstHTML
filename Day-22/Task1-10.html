@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript DOM Tasks</h1>
+
+    <!-- Task 1 -->
+    <h2>Task 1: Change Heading Text</h2>
+    <h3 id="heading">Hello World</h3>
+    <button onclick="changeHeading()">Change Heading</button>
+    <script>
+        function changeHeading() {
+            document.getElementById("heading").textContent = "Welcome to JavaScript DOM";
+        }
+    </script>
+
+    <hr>
+
+    <!-- Task 2 -->
+    <h2>Task 2: Change Paragraph Content</h2>
+    <p id="paragraph">This is a paragraph.</p>
+    <button onclick="changeParagraph()">Change Paragraph</button>
+    <script>
+        function changeParagraph() {
+            document.getElementById("paragraph").textContent = "Paragraph content changed successfully.";
+        }
+    </script>
+
+    <hr>
+
+    <!-- Task 3 -->
+    <h2>Task 3: Change Button Text</h2>
+    <button id="btn" onclick="changeButton()">Click Me</button>
+    <script>
+        function changeButton() {
+            document.getElementById("btn").textContent = "Clicked!";
+        }
+    </script>
+
+    <hr>
+
+    <!-- Task 4 -->
+    <h2 id="headingColor">Task 4: Change Heading Color</h2>
+    <button onclick="changeColor()">Change Color</button>
+    <script>
+        function changeColor() {
+            document.getElementById("headingColor").style.color = "blue";
+        }
+    </script>
+
+    <hr>
+
+    <!-- Task 5 -->
+    <h2>Task 5: Change Background Color of Div</h2>
+    <div id="box">
+        This is a Div
+    </div>
+    <br>
+    <button onclick="changeBackground()">Change Background</button>
+    <script>
+        function changeBackground() {
+            document.getElementById("box").style.backgroundColor = "yellow";
+        }
+    </script>
+
+    <hr>
+
+    <!-- Task 6 -->
+    <h2>Task 6: Display Username</h2>
+    <input type="text" id="username" placeholder="Enter Username">
+    <button onclick="displayUsername()">Display Username</button>
+    <p id="result"></p>
+    <script>
+        function displayUsername() {
+            let user = document.getElementById("username").value;
+            document.getElementById("result").textContent = "Username: " + user;
+        }
+    </script>
+
+    <hr>
+
+    <!-- Task 7 -->
+    <h2>Task 7: Welcome Message</h2>
+    <input type="text" id="name" placeholder="Enter Your Name">
+    <button onclick="welcomeMessage()">Welcome</button>
+    <h3 id="welcome"></h3>
+    <script>
+        function welcomeMessage() {
+            let name = document.getElementById("name").value;
+            document.getElementById("welcome").textContent = "Welcome, " + name + "!";
+        }
+    </script>
+
+    <hr>
+
+    <!-- Task 8 -->
+    <h2>Task 8: Insert HTML using innerHTML</h2>
+    <div id="content"></div>
+    <button onclick="insertHTML()">Insert HTML</button>
+    <script>
+        function insertHTML() {
+            document.getElementById("content").innerHTML =
+                "<h3>DOM Example</h3><p>This content is inserted using <b>innerHTML</b>.</p>";
+        }
+    </script>
+
+    <hr>
+
+    <!-- Task 9 -->
+    <h2>Task 9: Color Changer App</h2>
+    <button onclick="changeBodyColor('red')">Red</button>
+    <button onclick="changeBodyColor('green')">Green</button>
+    <button onclick="changeBodyColor('blue')">Blue</button>
+    <button onclick="changeBodyColor('white')">Reset</button>
+    <script>
+        function changeBodyColor(color) {
+            document.body.style.backgroundColor = color;
+        }
+    </script>
+
+    <hr>
+
+    <!-- Task 10 -->
+    <h2>Task 10: Dynamic Profile Card</h2>
+
+    <h3 id="profileName">Name: Naveen</h3>
+    <p id="profileAge">Age: 27</p>
+    <p id="profileCity">City: Chennai</p>
+
+    <button onclick="updateProfile()">Update Profile</button>
+    <script>
+        function updateProfile() {
+            document.getElementById("profileName").textContent = "Name: Rahul";
+            document.getElementById("profileAge").textContent = "Age: 30";
+            document.getElementById("profileCity").textContent = "City: Bangalore";
+        }
+    </script>
+    
+
+</body>
+
+</html>
