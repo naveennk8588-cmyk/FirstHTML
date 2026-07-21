@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    // Project 1 //
+    <h2>Dynamic Profile Card</h2>
+
+    <div id="profile">
+        <p id="name">Name</p>
+        <p id="age">Age</p>
+        <p id="city">City</p>
+    </div>
+
+    <button onclick="showProfile()">Show Profile</button>
+
+    <script>
+        function showProfile() {
+            document.getElementById("name").textContent = "Name: Naveen Kumar";
+            document.getElementById("age").textContent = "Age: 30";
+            document.getElementById("city").textContent = "City: Mettur";
+        }
+    </script>
+    <hr>
+
+    // Project 2 //
+    <h2>Notes App</h2>
+
+    <input type="text" id="note" placeholder="Enter Note">
+
+    <button onclick="addNote()">Add Note</button>
+
+    <ul id="notesList"></ul>
+
+    <button onclick="removeNotes()">Remove All Notes</button>
+
+    <script>
+        function addNote() {
+
+            let note = document.getElementById("note").value;
+
+            let li = document.createElement("li");
+
+            li.textContent = note;
+
+            document.getElementById("notesList").appendChild(li);
+
+            document.getElementById("note").value = "";
+        }
+
+        function removeNotes() {
+            document.getElementById("notesList").innerHTML = "";
+        }
+    </script>
+    <hr>
+
+
+    // Project 3 //
+    <h2 id="heading">Theme Switcher</h2>
+
+    <div id="message"></div>
+
+    <button onclick="changeTheme()">Change Theme</button>
+
+    <script>
+
+        function changeTheme() {
+
+            document.body.style.backgroundColor = "black";
+
+            document.body.style.color = "white";
+
+            document.getElementById("heading").textContent = "Dark Theme Enabled";
+
+            let p = document.createElement("p");
+
+            p.textContent = "Theme changed successfully.";
+
+            document.getElementById("message").appendChild(p);
+
+        }
+
+    </script>
+    <hr>
+
+    // Project 4 //
+    <h2>Product Card Generator</h2>
+
+    <div id="products"></div>
+
+    <button onclick="createProduct()">Create Product Card</button>
+
+    <script>
+
+        function createProduct() {
+
+            let card = document.createElement("div");
+
+            card.innerHTML = `
+        <h3>Wireless Mouse</h3>
+        <p>Price: ₹799</p>
+        <p>Category: Electronics</p>
+        <hr>
+    `;
+
+            document.getElementById("products").appendChild(card);
+
+        }
+
+    </script>
+
+</body>
+
+</html>
