@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Task 1 -->
+    <h1 id="heading">Welcome</h1>
+    <button id="btn" onclick="changeHeading()">Task 1 - Change Heading</button>
+    <script>
+        function changeHeading() {
+            document.getElementById("heading").textContent = "Hello Students";
+        }
+    </script>
+    <hr>
+
+    <!-- Task 2 -->
+    <p id="paragraph">This is a sample paragraph.</p>
+    <button onclick="changeParagraphColor()">Task 2 - Change Paragraph Color</button>
+    <script>
+        function changeParagraphColor() {
+            document.getElementById("paragraph").style.color = "blue";
+        }
+    </script>
+    <hr>
+
+    <!--Task 3-->
+    
+    <h2>Task 3 - Change Button Text</h2>
+
+    <button id="buttonText" onclick="changeButtonText()">Click Me</button>
+
+    <script>
+        function changeButtonText() {
+            document.getElementById("buttonText").textContent = "Submitted";
+        }
+    </script>
+    <hr>
+
+
+    <!-- Task 4 -->
+    <img id="image" src="image1.jpg" alt="Image" width="200">
+    <button onclick="changeImage()">Task 4 - Update Image</button>
+    <script>
+        function changeImage() {
+            document.getElementById("image").src = "image2.jpg";
+        }
+    </script>
+    <hr>
+
+    <!--Task 5-->
+    <button onclick="createParagraph()">Task 5 - Create Paragraph</button>
+    <script>
+        function createParagraph() {
+            let p = document.createElement("p");
+            p.textContent = "This paragraph was created using JavaScript.";
+            document.body.appendChild(p);
+        }
+    </script>
+
+
+    <hr>
+
+    <!-- Task 6 -->
+    <div id="container">
+        <h3>Container Div</h3>
+    </div>
+    <button onclick="appendParagraph()">Task 6 - Append Paragraph</button>
+    <script>
+        function appendParagraph() {
+            let p = document.createElement("p");
+            p.textContent = "Paragraph added inside the container.";
+            document.getElementById("container").appendChild(p);
+        }
+    </script>
+
+    <hr>
+
+    <!-- Task 7 -->
+    <ul id="list">
+        <li>HTML</li>
+    </ul>
+    <button onclick="addListItem()">Task 7 - Add List Item</button>
+    <script>
+        function addListItem() {
+            let li = document.createElement("li");
+            li.textContent = "JavaScript";
+            document.getElementById("list").appendChild(li);
+        }
+    </script>
+
+
+    <hr>
+
+    <!-- Task 8 -->
+    <p id="removeMe">This paragraph will be removed.</p>
+    <button onclick="removeElement()">Task 8 - Remove Element</button>
+    <script>
+        function removeElement() {
+            document.getElementById("removeMe").remove();
+        }
+    </script>
+
+
+    <hr>
+
+    <!-- Task 9 -->
+    <div id="card">
+        <h2 id="cardName">Name</h2>
+        <p id="cardAge">Age</p>
+    </div>
+    <button onclick="updateCard()">Task 9 - Dynamic Card</button>
+    <script>
+        function updateCard() {
+            document.getElementById("cardName").textContent = "Naveen Kumar";
+            document.getElementById("cardAge").textContent = "Age: 27";
+        }
+    </script>
+
+
+    <hr>
+
+    <!-- Task 10 -->
+    <div id="studentCard"></div>
+    <button onclick="addStudent()">Add Student</button>
+    <button onclick="updateStudent()">Update Student</button>
+    <button onclick="removeStudent()">Remove Student</button>
+    <script>
+        function addStudent() {
+            document.getElementById("studentCard").innerHTML = `
+                <h2 id="studentName">Rahul</h2>
+                <p id="studentAge">Age: 20</p>
+                <p id="studentCourse">Course: BCA</p>
+            `;
+        }
+
+        // Task 10 - Update Student
+        function updateStudent() {
+            document.getElementById("studentName").textContent = "Arun";
+            document.getElementById("studentAge").textContent = "Age: 21";
+            document.getElementById("studentCourse").textContent = "Course: MCA";
+        }
+
+        // Task 10 - Remove Student
+        function removeStudent() {
+            document.getElementById("studentCard").innerHTML = "";
+        }
+    </script>
+
+</body>
+
+</html>
