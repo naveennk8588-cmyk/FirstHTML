@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript DOM Mini Projects</h1>
+
+    <!-- Project 1 -->
+    <h2>Project 1: Profile Viewer</h2>
+
+    <h3 id="name">Name: Naveen</h3>
+    <p id="age">Age: 27</p>
+
+    <button onclick="changeProfile()">Update Profile</button>
+    <script>
+        function changeProfile() {
+            document.getElementById("name").textContent = "Name: Rahul";
+            document.getElementById("age").textContent = "Age: 30";
+        }
+    </script>
+
+    <hr>
+
+    <!-- Project 2 -->
+    <h2>Project 2: Theme Changer</h2>
+
+    <button onclick="changeTheme()">Change Theme</button>
+    <script>
+        function changeTheme() {
+            document.body.style.backgroundColor = "black";
+            document.body.style.color = "white";
+        }</script>
+
+    <hr>
+
+    <!-- Project 3 -->
+    <h2>Project 3: Message Display App</h2>
+
+    <input type="text" id="message" placeholder="Enter your message">
+
+    <button onclick="showMessage()">Show Message</button>
+
+    <p id="output"></p>
+    <script>
+        function showMessage() {
+            let msg = document.getElementById("message").value;
+            document.getElementById("output").textContent = msg;
+        }
+    </script>
+
+    <hr>
+
+    <!-- Project 4 -->
+    <h2>Project 4: Product Info Display</h2>
+
+    <button onclick="showProduct()">Show Product Details</button>
+
+    <div id="product"></div>
+    <script>
+        function showProduct() {
+            document.getElementById("product").innerHTML =
+                "<h3>Product Name: Laptop</h3>" +
+                "<p>Price: ₹50,000</p>" +
+                "<p>Brand: Dell</p>";
+        }
+    </script>
+
+</body>
+
+</html>
