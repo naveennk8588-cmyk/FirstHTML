@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Task 1: Button Click Event</h2>
+    <button id="clickBtn">Click Me</button>
+    <p id="clickResult"></p>
+    <script>
+        document.getElementById("clickBtn").onclick = function () {
+            document.getElementById("clickResult").textContent = "Button Clicked!";
+        };
+    </script>
+
+    <hr>
+
+    <h2>Task 2: Double Click Event</h2>
+    <button id="dblBtn">Double Click Me</button>
+    <p id="dblResult"></p>
+    <script>
+        document.getElementById("dblBtn").ondblclick = function () {
+            document.getElementById("dblResult").textContent = "Button Double Clicked!";
+        };
+    </script>
+
+    <hr>
+
+    <h2 id="mouseOverText">Task 3: Move Mouse Here</h2>
+
+    <script>
+        let text = document.getElementById("mouseOverText");
+
+        text.addEventListener("mouseover", function () {
+            text.style.color = "red";
+            text.textContent = "Mouse Over!";
+        });
+    </script>
+
+    <hr>
+
+    <h2 id="mouseOutText">Task 4: Mouseout Here</h2>
+
+    <script>
+        let p = document.getElementById("mouseOutText");
+
+            p.addEventListener("mouseout", function () {
+            p.style.color = "green";
+            p.textContent = "Mouse Left!";
+        });
+    </script>
+
+    <hr>
+
+    <h2>Task 5: Show Alert on Button Click</h2>
+    <button id="alertBtn">Show Alert</button>
+    <script>
+        document.getElementById("alertBtn").onclick = function () {
+            alert("Button Clicked!");
+        };
+    </script>
+
+    <hr>
+
+    <h2>Task 6: Display Input Text Live</h2>
+    <input type="text" id="liveInput" placeholder="Type here">
+    <p id="liveOutput"></p>
+    <script>
+        document.getElementById("liveInput").oninput = function () {
+            document.getElementById("liveOutput").textContent = this.value;
+        };
+    </script>
+
+    <hr>
+
+    <h2>Task 7: Change Background Color on Click</h2>
+    <button id="colorBtn">Change Background</button>
+    <script>
+        document.getElementById("colorBtn").onclick = function () {
+            document.body.style.backgroundColor = "lightblue";
+        };
+    </script>
+
+    <hr>
+
+    <h2>Task 8: Keyup Event</h2>
+    <input type="text" id="keyupInput" placeholder="Type here">
+    <p id="keyupOutput"></p>
+    <script>
+        document.getElementById("keyupInput").onkeyup = function () {
+            document.getElementById("keyupOutput").textContent = this.value;
+        };
+    </script>
+
+    <hr>
+
+    <h2>Task 9: addEventListener()</h2>
+    <button id="eventBtn">Click Me</button>
+    <p id="eventOutput"></p>
+    <script>
+        document.getElementById("eventBtn").addEventListener("click", function () {
+            document.getElementById("eventOutput").textContent = "addEventListener Executed!";
+        });
+    </script>
+
+    <hr>
+
+    <h2>Task 10: Live Username Preview</h2>
+    <input type="text" id="username" placeholder="Enter Username">
+    <h3>Preview:</h3>
+    <p id="preview"></p>
+    <script>
+        document.getElementById("username").addEventListener("input", function () {
+            document.getElementById("preview").textContent = this.value;
+        });
+
+    </script>
+
+</body>
+
+</html>
