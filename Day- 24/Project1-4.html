@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Project 1 -->
+    <h2>Project 1: Live Profile Preview</h2>
+
+    <input type="text" id="name" placeholder="Enter Name"><br><br>
+
+    <input type="number" id="age" placeholder="Enter Age"><br><br>
+
+    <h3>Profile Card</h3>
+    <p>Name: <span id="displayName"></span></p>
+    <p>Age: <span id="displayAge"></span></p>
+    <script>
+        let nameInput = document.getElementById("name");
+        let ageInput = document.getElementById("age");
+
+        nameInput.addEventListener("input", function () {
+            document.getElementById("displayName").textContent = this.value;
+        });
+
+        ageInput.addEventListener("input", function () {
+            document.getElementById("displayAge").textContent = this.value;
+        });
+    </script>
+
+    <hr>
+
+    <!-- Project 2 -->
+    <h2>Project 2: Feedback Form</h2>
+
+    <input type="text" id="feedback" placeholder="Enter Feedback">
+    <button id="submitBtn">Submit</button>
+
+    <p id="message"></p>
+    <script>
+        document.getElementById("submitBtn").addEventListener("click", function () {
+
+            let feedback = document.getElementById("feedback").value;
+
+            document.getElementById("message").textContent =
+                "Feedback Submitted: " + feedback;
+
+        });
+    </script>
+
+    <hr>
+
+    <!-- Project 3 -->
+    <h2 id="heading">Project 3: Theme Changer</h2>
+
+    <button id="themeBtn">Change Theme</button>
+    <script>
+        let heading = document.getElementById("heading");
+
+        document.getElementById("themeBtn").addEventListener("click", function () {
+
+            document.body.style.backgroundColor = "black";
+            document.body.style.color = "white";
+
+        });
+
+        heading.addEventListener("mouseover", function () {
+
+            heading.style.color = "red";
+
+        });
+
+        heading.addEventListener("mouseout", function () {
+
+            heading.style.color = "black";
+
+        });
+    </script>
+
+    <hr>
+
+    <!-- Project 4 -->
+    <h2>Project 4: Product Search Box</h2>
+
+    <input type="text" id="search" placeholder="Search Product">
+
+    <p>Typed Text: <span id="result"></span></p>
+    <script>
+        document.getElementById("search").addEventListener("input", function () {
+
+            document.getElementById("result").textContent = this.value;
+
+        });
+    </script>
+    
+</body>
+</html>
