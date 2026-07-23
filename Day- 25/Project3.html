@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Student Admission Form</h2>
+
+    <form onsubmit="admission(event)">
+
+        Name:<br>
+        <input type="text" id="name">
+        <p id="nameError"></p>
+
+        Age:<br>
+        <input type="number" id="age">
+        <p id="ageError"></p>
+
+        Course:<br>
+        <input type="text" id="course">
+        <p id="courseError"></p>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <script>
+        function admission(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+            let course = document.getElementById("course").value;
+
+            document.getElementById("nameError").innerHTML = "";
+            document.getElementById("ageError").innerHTML = "";
+            document.getElementById("courseError").innerHTML = "";
+
+            let valid = true;
+
+            if (name == "") {
+                document.getElementById("nameError").innerHTML = "Enter Name";
+                valid = false;
+            }
+
+            if (age == "") {
+                document.getElementById("ageError").innerHTML = "Enter Age";
+                valid = false;
+            }
+            else if (age < 18) {
+                document.getElementById("ageError").innerHTML = "Age must be above 18";
+                valid = false;
+            }
+
+            if (course == "") {
+                document.getElementById("courseError").innerHTML = "Enter Course";
+                valid = false;
+            }
+
+            if (valid) {
+                alert("Admission Successful");
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
