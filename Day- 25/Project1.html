@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Login Form</h2>
+
+    <form onsubmit="login(event)">
+
+        Username:<br>
+        <input type="text" id="username">
+        <p id="userError"></p>
+
+        Password:<br>
+        <input type="password" id="password">
+        <p id="passError"></p>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+    <script>
+        function login(event) {
+
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            document.getElementById("userError").innerHTML = "";
+            document.getElementById("passError").innerHTML = "";
+
+            let valid = true;
+
+            if (username == "") {
+                document.getElementById("userError").innerHTML = "Username is required";
+                valid = false;
+            }
+
+            if (password == "") {
+                document.getElementById("passError").innerHTML = "Password is required";
+                valid = false;
+            }
+            else if (password.length < 6) {
+                document.getElementById("passError").innerHTML = "Password must be at least 6 characters";
+                valid = false;
+            }
+
+            if (valid) {
+                alert("Login Successful");
+            }
+
+        }
+    </script>
+
+    <hr>
+
+    <h2>Registration Form</h2>
+
+<form onsubmit="register(event)">
+
+Name:<br>
+<input type="text" id="name">
+<p id="nameError"></p>
+
+Email:<br>
+<input type="text" id="email">
+<p id="emailError"></p>
+
+Phone:<br>
+<input type="text" id="phone">
+<p id="phoneError"></p>
+
+Password:<br>
+<input type="password" id="password">
+<p id="passError"></p>
+
+<button type="submit">Register</button>
+
+</form>
+
+<script>
+function register(event){
+
+event.preventDefault();
+
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let phone=document.getElementById("phone").value;
+let password=document.getElementById("password").value;
+
+document.getElementById("nameError").innerHTML="";
+document.getElementById("emailError").innerHTML="";
+document.getElementById("phoneError").innerHTML="";
+document.getElementById("passError").innerHTML="";
+
+let valid=true;
+
+if(name==""){
+document.getElementById("nameError").innerHTML="Enter Name";
+valid=false;
+}
+
+if(email=="" || !email.includes("@") || !email.includes(".")){
+document.getElementById("emailError").innerHTML="Enter Valid Email";
+valid=false;
+}
+
+if(phone==""){
+document.getElementById("phoneError").innerHTML="Enter Phone Number";
+valid=false;
+}
+
+if(password.length<6){
+document.getElementById("passError").innerHTML="Minimum 6 Characters";
+valid=false;
+}
+
+if(valid){
+alert("Registration Successful");
+}
+
+}
+</script>
+
+</body>
+
+</html>
