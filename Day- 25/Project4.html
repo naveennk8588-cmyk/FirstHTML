@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Checkout Form</h2>
+
+    <form onsubmit="checkout(event)">
+
+        Address:<br>
+        <textarea id="address"></textarea>
+        <p id="addressError"></p>
+
+        Phone:<br>
+        <input type="text" id="phone">
+        <p id="phoneError"></p>
+
+        Pincode:<br>
+        <input type="text" id="pincode">
+        <p id="pincodeError"></p>
+
+        <button type="submit">Place Order</button>
+
+    </form>
+
+    <script>
+        function checkout(event) {
+
+            event.preventDefault();
+
+            let address = document.getElementById("address").value;
+            let phone = document.getElementById("phone").value;
+            let pincode = document.getElementById("pincode").value;
+
+            document.getElementById("addressError").innerHTML = "";
+            document.getElementById("phoneError").innerHTML = "";
+            document.getElementById("pincodeError").innerHTML = "";
+
+            let valid = true;
+
+            if (address == "") {
+                document.getElementById("addressError").innerHTML = "Address is required";
+                valid = false;
+            }
+
+            if (phone == "") {
+                document.getElementById("phoneError").innerHTML = "Phone Number is required";
+                valid = false;
+            }
+
+            if (pincode == "") {
+                document.getElementById("pincodeError").innerHTML = "Pincode is required";
+                valid = false;
+            }
+
+            if (valid) {
+                alert("Order Placed Successfully");
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
