@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Dashboard</title>
+
+<style>
+body{
+    font-family:Arial;
+    text-align:center;
+    background:#f2f2f2;
+}
+
+.container{
+    width:350px;
+    margin:50px auto;
+    padding:20px;
+    background:white;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+input{
+    width:80%;
+    padding:10px;
+    margin:10px;
+}
+
+button{
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+#result{
+    margin-top:20px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Weather Dashboard</h2>
+
+<input type="text" id="city" placeholder="Enter City Name">
+
+<br>
+
+<button onclick="getWeather()">Get Weather</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+async function getWeather(){
+
+let city=document.getElementById("city").value;
+
+let apiKey="4349e21088904d6070ed896dd7ce00a1";
+
+let url=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+try{
+
+let response=await fetch(url);
+
+if(!response.ok){
+throw new Error("City Not Found");
+}
+
+let data=await response.json();
+
+document.getElementById("result").innerHTML=`
+
+<h3>${data.name}</h3>
+
+<p><b>Temperature :</b> ${data.main.temp} °C</p>
+
+<p><b>Humidity :</b> ${data.main.humidity}%</p>
+
+<p><b>Condition :</b> ${data.weather[0].main}</p>
+
+`;
+
+}
+
+catch(error){
+
+document.getElementById("result").innerHTML=
+
+`<p style="color:red;">${error.message}</p>`;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
