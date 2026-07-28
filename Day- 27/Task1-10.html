@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>Fetch API</title>
+</head>
+<body>
+     <h1>Task 1: Fetch Users & Print in Console</h1>
+    <button onclick="fetchUsers()">Fetch Users</button>
+
+    <script>
+        async function fetchUsers() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/users');
+                const users = await response.json();
+                console.log('✅ Users fetched successfully:');
+                console.log(users);
+                alert(`✅ ${users.length} users fetched! Check console.`);
+            } catch (error) {
+                console.error('❌ Error:', error);
+                alert('Error fetching users. Check console.');
+            }
+        }
+    </script> 
+    <hr>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .user { border-bottom: 1px solid #ddd; padding: 8px 0; }
+    </style>
+    <h1>Task 2: Display Users in Webpage</h1>
+    <button onclick="displayUsers()">Load Users</button>
+    <div id="userList"></div>
+
+    <script>
+        async function displayUsers() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/users');
+                const users = await response.json();
+                
+                const container = document.getElementById('userList');
+                container.innerHTML = users.map(user => 
+                    `<div class="user">${user.id}. ${user.name} (@${user.username})</div>`
+                ).join('');
+            } catch (error) {
+                document.getElementById('userList').innerHTML = '❌ Error loading users';
+            }
+        }
+    </script>
+    <hr>
+     
+     <style>
+        body { font-family: Arial; padding: 20px; }
+        .email { padding: 5px 0; color: #0066cc; }
+    </style>
+    <h1>Task 3: Display Emails Only</h1>
+    <button onclick="showEmails()">Show Emails</button>
+    <div id="emailList"></div>
+
+    <script>
+        async function showEmails() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/users');
+                const users = await response.json();
+                
+                const container = document.getElementById('emailList');
+                container.innerHTML = users.map(user => 
+                    `<div class="email">📧 ${user.email}</div>`
+                ).join('');
+            } catch (error) {
+                document.getElementById('emailList').innerHTML = '❌ Error loading emails';
+            }
+        }
+    </script>
+    <hr>
+
+     <style>
+        body { font-family: Arial; padding: 20px; }
+        .user { background: #f0f8ff; margin: 5px 0; padding: 10px; border-radius: 5px; }
+    </style>
+    <h1>Task 4: Display First 3 Users</h1>
+    <button onclick="showFirstThree()">Show First 3 Users</button>
+    <div id="userList"></div>
+
+    <script>
+        async function showFirstThree() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/users');
+                const users = await response.json();
+                const firstThree = users.slice(0, 3);
+                
+                const container = document.getElementById('userList');
+                container.innerHTML = firstThree.map(user => 
+                    `<div class="user">
+                        <strong>${user.id}. ${user.name}</strong><br>
+                        Email: ${user.email}
+                    </div>`
+                ).join('');
+            } catch (error) {
+                document.getElementById('userList').innerHTML = '❌ Error loading users';
+            }
+        }
+    </script>
+    <hr>
+
+     <style>
+        body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 4px solid #007bff;
+        }
+        .card h3 { margin: 0 0 5px 0; color: #007bff; }
+        .card p { margin: 5px 0; color: #555; }
+    </style>
+    <h1>Task 5: Show API Data in Cards</h1>
+    <button onclick="showCards()">Load Cards</button>
+    <div id="cardContainer"></div>
+
+    <script>
+        async function showCards() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/users');
+                const users = await response.json();
+                
+                const container = document.getElementById('cardContainer');
+                container.innerHTML = users.slice(0, 8).map(user => `
+                    <div class="card">
+                        <h3>${user.name}</h3>
+                        <p>📧 ${user.email}</p>
+                        <p>🏢 ${user.company?.name || 'N/A'}</p>
+                        <p>📍 ${user.address?.city || 'N/A'}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                document.getElementById('cardContainer').innerHTML = '❌ Error loading data';
+            }
+        }
+    </script>
+    <hr>
+
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+    </style>
+    <h1>Task 6: Use async/await API Call</h1>
+    <button onclick="fetchData()">Fetch Data</button>
+    <div id="result"></div>
+
+    <script>
+        async function fetchData() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = '⏳ Loading...';
+            
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/users');
+                const users = await response.json();
+                resultDiv.innerHTML = `<span class="success">✅ Success! Loaded ${users.length} users using async/await.</span>`;
+                console.log('Users loaded:', users);
+            } catch (error) {
+                resultDiv.innerHTML = `<span class="error">❌ Error: ${error.message}</span>`;
+            }
+        }
+    </script>
+    <hr>
+
+     <style>
+        body { font-family: Arial; padding: 20px; }
+        .success { color: green; }
+        .error { color: red; background: #ffe6e6; padding: 10px; border-radius: 5px; }
+    </style>
+
+<body>
+    <h1>Task 7: Handle API Error Using Catch</h1>
+    <button onclick="fetchWithError()">Fetch (with error)</button>
+    <div id="result"></div>
+
+    <script>
+        async function fetchWithError() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = '⏳ Trying to fetch...';
+            
+            try {
+                // Using invalid URL to force error
+                const response = await fetch('https://jsonplaceholder.typicode.com/invalid-endpoint');
+                if (!response.ok) throw new Error('404 Not Found');
+                const data = await response.json();
+                resultDiv.innerHTML = `<span class="success">✅ Success: ${JSON.stringify(data)}</span>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">✅ Error caught: ${error.message}</div>`;
+                console.log('Error handled:', error.message);
+            }
+        }
+    </script>
+    <hr>
+     <style>
+        body { font-family: Arial; padding: 20px; }
+        .post {
+            background: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border-left: 3px solid #28a745;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .post h4 { margin: 0 0 5px 0; color: #28a745; }
+        .post p { margin: 0; color: #555; }
+    </style>
+
+<body>
+    <h1>Task 8: Display Posts API</h1>
+    <button onclick="showPosts()">Load Posts</button>
+    <div id="postContainer"></div>
+
+    <script>
+        async function showPosts() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+                const posts = await response.json();
+                
+                const container = document.getElementById('postContainer');
+                container.innerHTML = posts.slice(0, 10).map(post => `
+                    <div class="post">
+                        <h4>📰 ${post.title}</h4>
+                        <p>${post.body.substring(0, 100)}...</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                document.getElementById('postContainer').innerHTML = '❌ Error loading posts';
+            }
+        }
+    </script>
+    <hr>
+
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .search-box { margin: 20px 0; }
+        .search-box input { padding: 10px; width: 300px; border: 1px solid #ddd; border-radius: 5px; }
+        .search-box button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .user-item { padding: 8px; border-bottom: 1px solid #eee; }
+        .user-item strong { color: #007bff; }
+        .no-results { color: #999; font-style: italic; }
+    </style>
+
+<body>
+    <h1>Task 9: Create API Search Filter</h1>
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search by name or email...">
+        <button onclick="searchUsers()">🔍 Search</button>
+        <button onclick="resetSearch()">Reset</button>
+    </div>
+    <div id="results"></div>
+
+    <script>
+        let allUsers = [];
+
+        async function loadUsers() {
+            const response = await fetch('https://jsonplaceholder.typicode.com/users');
+            allUsers = await response.json();
+        }
+
+        async function searchUsers() {
+            if (allUsers.length === 0) await loadUsers();
+            
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const resultsDiv = document.getElementById('results');
+            
+            if (!query) {
+                resultsDiv.innerHTML = '💡 Type a name or email to search';
+                return;
+            }
+            
+            const filtered = allUsers.filter(user => 
+                user.name.toLowerCase().includes(query) || 
+                user.email.toLowerCase().includes(query)
+            );
+            
+            if (filtered.length === 0) {
+                resultsDiv.innerHTML = '<div class="no-results">🔍 No users found matching "' + query + '"</div>';
+            } else {
+                resultsDiv.innerHTML = filtered.map(user => 
+                    `<div class="user-item">
+                        <strong>${user.name}</strong> · ${user.email}
+                    </div>`
+                ).join('');
+            }
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('results').innerHTML = '💡 Type a name or email to search';
+        }
+
+        // Load users on page load
+        loadUsers();
+    </script>
+    <hr>
+
+     <style>
+        body { font-family: Arial; padding: 20px; background: #f0f2f5; }
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .profile-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid #007bff;
+        }
+        .profile-card h3 { margin: 0 0 8px 0; color: #007bff; }
+        .profile-card p { margin: 5px 0; color: #555; }
+        .profile-card .label { font-weight: bold; color: #333; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Task 10: User Profile Viewer</h1>
+    <button onclick="loadProfiles()">🔄 Load Profiles</button>
+    <div id="profileContainer" class="profile-grid"></div>
+
+    <script>
+        async function loadProfiles() {
+            try {
+                const response = await fetch('https://jsonplaceholder.typicode.com/users');
+                const users = await response.json();
+                
+                const container = document.getElementById('profileContainer');
+                container.innerHTML = users.slice(0, 10).map(user => `
+                    <div class="profile-card">
+                        <h3>👤 ${user.name}</h3>
+                        <p><span class="label">📧 Email:</span> ${user.email}</p>
+                        <p><span class="label">🏢 Company:</span> ${user.company?.name || 'N/A'}</p>
+                        <p><span class="label">📍 City:</span> ${user.address?.city || 'N/A'}</p>
+                        <p><span class="label">📞 Phone:</span> ${user.phone || 'N/A'}</p>
+                        <p><span class="label">🌐 Website:</span> ${user.website || 'N/A'}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                document.getElementById('profileContainer').innerHTML = '❌ Error loading profiles';
+            }
+        }
+    </script>
+
+</body>
+</html>
