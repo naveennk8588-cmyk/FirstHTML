@@ -96,12 +96,67 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 });
 
 // ===========================
-// CONTACT FORM
+// CONTACT FORM WITH GOOGLE SHEETS
 // ===========================
 document.getElementById("contactForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    alert("✅ Thank you! Your message has been sent successfully.");
-    this.reset();
+    
+    const form = this;
+    const formData = new FormData(form);
+    
+    // YOUR GOOGLE APPS SCRIPT URL - PASTE HERE
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyqiGUyFlXpp8KqvAS-1rbItFTbt78EZKoziCGyAXBvzWnmiW07UjlrBOzBp81O4W1S/exec';
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const originalText = submitBtn.innerHTML;
+    const messageDiv = document.getElementById('formMessage');
+    
+    // Disable button and show loading
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    messageDiv.innerHTML = '';
+    
+    // Send data to Google Apps Script
+    fetch(scriptURL, { 
+        method: 'POST', 
+        body: formData 
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.result === 'success') {
+            messageDiv.innerHTML = `
+                <div style="background: rgba(56, 189, 248, 0.1); 
+                            border: 1px solid #38bdf8; 
+                            padding: 15px; 
+                            border-radius: 10px; 
+                            color: #38bdf8;">
+                    <i class="fas fa-check-circle"></i> 
+                    ✅ Thank you! Your message has been sent successfully. 
+                    Check your email for confirmation!
+                </div>
+            `;
+            form.reset();
+        } else {
+            throw new Error(data.message || 'Something went wrong');
+        }
+    })
+    .catch(error => {
+        messageDiv.innerHTML = `
+            <div style="background: rgba(239, 68, 68, 0.1); 
+                        border: 1px solid #ef4444; 
+                        padding: 15px; 
+                        border-radius: 10px; 
+                        color: #ef4444;">
+                <i class="fas fa-exclamation-circle"></i> 
+                ❌ Error: ${error.message}. Please try again or contact me directly.
+            </div>
+        `;
+    })
+    .finally(() => {
+        // Re-enable button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+    });
 });
 
 // ===========================
@@ -177,3 +232,77 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ===========================
 console.log("🚀 Portfolio loaded successfully!");
 console.log("👨‍💻 Developed by Naveen Kumar");
+
+// ===========================
+// WHATSAPP & CONTACT FUNCTIONS
+// ===========================
+
+// WhatsApp click handler
+document.querySelectorAll('.contact-item .fa-whatsapp').forEach(icon => {
+    const parent = icon.closest('.contact-item');
+    if (parent) {
+        parent.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.open('https://wa.me/919384166156', '_blank');
+        });
+    }
+});
+
+// Email click handler
+document.querySelectorAll('.contact-item .fa-envelope').forEach(icon => {
+    const parent = icon.closest('.contact-item');
+    if (parent) {
+        parent.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.location.href = 'mailto:naveen.nk8588@gmail.com';
+        });
+    }
+});
+
+// Phone click handler
+document.querySelectorAll('.contact-item .fa-phone').forEach(icon => {
+    const parent = icon.closest('.contact-item');
+    if (parent) {
+        parent.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.location.href = 'tel:+919384166156';
+        });
+    }
+});
+
+// GitHub click handler
+document.querySelectorAll('.contact-item .fa-github').forEach(icon => {
+    const parent = icon.closest('.contact-item');
+    if (parent) {
+        parent.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.open('https://github.com/naveennk8588-cmyk', '_blank');
+        });
+    }
+});
+
+// LinkedIn click handler
+document.querySelectorAll('.contact-item .fa-linkedin-in').forEach(icon => {
+    const parent = icon.closest('.contact-item');
+    if (parent) {
+        parent.addEventListener('click', function(e) {
+            e.stopPropagation();
+            window.open('https://linkedin.com/in/your-profile', '_blank');
+        });
+    }
+});
+
+// ===========================
+// SOCIAL ICON TRACKING (Optional)
+// ===========================
+document.querySelectorAll('.social-icons a, .footer-social a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        const platform = this.getAttribute('aria-label');
+        console.log(`🔗 Clicked on ${platform}`);
+        // You can add analytics tracking here if needed
+    });
+});
+
+console.log('📱 All social links and contacts are now active!');
+console.log('💬 WhatsApp: +91 9384166156');
+console.log('📧 Email: naveen.nk8588@gmail.com');
