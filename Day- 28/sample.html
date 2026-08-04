@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TastyBites | Delicious Recipes</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="sample.css">
+</head>
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <header class="header">
+
+        <nav class="navbar">
+
+            <!-- LOGO -->
+
+            <a href="#home" class="logo">
+                <span class="logo-icon">🍴</span>
+
+                <div>
+                    <strong>Tasty<span>Bites</span></strong>
+                    <small>DELICIOUS FOOD BLOG</small>
+                </div>
+            </a>
+
+
+            <!-- SEARCH -->
+
+            <div class="nav-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="navSearch"
+                    placeholder="Search here..."
+                >
+
+            </div>
+
+
+            <!-- NAV LINKS -->
+
+            <ul class="nav-links" id="navLinks">
+
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#blogs">Blogs</a>
+                </li>
+
+                <li>
+                    <a href="#recipes">Recipes</a>
+                </li>
+
+                <li>
+                    <a href="#write">Write</a>
+                </li>
+
+            </ul>
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="nav-right">
+
+                <a href="#account" class="account">
+                    Account
+                </a>
+
+                <a href="#subscribe" class="subscribe-btn">
+                    Subscribe
+                </a>
+
+            </div>
+
+
+            <!-- MOBILE MENU -->
+
+            <button class="menu-btn" id="menuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================================
+         HERO SLIDER
+    ========================================== -->
+
+    <section class="hero" id="home">
+
+        <!-- SLIDE 1 -->
+
+        <div class="hero-slide active">
+
+            <div class="hero-content">
+
+                <span class="hero-tag">
+                    FRESH & DELICIOUS
+                </span>
+
+                <h1>
+                    Discover Delicious
+                    <span>Recipes Every Day</span>
+                </h1>
+
+                <p>
+                    Simple ingredients. Amazing flavors.
+                    Cook with confidence and joy.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#recipes" class="hero-btn">
+                        Explore Blog
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <a href="#write" class="hero-outline-btn">
+                        Write a Blog
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SLIDE 2 -->
+
+        <div class="hero-slide">
+
+            <div class="hero-content">
+
+                <span class="hero-tag">
+                    HEALTHY & TASTY
+                </span>
+
+                <h1>
+                    Cook Something
+                    <span>Wonderful Today</span>
+                </h1>
+
+                <p>
+                    Discover healthy meals, creative recipes
+                    and delicious cooking inspiration.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#recipes" class="hero-btn">
+                        View Recipes
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <a href="#blogs" class="hero-outline-btn">
+                        Read Blogs
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SLIDE 3 -->
+
+        <div class="hero-slide">
+
+            <div class="hero-content">
+
+                <span class="hero-tag">
+                    FOOD LOVERS
+                </span>
+
+                <h1>
+                    Taste The Joy
+                    <span>In Every Bite</span>
+                </h1>
+
+                <p>
+                    Easy recipes made for food lovers,
+                    families and passionate home cooks.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#recipes" class="hero-btn">
+                        Start Cooking
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <a href="#subscribe" class="hero-outline-btn">
+                        Subscribe
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SLIDER DOTS -->
+
+        <div class="slider-dots">
+
+            <button class="dot" data-slide="0"></button>
+
+            <button class="dot active" data-slide="1"></button>
+
+            <button class="dot" data-slide="2"></button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         TRENDING
+    ========================================== -->
+
+    <section class="trending" id="recipes">
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="heading-line">
+
+                    <span class="trend-icon">
+                        ↗
+                    </span>
+
+                    <h2>
+                        Trending Now
+                    </h2>
+
+                </div>
+
+                <p>
+                    Most loved recipes by our community this week.
+                </p>
+
+            </div>
+
+            <a href="#recipes" class="view-all">
+                View all
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <!-- CATEGORY FILTER -->
+
+        <div class="filters">
+
+            <button class="filter-btn active" data-filter="all">
+                All
+            </button>
+
+            <button class="filter-btn" data-filter="breakfast">
+                Breakfast
+            </button>
+
+            <button class="filter-btn" data-filter="lunch">
+                Lunch
+            </button>
+
+            <button class="filter-btn" data-filter="dinner">
+                Dinner
+            </button>
+
+            <button class="filter-btn" data-filter="dessert">
+                Dessert
+            </button>
+
+        </div>
+
+
+        <!-- RECIPE CARDS -->
+
+        <div class="recipe-grid" id="recipeGrid">
+
+
+            <!-- CARD 1 -->
+
+            <article class="recipe-card" data-category="breakfast">
+
+                <div class="recipe-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=85"
+                        alt="Avocado Toast">
+
+                    <span class="recipe-label">
+                        Recipe
+                    </span>
+
+                    <span class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        4.5
+                    </span>
+
+                </div>
+
+
+                <div class="recipe-body">
+
+                    <div class="recipe-meta">
+
+                        <span>
+                            <i class="fa-regular fa-clock"></i>
+                            15 min
+                        </span>
+
+                        <span>
+                            Easy
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Avocado Toast with Poached Egg
+                    </h3>
+
+                    <p>
+                        The perfect brunch staple. Crispy sourdough,
+                        creamy avocado mash, and a perfectly runny egg.
+                    </p>
+
+
+                    <div class="recipe-footer">
+
+                        <div class="author">
+
+                            <div class="author-img">
+                                S
+                            </div>
+
+                            <span>
+                                Sara Jenkins
+                            </span>
+
+                        </div>
+
+                        <button class="favorite">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- CARD 2 -->
+
+            <article class="recipe-card" data-category="lunch">
+
+                <div class="recipe-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85"
+                        alt="Grilled Salmon">
+
+                    <span class="recipe-label">
+                        Recipe
+                    </span>
+
+                    <span class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        4.5
+                    </span>
+
+                </div>
+
+
+                <div class="recipe-body">
+
+                    <div class="recipe-meta">
+
+                        <span>
+                            <i class="fa-regular fa-clock"></i>
+                            30 min
+                        </span>
+
+                        <span>
+                            Medium
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Grilled Salmon with Asparagus
+                    </h3>
+
+                    <p>
+                        Healthy and flavorful grilled salmon served
+                        with crisp lemon-garlic asparagus.
+                    </p>
+
+
+                    <div class="recipe-footer">
+
+                        <div class="author">
+
+                            <div class="author-img">
+                                K
+                            </div>
+
+                            <span>
+                                Chef Khan
+                            </span>
+
+                        </div>
+
+                        <button class="favorite">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- CARD 3 -->
+
+            <article class="recipe-card" data-category="dessert">
+
+                <div class="recipe-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85"
+                        alt="Chocolate Lava Cake">
+
+                    <span class="recipe-label">
+                        Recipe
+                    </span>
+
+                    <span class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        4.5
+                    </span>
+
+                </div>
+
+
+                <div class="recipe-body">
+
+                    <div class="recipe-meta">
+
+                        <span>
+                            <i class="fa-regular fa-clock"></i>
+                            40 min
+                        </span>
+
+                        <span>
+                            Hard
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Decadent Chocolate Lava Cake
+                    </h3>
+
+                    <p>
+                        A rich chocolate cake with a molten center
+                        that flows out when you cut into it.
+                    </p>
+
+
+                    <div class="recipe-footer">
+
+                        <div class="author">
+
+                            <div class="author-img">
+                                I
+                            </div>
+
+                            <span>
+                                Isabella Cristia
+                            </span>
+
+                        </div>
+
+                        <button class="favorite">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- CARD 4 -->
+
+            <article class="recipe-card" data-category="dinner">
+
+                <div class="recipe-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=85"
+                        alt="Cheese Burger">
+
+                    <span class="recipe-label">
+                        Recipe
+                    </span>
+
+                    <span class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        4.8
+                    </span>
+
+                </div>
+
+
+                <div class="recipe-body">
+
+                    <div class="recipe-meta">
+
+                        <span>
+                            <i class="fa-regular fa-clock"></i>
+                            25 min
+                        </span>
+
+                        <span>
+                            Easy
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Classic Homemade Burger
+                    </h3>
+
+                    <p>
+                        Juicy beef, fresh vegetables and melted cheese
+                        served inside a soft toasted bun.
+                    </p>
+
+
+                    <div class="recipe-footer">
+
+                        <div class="author">
+
+                            <div class="author-img">
+                                D
+                            </div>
+
+                            <span>
+                                David Martin
+                            </span>
+
+                        </div>
+
+                        <button class="favorite">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- CARD 5 -->
+
+            <article class="recipe-card" data-category="lunch">
+
+                <div class="recipe-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85"
+                        alt="Pasta">
+
+                    <span class="recipe-label">
+                        Recipe
+                    </span>
+
+                    <span class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        4.7
+                    </span>
+
+                </div>
+
+
+                <div class="recipe-body">
+
+                    <div class="recipe-meta">
+
+                        <span>
+                            <i class="fa-regular fa-clock"></i>
+                            25 min
+                        </span>
+
+                        <span>
+                            Medium
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Creamy Garlic Pasta
+                    </h3>
+
+                    <p>
+                        Creamy pasta tossed with garlic, herbs and
+                        freshly grated parmesan cheese.
+                    </p>
+
+
+                    <div class="recipe-footer">
+
+                        <div class="author">
+
+                            <div class="author-img">
+                                M
+                            </div>
+
+                            <span>
+                                Maria Lopez
+                            </span>
+
+                        </div>
+
+                        <button class="favorite">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- CARD 6 -->
+
+            <article class="recipe-card" data-category="dessert">
+
+                <div class="recipe-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85"
+                        alt="Strawberry Cake">
+
+                    <span class="recipe-label">
+                        Recipe
+                    </span>
+
+                    <span class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        4.6
+                    </span>
+
+                </div>
+
+
+                <div class="recipe-body">
+
+                    <div class="recipe-meta">
+
+                        <span>
+                            <i class="fa-regular fa-clock"></i>
+                            45 min
+                        </span>
+
+                        <span>
+                            Medium
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Fresh Strawberry Cake
+                    </h3>
+
+                    <p>
+                        Soft vanilla cake layered with fresh strawberries
+                        and light whipped cream.
+                    </p>
+
+
+                    <div class="recipe-footer">
+
+                        <div class="author">
+
+                            <div class="author-img">
+                                A
+                            </div>
+
+                            <span>
+                                Anna Smith
+                            </span>
+
+                        </div>
+
+                        <button class="favorite">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FEATURE SECTION
+    ========================================== -->
+
+    <section class="feature-section" id="blogs">
+
+        <div class="feature-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=85"
+                alt="Cooking">
+
+        </div>
+
+
+        <div class="feature-content">
+
+            <span class="section-tag">
+                FOOD STORIES
+            </span>
+
+            <h2>
+                Cooking is not just about food,
+                <span>it's about memories.</span>
+            </h2>
+
+            <p>
+                Explore inspiring food stories, cooking techniques,
+                kitchen tips and ideas from passionate food lovers.
+            </p>
+
+            <a href="#blogs" class="dark-btn">
+                Explore Stories
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         WRITE A BLOG
+    ========================================== -->
+
+    <section class="write-section" id="write">
+
+        <div>
+
+            <span class="section-tag">
+                SHARE YOUR PASSION
+            </span>
+
+            <h2>
+                Have a recipe
+                <span>to share?</span>
+            </h2>
+
+            <p>
+                Share your favorite recipes and food stories
+                with our growing community.
+            </p>
+
+        </div>
+
+
+        <button class="hero-btn" id="writeBtn">
+            Write a Blog
+            <i class="fa-solid fa-pen"></i>
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================================
+         NEWSLETTER
+    ========================================== -->
+
+    <section class="newsletter" id="subscribe">
+
+        <div class="newsletter-content">
+
+            <span class="section-tag">
+                STAY HUNGRY
+            </span>
+
+            <h2>
+                Get delicious recipes
+                <span>in your inbox.</span>
+            </h2>
+
+            <p>
+                Join our community and receive fresh recipes,
+                cooking tips and food inspiration every week.
+            </p>
+
+        </div>
+
+
+        <form id="newsletterForm">
+
+            <input
+                type="email"
+                id="newsletterEmail"
+                placeholder="Enter your email address"
+                required
+            >
+
+            <button type="submit">
+                Subscribe
+            </button>
+
+        </form>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="footer-brand">
+
+                <a href="#home" class="logo">
+
+                    <span class="logo-icon">🍴</span>
+
+                    <div>
+                        <strong>Tasty<span>Bites</span></strong>
+                        <small>DELICIOUS FOOD BLOG</small>
+                    </div>
+
+                </a>
+
+                <p>
+                    Delicious recipes, inspiring stories and
+                    food made with love.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Explore
+                </h3>
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#blogs">
+                    Blogs
+                </a>
+
+                <a href="#recipes">
+                    Recipes
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Community
+                </h3>
+
+                <a href="#write">
+                    Write a Blog
+                </a>
+
+                <a href="#subscribe">
+                    Subscribe
+                </a>
+
+                <a href="#account">
+                    Account
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Follow Us
+                </h3>
+
+                <div class="socials">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-pinterest"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 TastyBites. All Rights Reserved.
+            </p>
+
+            <p>
+                Made with ❤️ for food lovers.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-check"></i>
+        <span id="toastMessage">
+            Done!
+        </span>
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="sample.js"></script>
+
+</body>
+
+</html>

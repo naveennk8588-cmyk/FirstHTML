@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Desi Rasoi - Indian Food Blog</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="food.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="#home" class="logo">
+            🍛 <span>Desi <b>Rasoi</b></span>
+        </a>
+
+        <nav id="navMenu">
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#recipes">Recipes</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="nav-buttons">
+
+            <button id="themeBtn" title="Dark Mode">
+                🌙
+            </button>
+
+            <button id="favBtn" title="Favorites">
+                ❤️ <span id="favCount">0</span>
+            </button>
+
+            <button id="menuBtn" class="menu-btn">
+                ☰
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <span class="hero-small">
+            ✨ AUTHENTIC INDIAN RECIPES
+        </span>
+
+        <h1>
+            Taste of<br>
+            <span>India</span>
+        </h1>
+
+        <p>
+            Discover traditional Indian recipes,
+            delicious street food, South Indian favourites,
+            desserts and refreshing drinks.
+        </p>
+
+        <a href="#recipes" class="hero-btn">
+            Explore Recipes →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATS ================= -->
+
+<section class="stats">
+
+    <div>
+        <strong>150+</strong>
+        <span>Recipes</span>
+    </div>
+
+    <div>
+        <strong>10</strong>
+        <span>Categories</span>
+    </div>
+
+    <div>
+        <strong>100%</strong>
+        <span>Indian Flavours</span>
+    </div>
+
+    <div>
+        <strong>4.8 ⭐</strong>
+        <span>Average Rating</span>
+    </div>
+
+</section>
+
+
+<!-- ================= CATEGORIES ================= -->
+
+<section class="section" id="categories">
+
+    <div class="section-title">
+
+        <span>Explore</span>
+
+        <h2>Recipe <em>Categories</em></h2>
+
+        <p>
+            Explore delicious recipes from every corner of India.
+        </p>
+
+    </div>
+
+    <div id="categoryGrid" class="category-grid"></div>
+
+</section>
+
+
+<!-- ================= RECIPES ================= -->
+
+<section class="section" id="recipes">
+
+    <div class="section-title">
+
+        <span>Our Collection</span>
+
+        <h2>Indian <em>Recipes</em></h2>
+
+        <p>
+            Choose your favourite recipe and start cooking.
+        </p>
+
+    </div>
+
+
+    <!-- SEARCH + SORT -->
+
+    <div class="tools">
+
+        <div class="search">
+
+            <span>🔍</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search recipes..."
+            >
+
+        </div>
+
+        <select id="sortSelect">
+
+            <option value="default">
+                Recommended
+            </option>
+
+            <option value="rating">
+                Highest Rated
+            </option>
+
+            <option value="time">
+                Quickest
+            </option>
+
+            <option value="name">
+                A - Z
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- FILTER -->
+
+    <div id="filters" class="filters"></div>
+
+
+    <p class="recipe-count">
+        Showing <b id="recipeCount">0</b> recipes
+    </p>
+
+
+    <!-- RECIPE CARDS -->
+
+    <div id="recipeGrid" class="recipe-grid"></div>
+
+
+    <button id="loadMore" class="load-more">
+        Load More Recipes
+    </button>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about" id="about">
+
+    <div class="about-image">
+
+        <img
+            src="https://loremflickr.com/900/700/indian,food"
+            alt="Indian food"
+        >
+
+    </div>
+
+    <div class="about-text">
+
+        <span>OUR STORY</span>
+
+        <h2>
+            Traditional Food,
+            <em>Modern Kitchen</em>
+        </h2>
+
+        <p>
+            Desi Rasoi is a collection of delicious Indian
+            recipes inspired by traditional home cooking.
+        </p>
+
+        <p>
+            From crispy dosas and aromatic biryanis to
+            colourful sweets and refreshing drinks,
+            discover something delicious for everyone.
+        </p>
+
+        <div class="points">
+
+            <p>✓ Traditional Indian Recipes</p>
+            <p>✓ Nutrition Information</p>
+            <p>✓ Easy Ingredients</p>
+            <p>✓ Beginner Friendly</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div>
+            <h2>🍛 Desi Rasoi</h2>
+            <p>
+                Authentic Indian flavours for your kitchen.
+            </p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+            <a href="#home">Home</a>
+            <a href="#recipes">Recipes</a>
+            <a href="#categories">Categories</a>
+        </div>
+
+        <div>
+            <h3>Popular</h3>
+            <a href="#recipes">Biryani</a>
+            <a href="#recipes">Dosa</a>
+            <a href="#recipes">Paneer</a>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 Desi Rasoi | Made with ❤️
+    </div>
+
+</footer>
+
+
+<!-- ================= MODAL ================= -->
+
+<div id="modal" class="modal">
+
+    <div class="modal-box">
+
+        <button id="closeModal" class="close">
+            ×
+        </button>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast" class="toast"></div>
+
+
+<script src="food.js"></script>
+
+</body>
+</html>

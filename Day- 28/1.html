@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TastyBites · 100+ Recipes</title>
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Lato", sans-serif;
+      color: #6B7280;
+      background: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button,
+    input {
+      font-family: "Lato", sans-serif;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    /* navbar */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: 0.4s ease;
+    }
+
+    .header.scrolled {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .navbar {
+      width: 100%;
+      max-width: 1500px;
+      margin: auto;
+      min-height: 90px;
+      padding: 12px 35px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 155px;
+    }
+
+    .logo-icon {
+      font-size: 35px;
+    }
+
+    .logo strong {
+      display: block;
+      color: #111;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .logo strong span {
+      color: #FE4A51;
+    }
+
+    .logo small {
+      display: block;
+      color: #777;
+      font-size: 7px;
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+    }
+
+    .nav-search {
+      width: 390px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #C3C4C4;
+      border-radius: 40px;
+      padding: 0 22px;
+      transition: 0.3s;
+    }
+
+    .nav-search:focus-within {
+      border-color: #FE4A51;
+      box-shadow: 0 0 0 4px rgba(254, 74, 81, 0.12);
+    }
+
+    .nav-search i {
+      color: #111;
+      font-size: 20px;
+    }
+
+    .nav-search input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 17px;
+      color: #222;
+    }
+
+    .nav-search input::placeholder {
+      color: #999;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #111;
+      font-size: 18px;
+      font-weight: 600;
+      position: relative;
+      transition: 0.3s;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 2px;
+      background: #FE4A51;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.current {
+      color: #FE4A51;
+    }
+
+    .nav-links a.current::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .account {
+      color: #111;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .subscribe-btn {
+      background: #FE4A51;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 17px;
+      transition: 0.3s;
+      box-shadow: 0 8px 20px rgba(254, 74, 81, 0.25);
+    }
+
+    .subscribe-btn:hover {
+      background: #C81118;
+      transform: translateY(-2px);
+    }
+
+    .menu-btn {
+      display: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: #FE4A51;
+      color: white;
+      font-size: 20px;
+    }
+
+    /* hero slider */
+    .hero {
+      position: relative;
+      min-height: 720px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #fafafa;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.04);
+      transition: opacity 0.8s ease, transform 1.2s ease, visibility 0.8s;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .hero-slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+      padding: 130px 25px 80px;
+      color: #fff;
+      animation: heroContent 1s ease;
+    }
+
+    .hero-slide:not(.active) .hero-content {
+      animation: none;
+    }
+
+    @keyframes heroContent {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(254, 74, 81, 0.85);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 5vw, 70px);
+      line-height: 1.05;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #fff;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: #FFD0D2;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto auto 35px;
+      font-size: 20px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn,
+    .hero-outline-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 25px;
+      border-radius: 30px;
+      font-size: 17px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .hero-btn {
+      background: #FE4A51;
+      color: white;
+      box-shadow: 0 12px 25px rgba(254, 74, 81, 0.3);
+    }
+
+    .hero-btn:hover {
+      background: #C81118;
+      transform: translateY(-4px);
+    }
+
+    .hero-outline-btn {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+      border: 1.5px solid #fff;
+      color: #fff;
+    }
+
+    .hero-outline-btn:hover {
+      background: #FE4A51;
+      border-color: #FE4A51;
+      transform: translateY(-4px);
+    }
+
+    .slider-dots {
+      position: absolute;
+      z-index: 10;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+    }
+
+    .dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.3);
+      transition: 0.3s;
+    }
+
+    .dot.active {
+      background: #FE4A51;
+      border-color: #FE4A51;
+      transform: scale(1.2);
+      box-shadow: 0 0 0 4px rgba(254, 74, 81, 0.3);
+    }
+
+    /* trending */
+    .trending {
+      max-width: 1500px;
+      margin: auto;
+      padding: 90px 35px 110px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .heading-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .trend-icon {
+      color: #FE4A51;
+      font-size: 40px;
+      font-weight: 800;
+    }
+
+    .section-heading h2 {
+      color: #111;
+      font-size: 38px;
+      font-weight: 700;
+    }
+
+    .section-heading p {
+      margin-left: 48px;
+      margin-top: 8px;
+      font-size: 18px;
+    }
+
+    .view-all {
+      color: #FE4A51;
+      font-size: 17px;
+      font-weight: 600;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      transition: 0.3s;
+    }
+
+    .view-all:hover {
+      color: #C81118;
+      transform: translateX(5px);
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: 1px solid #C3C4C4;
+      background: white;
+      color: #6B7280;
+      padding: 9px 20px;
+      border-radius: 25px;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #FE4A51;
+      color: white;
+      border-color: #FE4A51;
+    }
+
+    /* grid */
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .recipe-card {
+      background: white;
+      border: 1px solid #E3E3E3;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    }
+
+    .recipe-card.hidden {
+      display: none;
+    }
+
+    .recipe-image {
+      position: relative;
+      height: 270px;
+      overflow: hidden;
+    }
+
+    .recipe-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .recipe-card:hover .recipe-image img {
+      transform: scale(1.08);
+    }
+
+    .recipe-label {
+      position: absolute;
+      top: 15px;
+      left: 18px;
+      background: #FE4A51;
+      color: white;
+      padding: 7px 22px;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .rating {
+      position: absolute;
+      top: 15px;
+      right: 18px;
+      background: white;
+      color: #222;
+      padding: 7px 15px;
+      border-radius: 25px;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .rating i {
+      color: #F4B400;
+      margin-right: 5px;
+    }
+
+    .recipe-body {
+      padding: 20px 23px 22px;
+    }
+
+    .recipe-meta {
+      display: flex;
+      gap: 45px;
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    .recipe-meta span {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .recipe-meta i {
+      font-size: 18px;
+    }
+
+    .recipe-body h3 {
+      color: #111;
+      font-size: 23px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .recipe-body>p {
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 72px;
+      margin-bottom: 18px;
+    }
+
+    .recipe-footer {
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 14px;
+    }
+
+    .author-img {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #FFD0D2;
+      color: #C81118;
+      font-weight: 700;
+    }
+
+    .favorite {
+      width: 38px;
+      height: 38px;
+      border: none;
+      background: transparent;
+      color: #6B7280;
+      border-radius: 50%;
+      font-size: 22px;
+      transition: 0.3s;
+    }
+
+    .favorite:hover {
+      background: #FFD0D2;
+      color: #FE4A51;
+    }
+
+    .favorite.liked {
+      color: #FE4A51;
+      animation: heartBeat 0.5s ease;
+    }
+
+    @keyframes heartBeat {
+      0% {
+        transform: scale(1);
+      }
+
+      40% {
+        transform: scale(1.4);
+      }
+
+      70% {
+        transform: scale(0.9);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      max-width: 720px;
+      width: 100%;
+      border-radius: 30px;
+      padding: 30px 35px 35px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      position: relative;
+      animation: modalIn 0.35s ease;
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: scale(0.92) translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: #888;
+      transition: 0.3s;
+    }
+
+    .modal-close:hover {
+      color: #111;
+      transform: rotate(90deg);
+    }
+
+    .modal-box h2 {
+      color: #111;
+      font-size: 32px;
+      margin-bottom: 12px;
+      padding-right: 30px;
+    }
+
+    .modal-box .modal-meta {
+      display: flex;
+      gap: 30px;
+      font-size: 16px;
+      color: #6B7280;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .modal-box .modal-meta i {
+      margin-right: 6px;
+      color: #FE4A51;
+    }
+
+    .modal-box .modal-desc {
+      font-size: 17px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .modal-box .modal-ingredients {
+      background: #f8f8f8;
+      padding: 18px 22px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .modal-box .modal-ingredients h4 {
+      color: #111;
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-box .modal-ingredients ul {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 20px;
+    }
+
+    .modal-box .modal-ingredients ul li::before {
+      content: "•";
+      color: #FE4A51;
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    .modal-box .modal-steps {
+      margin-bottom: 20px;
+    }
+
+    .modal-box .modal-steps h4 {
+      color: #111;
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-box .modal-steps ol {
+      padding-left: 22px;
+      line-height: 1.8;
+    }
+
+    .modal-box .modal-steps ol li {
+      margin-bottom: 6px;
+    }
+
+    .modal-box .modal-footer {
+      border-top: 1px solid #eee;
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .modal-box .modal-footer .author {
+      font-size: 15px;
+    }
+
+    .modal-box .modal-footer .rating-big {
+      background: #FFD0D2;
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-weight: 600;
+      color: #C81118;
+    }
+
+    /* feature, write, newsletter */
+    .feature-section {
+      max-width: 1400px;
+      margin: 0 auto 100px;
+      padding: 0 35px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .feature-image {
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    }
+
+    .feature-image img {
+      height: 450px;
+      object-fit: cover;
+      transition: 0.6s;
+    }
+
+    .feature-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .section-tag {
+      color: #FE4A51;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .feature-content h2 {
+      color: #111;
+      font-size: 45px;
+      line-height: 1.15;
+      margin: 15px 0 20px;
+    }
+
+    .feature-content h2 span {
+      color: #FE4A51;
+    }
+
+    .feature-content p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .dark-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #111;
+      color: white;
+      padding: 14px 25px;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+
+    .dark-btn:hover {
+      background: #FE4A51;
+      transform: translateY(-3px);
+    }
+
+    .write-section {
+      background: #FFD0D2;
+      padding: 70px max(35px, calc((100vw - 1400px) / 2));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .write-section h2 {
+      color: #111;
+      font-size: 42px;
+      line-height: 1.15;
+      margin: 12px 0;
+    }
+
+    .write-section h2 span {
+      color: #FE4A51;
+    }
+
+    .write-section p {
+      font-size: 18px;
+    }
+
+    .newsletter {
+      max-width: 1300px;
+      margin: 100px auto;
+      padding: 60px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #111, #292929);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter h2 {
+      color: white;
+      font-size: 38px;
+      line-height: 1.2;
+      margin: 12px 0;
+    }
+
+    .newsletter h2 span {
+      color: #FE4A51;
+    }
+
+    .newsletter p {
+      max-width: 600px;
+      color: #C3C4C4;
+      font-size: 17px;
+    }
+
+    .newsletter form {
+      min-width: 430px;
+      display: flex;
+      background: white;
+      padding: 6px;
+      border-radius: 40px;
+      flex-wrap: wrap;
+    }
+
+    .newsletter input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 12px 18px;
+      font-size: 15px;
+      min-width: 150px;
+      background: transparent;
+    }
+
+    .newsletter button {
+      border: none;
+      background: #FE4A51;
+      color: white;
+      padding: 13px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .newsletter button:hover {
+      background: #C81118;
+    }
+
+    /* footer */
+    footer {
+      background: #111;
+      color: #C3C4C4;
+      padding: 70px 35px 25px;
+    }
+
+    .footer-top {
+      max-width: 1400px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 50px;
+    }
+
+    .footer-brand p {
+      max-width: 300px;
+      margin-top: 20px;
+      font-size: 15px;
+    }
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-column h3 {
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .footer-column a:hover {
+      color: #FE4A51;
+    }
+
+    .socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .socials a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #222;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .socials a:hover {
+      background: #FE4A51;
+      color: white;
+      transform: translateY(-4px);
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: auto;
+      border-top: 1px solid #333;
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* toast */
+    .toast {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      z-index: 5000;
+      background: #111;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast i {
+      color: #FE4A51;
+    }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* responsive */
+    @media (max-width:1200px) {
+      .nav-search {
+        width: 280px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      .recipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .newsletter {
+        margin-left: 25px;
+        margin-right: 25px;
+      }
+    }
+
+    @media (max-width:950px) {
+      .nav-search {
+        display: none;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 85px;
+        left: 20px;
+        right: 20px;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px;
+        text-align: center;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .account {
+        display: none;
+      }
+
+      .hero {
+        min-height: 650px;
+      }
+
+      .feature-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .feature-content {
+        text-align: center;
+      }
+
+      .write-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .newsletter {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .newsletter form {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .footer-top {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width:650px) {
+      .navbar {
+        min-height: 75px;
+        padding: 10px 16px;
+      }
+
+      .logo strong {
+        font-size: 19px;
+      }
+
+      .logo small {
+        font-size: 6px;
+      }
+
+      .logo-icon {
+        font-size: 28px;
+      }
+
+      .subscribe-btn {
+        display: none;
+      }
+
+      .hero {
+        min-height: 600px;
+      }
+
+      .hero-content {
+        padding: 100px 20px 70px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-btn,
+      .hero-outline-btn {
+        width: 200px;
+      }
+
+      .trending {
+        padding: 60px 18px;
+      }
+
+      .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-heading h2 {
+        font-size: 31px;
+      }
+
+      .section-heading p {
+        margin-left: 42px;
+        font-size: 15px;
+      }
+
+      .recipe-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .recipe-image {
+        height: 250px;
+      }
+
+      .feature-section {
+        padding: 0 18px;
+        margin-bottom: 70px;
+      }
+
+      .feature-image img {
+        height: 330px;
+      }
+
+      .feature-content h2 {
+        font-size: 34px;
+      }
+
+      .write-section {
+        padding: 55px 20px;
+      }
+
+      .write-section h2 {
+        font-size: 34px;
+      }
+
+      .newsletter {
+        margin: 70px 18px;
+        padding: 35px 22px;
+      }
+
+      .newsletter h2 {
+        font-size: 30px;
+      }
+
+      .newsletter form {
+        flex-direction: column;
+        background: transparent;
+        gap: 10px;
+      }
+
+      .newsletter input {
+        border-radius: 30px;
+        min-height: 50px;
+        background: white;
+      }
+
+      .newsletter button {
+        min-height: 50px;
+      }
+
+      footer {
+        padding: 55px 20px 20px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .modal-box {
+        padding: 25px 20px;
+      }
+
+      .modal-box .modal-ingredients ul {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width:400px) {
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .recipe-body h3 {
+        font-size: 21px;
+      }
+
+      .recipe-meta {
+        gap: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="header">
+    <nav class="navbar">
+      <a href="#home" class="logo">
+        <span class="logo-icon">🍴</span>
+        <div><strong>Tasty<span>Bites</span></strong><small>DELICIOUS FOOD BLOG</small></div>
+      </a>
+      <div class="nav-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="navSearch" placeholder="Search 100+ recipes...">
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#blogs">Blogs</a></li>
+        <li><a href="#recipes">Recipes</a></li>
+        <li><a href="#write">Write</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="#account" class="account">Account</a>
+        <a href="#subscribe" class="subscribe-btn">Subscribe</a>
+      </div>
+      <button class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-slide active"
+      style="background-image: linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=2000&q=90');">
+      <div class="hero-content">
+        <span class="hero-tag">FRESH & DELICIOUS</span>
+        <h1>Discover 100+ <span>Amazing Recipes</span></h1>
+        <p>Simple ingredients. Extraordinary flavors. Cook with confidence every day.</p>
+        <div class="hero-buttons">
+          <a href="#recipes" class="hero-btn">Explore Blog <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#write" class="hero-outline-btn">Write a Blog</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide"
+      style="background-image: linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=2000&q=90');">
+      <div class="hero-content">
+        <span class="hero-tag">HEALTHY & TASTY</span>
+        <h1>Cook Something <span>Wonderful Today</span></h1>
+        <p>Healthy meals, creative recipes and delicious cooking inspiration.</p>
+        <div class="hero-buttons">
+          <a href="#recipes" class="hero-btn">View Recipes <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#blogs" class="hero-outline-btn">Read Blogs</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide"
+      style="background-image: linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=2000&q=90');">
+      <div class="hero-content">
+        <span class="hero-tag">FOOD LOVERS</span>
+        <h1>Taste The Joy <span>In Every Bite</span></h1>
+        <p>Easy recipes for families, food lovers and passionate home cooks.</p>
+        <div class="hero-buttons">
+          <a href="#recipes" class="hero-btn">Start Cooking <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#subscribe" class="hero-outline-btn">Subscribe</a>
+        </div>
+      </div>
+    </div>
+    <div class="slider-dots">
+      <button class="dot active" data-slide="0"></button>
+      <button class="dot" data-slide="1"></button>
+      <button class="dot" data-slide="2"></button>
+    </div>
+  </section>
+
+  <!-- RECIPES -->
+  <section class="trending" id="recipes">
+    <div class="section-heading">
+      <div>
+        <div class="heading-line"><span class="trend-icon">↗</span>
+          <h2>100+ Recipes</h2>
+        </div>
+        <p>Most loved recipes by our community this week.</p>
+      </div>
+      <a href="#recipes" class="view-all">View all <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="breakfast">Breakfast</button>
+      <button class="filter-btn" data-filter="lunch">Lunch</button>
+      <button class="filter-btn" data-filter="dinner">Dinner</button>
+      <button class="filter-btn" data-filter="dessert">Dessert</button>
+    </div>
+    <div class="recipe-grid" id="recipeGrid"></div>
+  </section>
+
+  <!-- FEATURE -->
+  <section class="feature-section" id="blogs">
+    <div class="feature-image">
+      <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=85"
+        alt="Cooking">
+    </div>
+    <div class="feature-content">
+      <span class="section-tag">FOOD STORIES</span>
+      <h2>Cooking is not just about food, <span>it's about memories.</span></h2>
+      <p>Explore inspiring food stories, cooking techniques, kitchen tips and ideas from passionate food lovers.</p>
+      <a href="#blogs" class="dark-btn">Explore Stories <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- WRITE -->
+  <section class="write-section" id="write">
+    <div>
+      <span class="section-tag">SHARE YOUR PASSION</span>
+      <h2>Have a recipe <span>to share?</span></h2>
+      <p>Share your favorite recipes and food stories with our growing community.</p>
+    </div>
+    <button class="hero-btn" id="writeBtn">Write a Blog <i class="fa-solid fa-pen"></i></button>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter" id="subscribe">
+    <div>
+      <span class="section-tag">STAY HUNGRY</span>
+      <h2>Get delicious recipes <span>in your inbox.</span></h2>
+      <p>Join our community and receive fresh recipes, cooking tips and food inspiration every week.</p>
+    </div>
+    <form id="newsletterForm">
+      <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#home" class="logo">
+          <span class="logo-icon">🍴</span>
+          <div><strong>Tasty<span>Bites</span></strong><small>DELICIOUS FOOD BLOG</small></div>
+        </a>
+        <p>Delicious recipes, inspiring stories and food made with love.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Explore</h3><a href="#home">Home</a><a href="#blogs">Blogs</a><a href="#recipes">Recipes</a>
+      </div>
+      <div class="footer-column">
+        <h3>Community</h3><a href="#write">Write a Blog</a><a href="#subscribe">Subscribe</a><a
+          href="#account">Account</a>
+      </div>
+      <div class="footer-column">
+        <h3>Follow Us</h3>
+        <div class="socials"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i
+              class="fa-brands fa-facebook"></i></a><a href="#"><i class="fa-brands fa-youtube"></i></a><a href="#"><i
+              class="fa-brands fa-pinterest"></i></a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TastyBites. All Rights Reserved.</p>
+      <p>Made with ❤️ for food lovers.</p>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"><i class="fa-solid fa-check"></i><span id="toastMessage">Done!</span></div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="recipeModal">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+      <h2 id="modalTitle">Recipe Title</h2>
+      <div class="modal-meta"><span><i class="fa-regular fa-clock"></i> <span id="modalTime">30
+            min</span></span><span><i class="fa-solid fa-signal"></i> <span id="modalLevel">Easy</span></span></div>
+      <div class="modal-desc" id="modalDesc">Description here.</div>
+      <div class="modal-ingredients">
+        <h4><i class="fa-solid fa-bowl-food"></i> Ingredients</h4>
+        <ul id="modalIngredients">
+          <li>Ingredient 1</li>
+          <li>Ingredient 2</li>
+        </ul>
+      </div>
+      <div class="modal-steps">
+        <h4><i class="fa-solid fa-list-ol"></i> Steps</h4>
+        <ol id="modalSteps">
+          <li>Step 1</li>
+          <li>Step 2</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <div class="author">
+          <div class="author-img" id="modalAuthorInitial">S</div><span id="modalAuthorName">Chef</span>
+        </div>
+        <div class="rating-big" id="modalRating">⭐ 4.5</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // ========== 100+ RECIPES ==========
+      const categories = ['breakfast', 'lunch', 'dinner', 'dessert'];
+      const names = ['Avocado Toast', 'Grilled Salmon', 'Lava Cake', 'Burger', 'Garlic Pasta', 'Strawberry Cake', 'Pancakes', 'Omelette', 'Smoothie Bowl', 'Eggs Benedict', 'Quiche', 'French Toast', 'Bagel Sandwich', 'Frittata', 'Granola Bowl', 'Shakshuka', 'Breakfast Burrito', 'Waffles', 'Crepes', 'Hash Browns', 'Chicken Salad', 'Caesar Salad', 'Club Sandwich', 'Grilled Cheese', 'Tomato Soup', 'Quinoa Bowl', 'Falafel Wrap', 'Poke Bowl', 'Lentil Soup', 'Chicken Wrap', 'Steak Dinner', 'Pasta Carbonara', 'Chicken Parmesan', 'Beef Stir-fry', 'Fish Tacos', 'Pizza', 'Risotto', 'Stuffed Peppers', 'Meatballs', 'Shepherd\'s Pie', 'Brownies', 'Cheesecake', 'Tiramisu', 'Fruit Tart', 'Ice Cream', 'Panna Cotta', 'Cupcakes', 'Macarons', 'Apple Pie', 'Churros', 'Crepes', 'Cinnamon Rolls', 'Donuts', 'Pudding', 'Muffins', 'Scones', 'Biscotti', 'Fudge', 'Gelato', 'Sorbet'];
+      const levels = ['Easy', 'Medium', 'Hard'];
+      const authors = ['Sara Jenkins', 'Chef Khan', 'Isabella Cristia', 'David Martin', 'Maria Lopez', 'Anna Smith', 'James Lee', 'Olivia Brown', 'Liam Johnson', 'Emma Davis'];
+      const initials = ['S', 'K', 'I', 'D', 'M', 'A', 'J', 'O', 'L', 'E'];
+
+      function getRandom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+      function generateRecipes(count) {
+        const recipes = [];
+        const images = [
+          'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1551029506-0807df4e2031?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=85',
+          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=85'
+        ];
+        for (let i = 0; i < count; i++) {
+          const cat = getRandom(categories);
+          const name = getRandom(names) + ' ' + (i + 1);
+          const level = getRandom(levels);
+          const author = getRandom(authors);
+          const authorInit = initials[Math.floor(Math.random() * initials.length)];
+          const rating = (3.5 + Math.random() * 1.5).toFixed(1);
+          const time = Math.floor(10 + Math.random() * 40) + ' min';
+          const desc = `Delicious ${cat} recipe with fresh ingredients and amazing flavor.`;
+          const ingredients = ['Ingredient A', 'Ingredient B', 'Ingredient C', 'Ingredient D', 'Salt & Pepper'];
+          const steps = ['Step 1: Prepare ingredients.', 'Step 2: Cook with love.', 'Step 3: Serve hot.'];
+          recipes.push({
+            id: i + 1,
+            category: cat,
+            title: name,
+            description: desc,
+            time: time,
+            level: level,
+            rating: parseFloat(rating),
+            author: author,
+            authorInitial: authorInit,
+            img: images[i % images.length],
+            ingredients: ingredients,
+            steps: steps
+          });
+        }
+        return recipes;
+      }
+
+      const recipes = generateRecipes(108);
+
+      // ========== DOM REFS ==========
+      const grid = document.getElementById('recipeGrid');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const navSearch = document.getElementById('navSearch');
+      const modal = document.getElementById('recipeModal');
+      const modalClose = document.getElementById('modalClose');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalTime = document.getElementById('modalTime');
+      const modalLevel = document.getElementById('modalLevel');
+      const modalDesc = document.getElementById('modalDesc');
+      const modalIngredients = document.getElementById('modalIngredients');
+      const modalSteps = document.getElementById('modalSteps');
+      const modalAuthorInitial = document.getElementById('modalAuthorInitial');
+      const modalAuthorName = document.getElementById('modalAuthorName');
+      const modalRating = document.getElementById('modalRating');
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMessage');
+      let toastTimer;
+
+      // ========== RENDER ==========
+      function renderCards(filter = 'all', search = '') {
+        const filtered = recipes.filter(r => {
+          const matchCategory = filter === 'all' || r.category === filter;
+          const matchSearch = r.title.toLowerCase().includes(search.toLowerCase()) ||
+            r.description.toLowerCase().includes(search.toLowerCase());
+          return matchCategory && matchSearch;
+        });
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; font-size:20px; color:#999; padding:40px 0;">No recipes found 😕</p>`;
+          return;
+        }
+
+        grid.innerHTML = filtered.map(r => `
+          <article class="recipe-card" data-id="${r.id}" data-category="${r.category}">
+            <div class="recipe-image">
+              <img src="${r.img}" alt="${r.title}" loading="lazy">
+              <span class="recipe-label">Recipe</span>
+              <span class="rating"><i class="fa-solid fa-star"></i> ${r.rating}</span>
+            </div>
+            <div class="recipe-body">
+              <div class="recipe-meta">
+                <span><i class="fa-regular fa-clock"></i> ${r.time}</span>
+                <span>${r.level}</span>
+              </div>
+              <h3>${r.title}</h3>
+              <p>${r.description}</p>
+              <div class="recipe-footer">
+                <div class="author">
+                  <div class="author-img">${r.authorInitial}</div>
+                  <span>${r.author}</span>
+                </div>
+                <button class="favorite" data-id="${r.id}"><i class="fa-regular fa-heart"></i></button>
+              </div>
+            </div>
+          </article>
+        `).join('');
+
+        // card click -> modal
+        document.querySelectorAll('.recipe-card').forEach(card => {
+          card.addEventListener('click', function (e) {
+            if (e.target.closest('.favorite')) return;
+            const id = parseInt(this.dataset.id);
+            const recipe = recipes.find(r => r.id === id);
+            if (recipe) openModal(recipe);
+          });
+        });
+
+        // favorite
+        document.querySelectorAll('.favorite').forEach(btn => {
+          btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const icon = this.querySelector('i');
+            this.classList.toggle('liked');
+            if (this.classList.contains('liked')) {
+              icon.classList.remove('fa-regular');
+              icon.classList.add('fa-solid');
+              showToast('Added to favorites ❤️');
+            } else {
+              icon.classList.remove('fa-solid');
+              icon.classList.add('fa-regular');
+              showToast('Removed from favorites');
+            }
+          });
+        });
+      }
+
+      // ========== MODAL ==========
+      function openModal(recipe) {
+        modalTitle.textContent = recipe.title;
+        modalTime.textContent = recipe.time;
+        modalLevel.textContent = recipe.level;
+        modalDesc.textContent = recipe.description;
+        modalIngredients.innerHTML = recipe.ingredients.map(i => `<li>${i}</li>`).join('');
+        modalSteps.innerHTML = recipe.steps.map(s => `<li>${s}</li>`).join('');
+        modalAuthorInitial.textContent = recipe.authorInitial;
+        modalAuthorName.textContent = recipe.author;
+        modalRating.innerHTML = `⭐ ${recipe.rating}`;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+      // ========== FILTER & SEARCH ==========
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          renderCards(this.dataset.filter, navSearch.value.trim());
+        });
+      });
+      navSearch.addEventListener('input', function () {
+        const activeFilter = document.querySelector('.filter-btn.active');
+        renderCards(activeFilter ? activeFilter.dataset.filter : 'all', this.value.trim());
+      });
+
+      // ========== TOAST ==========
+      function showToast(msg) {
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+      }
+
+      // ========== NEWSLETTER ==========
+      document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email = document.getElementById('newsletterEmail').value.trim();
+        if (!email) { showToast('Please enter your email'); return; }
+        showToast('Successfully subscribed! 🎉');
+        this.reset();
+      });
+
+      // ========== WRITE BTN ==========
+      document.getElementById('writeBtn').addEventListener('click', function () {
+        showToast('Blog editor coming soon ✍️');
+      });
+
+      // ========== MOBILE MENU ==========
+      const menuBtn = document.getElementById('menuBtn');
+      const navLinks = document.getElementById('navLinks');
+      menuBtn.addEventListener('click', function () {
+        navLinks.classList.toggle('show');
+        document.body.classList.toggle('menu-open');
+        const icon = this.querySelector('i');
+        if (navLinks.classList.contains('show')) {
+          icon.className = 'fa-solid fa-xmark';
+        } else {
+          icon.className = 'fa-solid fa-bars';
+        }
+      });
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function () {
+          navLinks.classList.remove('show');
+          document.body.classList.remove('menu-open');
+          menuBtn.querySelector('i').className = 'fa-solid fa-bars';
+        });
+      });
+
+      // ========== NAVBAR SCROLL ==========
+      const header = document.querySelector('.header');
+      window.addEventListener('scroll', function () {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+      });
+
+      // ========== HERO SLIDER ==========
+      const slides = document.querySelectorAll('.hero-slide');
+      const dots = document.querySelectorAll('.dot');
+      let currentSlide = 0;
+      let slideTimer;
+
+      function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentSlide = index;
+      }
+
+      function nextSlide() { showSlide((currentSlide + 1) % slides.length); }
+      function startSlider() { slideTimer = setInterval(nextSlide, 5000); }
+      startSlider();
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', function () {
+          clearInterval(slideTimer);
+          showSlide(parseInt(this.dataset.slide));
+          startSlider();
+        });
+      });
+
+      // ========== SCROLL REVEAL ==========
+      const revealEls = document.querySelectorAll('.recipe-card, .feature-section, .write-section, .newsletter');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('show');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach(el => {
+        el.classList.add('reveal');
+        observer.observe(el);
+      });
+
+      // ========== ACTIVE NAV ==========
+      const sections = document.querySelectorAll('section[id]');
+      const navLinksAll = document.querySelectorAll('.nav-links a');
+      window.addEventListener('scroll', function () {
+        let current = '';
+        sections.forEach(section => {
+          const top = section.offsetTop - 150;
+          if (window.scrollY >= top) { current = section.getAttribute('id'); }
+        });
+        navLinksAll.forEach(link => {
+          link.classList.remove('current');
+          if (link.getAttribute('href') === '#' + current) { link.classList.add('current'); }
+        });
+      });
+
+      // ========== INIT ==========
+      renderCards('all', '');
+
+    })();
+  </script>
+</body>
+
+</html>

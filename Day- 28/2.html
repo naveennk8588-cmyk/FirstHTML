@@ -1,0 +1,3736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TastyBites · Indian Recipes</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: "Lato", sans-serif;
+            color: #6B7280;
+            background: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        body.menu-open {
+            overflow: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button,
+        input {
+            font-family: "Lato", sans-serif;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+        }
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        /* ===== NAVBAR ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: 0.4s ease;
+        }
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+        .navbar {
+            width: 100%;
+            max-width: 1500px;
+            margin: auto;
+            min-height: 90px;
+            padding: 12px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 155px;
+        }
+        .logo-icon {
+            font-size: 35px;
+        }
+        .logo strong {
+            display: block;
+            color: #111;
+            font-size: 22px;
+            line-height: 1;
+        }
+        .logo strong span {
+            color: #FE4A51;
+        }
+        .logo small {
+            display: block;
+            color: #777;
+            font-size: 7px;
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+        }
+        .nav-search {
+            width: 390px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #C3C4C4;
+            border-radius: 40px;
+            padding: 0 22px;
+            transition: 0.3s;
+        }
+        .nav-search:focus-within {
+            border-color: #FE4A51;
+            box-shadow: 0 0 0 4px rgba(254, 74, 81, 0.12);
+        }
+        .nav-search i {
+            color: #111;
+            font-size: 20px;
+        }
+        .nav-search input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 17px;
+            color: #222;
+        }
+        .nav-search input::placeholder {
+            color: #999;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #111;
+            font-size: 18px;
+            font-weight: 600;
+            position: relative;
+            transition: 0.3s;
+        }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 0;
+            height: 2px;
+            background: #FE4A51;
+            transition: 0.3s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a.current {
+            color: #FE4A51;
+        }
+        .nav-links a.current::after {
+            width: 100%;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .account {
+            color: #111;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .subscribe-btn {
+            background: #FE4A51;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 17px;
+            transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(254, 74, 81, 0.25);
+        }
+        .subscribe-btn:hover {
+            background: #C81118;
+            transform: translateY(-2px);
+        }
+        .menu-btn {
+            display: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #FE4A51;
+            color: white;
+            font-size: 20px;
+        }
+
+        /* ===== HERO SLIDER ===== */
+        .hero {
+            position: relative;
+            min-height: 720px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #fafafa;
+        }
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.04);
+            transition: opacity 0.8s ease, transform 1.2s ease, visibility 0.8s;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+        .hero-slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+        .hero-slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+            padding: 130px 25px 80px;
+            color: #fff;
+            animation: heroContent 1s ease;
+        }
+        .hero-slide:not(.active) .hero-content {
+            animation: none;
+        }
+        @keyframes heroContent {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-tag {
+            display: inline-block;
+            background: rgba(254, 74, 81, 0.85);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(42px, 5vw, 70px);
+            line-height: 1.05;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+        .hero h1 span {
+            display: block;
+            color: #FFD0D2;
+        }
+        .hero p {
+            max-width: 650px;
+            margin: auto auto 35px;
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .hero-btn,
+        .hero-outline-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .hero-btn {
+            background: #FE4A51;
+            color: white;
+            box-shadow: 0 12px 25px rgba(254, 74, 81, 0.3);
+        }
+        .hero-btn:hover {
+            background: #C81118;
+            transform: translateY(-4px);
+        }
+        .hero-outline-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1.5px solid #fff;
+            color: #fff;
+        }
+        .hero-outline-btn:hover {
+            background: #FE4A51;
+            border-color: #FE4A51;
+            transform: translateY(-4px);
+        }
+        .slider-dots {
+            position: absolute;
+            z-index: 10;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.3);
+            transition: 0.3s;
+        }
+        .dot.active {
+            background: #FE4A51;
+            border-color: #FE4A51;
+            transform: scale(1.2);
+            box-shadow: 0 0 0 4px rgba(254, 74, 81, 0.3);
+        }
+
+        /* ===== RECIPES ===== */
+        .trending {
+            max-width: 1500px;
+            margin: auto;
+            padding: 90px 35px 110px;
+        }
+        .section-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .heading-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .trend-icon {
+            color: #FE4A51;
+            font-size: 40px;
+            font-weight: 800;
+        }
+        .section-heading h2 {
+            color: #111;
+            font-size: 38px;
+            font-weight: 700;
+        }
+        .section-heading p {
+            margin-left: 48px;
+            margin-top: 8px;
+            font-size: 18px;
+        }
+        .view-all {
+            color: #FE4A51;
+            font-size: 17px;
+            font-weight: 600;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            transition: 0.3s;
+        }
+        .view-all:hover {
+            color: #C81118;
+            transform: translateX(5px);
+        }
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            border: 1px solid #C3C4C4;
+            background: white;
+            color: #6B7280;
+            padding: 9px 20px;
+            border-radius: 25px;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #FE4A51;
+            color: white;
+            border-color: #FE4A51;
+        }
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .recipe-card {
+            background: white;
+            border: 1px solid #E3E3E3;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+        }
+        .recipe-card.hidden {
+            display: none;
+        }
+        .recipe-image {
+            position: relative;
+            height: 270px;
+            overflow: hidden;
+        }
+        .recipe-image img {
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .recipe-card:hover .recipe-image img {
+            transform: scale(1.08);
+        }
+        .recipe-label {
+            position: absolute;
+            top: 15px;
+            left: 18px;
+            background: #FE4A51;
+            color: white;
+            padding: 7px 22px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .rating {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            background: white;
+            color: #222;
+            padding: 7px 15px;
+            border-radius: 25px;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        .rating i {
+            color: #F4B400;
+            margin-right: 5px;
+        }
+        .recipe-body {
+            padding: 20px 23px 22px;
+        }
+        .recipe-meta {
+            display: flex;
+            gap: 45px;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        .recipe-meta span {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .recipe-meta i {
+            font-size: 18px;
+        }
+        .recipe-body h3 {
+            color: #111;
+            font-size: 23px;
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+        .recipe-body>p {
+            font-size: 16px;
+            line-height: 1.5;
+            min-height: 72px;
+            margin-bottom: 18px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .recipe-footer {
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 14px;
+        }
+        .author-img {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #FFD0D2;
+            color: #C81118;
+            font-weight: 700;
+        }
+        .favorite {
+            width: 38px;
+            height: 38px;
+            border: none;
+            background: transparent;
+            color: #6B7280;
+            border-radius: 50%;
+            font-size: 22px;
+            transition: 0.3s;
+        }
+        .favorite:hover {
+            background: #FFD0D2;
+            color: #FE4A51;
+        }
+        .favorite.liked {
+            color: #FE4A51;
+            animation: heartBeat 0.5s ease;
+        }
+        @keyframes heartBeat {
+            0% {
+                transform: scale(1);
+            }
+            40% {
+                transform: scale(1.4);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* ===== LOAD MORE ===== */
+        .load-more-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .load-more-btn {
+            background: #FE4A51;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(254, 74, 81, 0.3);
+        }
+        .load-more-btn:hover {
+            background: #C81118;
+            transform: translateY(-3px);
+        }
+        .load-more-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.open {
+            display: flex;
+        }
+        .modal-box {
+            background: #fff;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 30px;
+            padding: 30px 35px 35px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalIn 0.35s ease;
+        }
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.92) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #888;
+            transition: 0.3s;
+        }
+        .modal-close:hover {
+            color: #111;
+            transform: rotate(90deg);
+        }
+        .modal-box h2 {
+            color: #111;
+            font-size: 32px;
+            margin-bottom: 12px;
+            padding-right: 30px;
+        }
+        .modal-box .modal-meta {
+            display: flex;
+            gap: 30px;
+            font-size: 16px;
+            color: #6B7280;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .modal-box .modal-meta i {
+            margin-right: 6px;
+            color: #FE4A51;
+        }
+        .modal-box .modal-desc {
+            font-size: 17px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .modal-box .modal-ingredients {
+            background: #f8f8f8;
+            padding: 18px 22px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        .modal-box .modal-ingredients h4 {
+            color: #111;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .modal-box .modal-ingredients ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 20px;
+        }
+        .modal-box .modal-ingredients ul li::before {
+            content: "•";
+            color: #FE4A51;
+            font-weight: 900;
+            margin-right: 10px;
+        }
+        .modal-box .modal-steps {
+            margin-bottom: 20px;
+        }
+        .modal-box .modal-steps h4 {
+            color: #111;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .modal-box .modal-steps ol {
+            padding-left: 22px;
+            line-height: 1.8;
+        }
+        .modal-box .modal-steps ol li {
+            margin-bottom: 6px;
+        }
+        .modal-box .modal-footer {
+            border-top: 1px solid #eee;
+            padding-top: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .modal-box .modal-footer .author {
+            font-size: 15px;
+        }
+        .modal-box .modal-footer .rating-big {
+            background: #FFD0D2;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #C81118;
+        }
+        .modal-box .modal-image {
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            max-height: 300px;
+        }
+        .modal-box .modal-image img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== FEATURE, WRITE, NEWSLETTER, FOOTER ===== */
+        .feature-section {
+            max-width: 1400px;
+            margin: 0 auto 100px;
+            padding: 0 35px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 70px;
+        }
+        .feature-image {
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+        .feature-image img {
+            height: 450px;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+        .feature-image:hover img {
+            transform: scale(1.05);
+        }
+        .section-tag {
+            color: #FE4A51;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+        .feature-content h2 {
+            color: #111;
+            font-size: 45px;
+            line-height: 1.15;
+            margin: 15px 0 20px;
+        }
+        .feature-content h2 span {
+            color: #FE4A51;
+        }
+        .feature-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .dark-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #111;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+        .dark-btn:hover {
+            background: #FE4A51;
+            transform: translateY(-3px);
+        }
+        .write-section {
+            background: #FFD0D2;
+            padding: 70px max(35px, calc((100vw - 1400px) / 2));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .write-section h2 {
+            color: #111;
+            font-size: 42px;
+            line-height: 1.15;
+            margin: 12px 0;
+        }
+        .write-section h2 span {
+            color: #FE4A51;
+        }
+        .write-section p {
+            font-size: 18px;
+        }
+        .newsletter {
+            max-width: 1300px;
+            margin: 100px auto;
+            padding: 60px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #111, #292929);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .newsletter h2 {
+            color: white;
+            font-size: 38px;
+            line-height: 1.2;
+            margin: 12px 0;
+        }
+        .newsletter h2 span {
+            color: #FE4A51;
+        }
+        .newsletter p {
+            max-width: 600px;
+            color: #C3C4C4;
+            font-size: 17px;
+        }
+        .newsletter form {
+            min-width: 430px;
+            display: flex;
+            background: white;
+            padding: 6px;
+            border-radius: 40px;
+            flex-wrap: wrap;
+        }
+        .newsletter input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 12px 18px;
+            font-size: 15px;
+            min-width: 150px;
+            background: transparent;
+        }
+        .newsletter button {
+            border: none;
+            background: #FE4A51;
+            color: white;
+            padding: 13px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .newsletter button:hover {
+            background: #C81118;
+        }
+        footer {
+            background: #111;
+            color: #C3C4C4;
+            padding: 70px 35px 25px;
+        }
+        .footer-top {
+            max-width: 1400px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 50px;
+        }
+        .footer-brand p {
+            max-width: 300px;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 10px;
+        }
+        .footer-column a:hover {
+            color: #FE4A51;
+        }
+        .socials {
+            display: flex;
+            gap: 12px;
+        }
+        .socials a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #222;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        .socials a:hover {
+            background: #FE4A51;
+            color: white;
+            transform: translateY(-4px);
+        }
+        .footer-bottom {
+            max-width: 1400px;
+            margin: auto;
+            border-top: 1px solid #333;
+            padding-top: 22px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 5000;
+            background: #111;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.4s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast i {
+            color: #FE4A51;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .nav-search {
+                width: 280px;
+            }
+            .nav-links {
+                gap: 20px;
+            }
+            .recipe-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .newsletter {
+                margin-left: 25px;
+                margin-right: 25px;
+            }
+        }
+        @media (max-width: 950px) {
+            .nav-search {
+                display: none;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 85px;
+                left: 20px;
+                right: 20px;
+                background: white;
+                padding: 20px;
+                border-radius: 15px;
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+                flex-direction: column;
+                gap: 0;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .nav-links li {
+                width: 100%;
+            }
+            .nav-links a {
+                display: block;
+                padding: 12px;
+                text-align: center;
+            }
+            .menu-btn {
+                display: block;
+            }
+            .account {
+                display: none;
+            }
+            .hero {
+                min-height: 650px;
+            }
+            .feature-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .feature-content {
+                text-align: center;
+            }
+            .write-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .newsletter {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .newsletter form {
+                min-width: 0;
+                width: 100%;
+            }
+            .footer-top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 650px) {
+            .navbar {
+                min-height: 75px;
+                padding: 10px 16px;
+            }
+            .logo strong {
+                font-size: 19px;
+            }
+            .logo small {
+                font-size: 6px;
+            }
+            .logo-icon {
+                font-size: 28px;
+            }
+            .subscribe-btn {
+                display: none;
+            }
+            .hero {
+                min-height: 600px;
+            }
+            .hero-content {
+                padding: 100px 20px 70px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 17px;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-btn,
+            .hero-outline-btn {
+                width: 200px;
+            }
+            .trending {
+                padding: 60px 18px;
+            }
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .section-heading h2 {
+                font-size: 31px;
+            }
+            .section-heading p {
+                margin-left: 42px;
+                font-size: 15px;
+            }
+            .recipe-grid {
+                grid-template-columns: 1fr;
+            }
+            .recipe-image {
+                height: 250px;
+            }
+            .feature-section {
+                padding: 0 18px;
+                margin-bottom: 70px;
+            }
+            .feature-image img {
+                height: 330px;
+            }
+            .feature-content h2 {
+                font-size: 34px;
+            }
+            .write-section {
+                padding: 55px 20px;
+            }
+            .write-section h2 {
+                font-size: 34px;
+            }
+            .newsletter {
+                margin: 70px 18px;
+                padding: 35px 22px;
+            }
+            .newsletter h2 {
+                font-size: 30px;
+            }
+            .newsletter form {
+                flex-direction: column;
+                background: transparent;
+                gap: 10px;
+            }
+            .newsletter input {
+                border-radius: 30px;
+                min-height: 50px;
+                background: white;
+            }
+            .newsletter button {
+                min-height: 50px;
+            }
+            footer {
+                padding: 55px 20px 20px;
+            }
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .modal-box {
+                padding: 25px 20px;
+            }
+            .modal-box .modal-ingredients ul {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 30px;
+            }
+            .recipe-body h3 {
+                font-size: 21px;
+            }
+            .recipe-meta {
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="#home" class="logo">
+                <span class="logo-icon">🍴</span>
+                <div>
+                    <strong>Tasty<span>Bites</span></strong>
+                    <small>INDIAN RECIPES</small>
+                </div>
+            </a>
+            <div class="nav-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="navSearch" placeholder="Search 100+ Indian recipes...">
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#blogs">Blogs</a></li>
+                <li><a href="#recipes">Recipes</a></li>
+                <li><a href="#write">Write</a></li>
+            </ul>
+            <div class="nav-right">
+                <a href="#account" class="account">Account</a>
+                <a href="#subscribe" class="subscribe-btn">Subscribe</a>
+            </div>
+            <button class="menu-btn" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <!-- ===== HERO SLIDER ===== -->
+    <section class="hero" id="home">
+        <!-- Slide 1 -->
+        <div class="hero-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=2000&q=90');">
+            <div class="hero-content">
+                <span class="hero-tag">100+ INDIAN RECIPES</span>
+                <h1>Discover Indian <span>Flavors & Spices</span></h1>
+                <p>From rich curries to crispy dosas, explore the authentic taste of India with our collection of 100+ recipes.</p>
+                <div class="hero-buttons">
+                    <a href="#recipes" class="hero-btn">Explore Recipes <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#write" class="hero-outline-btn">Write a Blog</a>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=2000&q=90');">
+            <div class="hero-content">
+                <span class="hero-tag">SPICES & AROMAS</span>
+                <h1>Cook Something <span>Magical Today</span></h1>
+                <p>Discover healthy Indian meals, creative recipes and delicious cooking inspiration.</p>
+                <div class="hero-buttons">
+                    <a href="#recipes" class="hero-btn">View Recipes <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#blogs" class="hero-outline-btn">Read Blogs</a>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=2000&q=90');">
+            <div class="hero-content">
+                <span class="hero-tag">FOOD LOVERS</span>
+                <h1>Taste The Joy <span>In Every Bite</span></h1>
+                <p>Easy Indian recipes made for food lovers, families and passionate home cooks.</p>
+                <div class="hero-buttons">
+                    <a href="#recipes" class="hero-btn">Start Cooking <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#subscribe" class="hero-outline-btn">Subscribe</a>
+                </div>
+            </div>
+        </div>
+        <!-- Dots -->
+        <div class="slider-dots">
+            <button class="dot active" data-slide="0"></button>
+            <button class="dot" data-slide="1"></button>
+            <button class="dot" data-slide="2"></button>
+        </div>
+    </section>
+
+    <!-- ===== RECIPES SECTION ===== -->
+    <section class="trending" id="recipes">
+        <div class="section-heading">
+            <div>
+                <div class="heading-line">
+                    <span class="trend-icon">↗</span>
+                    <h2>Popular Indian Recipes</h2>
+                </div>
+                <p>Browse our collection of 100+ authentic Indian recipes.</p>
+            </div>
+            <span style="color:#FE4A51; font-weight:600;" id="recipeCount"></span>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="breakfast">Breakfast</button>
+            <button class="filter-btn" data-filter="lunch">Lunch</button>
+            <button class="filter-btn" data-filter="dinner">Dinner</button>
+            <button class="filter-btn" data-filter="dessert">Dessert</button>
+            <button class="filter-btn" data-filter="snacks">Snacks</button>
+            <button class="filter-btn" data-filter="breads">Breads</button>
+        </div>
+
+        <div class="recipe-grid" id="recipeGrid"></div>
+
+        <div class="load-more-container">
+            <button class="load-more-btn" id="loadMoreBtn">Load More Recipes</button>
+        </div>
+    </section>
+
+    <!-- ===== FEATURE ===== -->
+    <section class="feature-section" id="blogs">
+        <div class="feature-image">
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=85" alt="Cooking">
+        </div>
+        <div class="feature-content">
+            <span class="section-tag">FOOD STORIES</span>
+            <h2>Cooking is not just about food, <span>it's about memories.</span></h2>
+            <p>Explore inspiring Indian food stories, cooking techniques, kitchen tips and ideas from passionate food lovers.</p>
+            <a href="#blogs" class="dark-btn">Explore Stories <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- ===== WRITE ===== -->
+    <section class="write-section" id="write">
+        <div>
+            <span class="section-tag">SHARE YOUR PASSION</span>
+            <h2>Have a recipe <span>to share?</span></h2>
+            <p>Share your favorite Indian recipes and food stories with our growing community.</p>
+        </div>
+        <button class="hero-btn" id="writeBtn">Write a Blog <i class="fa-solid fa-pen"></i></button>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter" id="subscribe">
+        <div class="newsletter-content">
+            <span class="section-tag">STAY HUNGRY</span>
+            <h2>Get delicious recipes <span>in your inbox.</span></h2>
+            <p>Join our community and receive fresh Indian recipes, cooking tips and food inspiration every week.</p>
+        </div>
+        <form id="newsletterForm">
+            <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#home" class="logo">
+                    <span class="logo-icon">🍴</span>
+                    <div>
+                        <strong>Tasty<span>Bites</span></strong>
+                        <small>INDIAN RECIPES</small>
+                    </div>
+                </a>
+                <p>Authentic Indian recipes, inspiring stories and food made with love.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <a href="#home">Home</a>
+                <a href="#blogs">Blogs</a>
+                <a href="#recipes">Recipes</a>
+            </div>
+            <div class="footer-column">
+                <h3>Community</h3>
+                <a href="#write">Write a Blog</a>
+                <a href="#subscribe">Subscribe</a>
+                <a href="#account">Account</a>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="socials">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 TastyBites. All Rights Reserved.</p>
+            <p>Made with ❤️ for food lovers.</p>
+        </div>
+    </footer>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-check"></i>
+        <span id="toastMessage">Done!</span>
+    </div>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="recipeModal">
+        <div class="modal-box">
+            <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-image" id="modalImage">
+                <img src="" alt="Recipe">
+            </div>
+            <h2 id="modalTitle">Recipe Title</h2>
+            <div class="modal-meta">
+                <span><i class="fa-regular fa-clock"></i> <span id="modalTime">30 min</span></span>
+                <span><i class="fa-solid fa-signal"></i> <span id="modalLevel">Easy</span></span>
+            </div>
+            <div class="modal-desc" id="modalDesc">Description here.</div>
+            <div class="modal-ingredients">
+                <h4><i class="fa-solid fa-bowl-food"></i> Ingredients</h4>
+                <ul id="modalIngredients">
+                    <li>Ingredient 1</li>
+                    <li>Ingredient 2</li>
+                </ul>
+            </div>
+            <div class="modal-steps">
+                <h4><i class="fa-solid fa-list-ol"></i> Cooking Steps</h4>
+                <ol id="modalSteps">
+                    <li>Step 1</li>
+                    <li>Step 2</li>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <div class="author">
+                    <div class="author-img" id="modalAuthorInitial">S</div>
+                    <span id="modalAuthorName">Chef</span>
+                </div>
+                <div class="rating-big" id="modalRating">⭐ 4.5</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // 100+ INDIAN RECIPES DATA
+            // ============================================================
+            const allRecipes = [
+                // ----- BREAKFAST (15 recipes) -----
+                {
+                    id: 1,
+                    category: 'breakfast',
+                    title: 'Masala Dosa',
+                    description: 'Crispy golden dosa filled with spiced potato masala, served with coconut chutney and sambar.',
+                    time: '45 min',
+                    level: 'Medium',
+                    rating: 4.8,
+                    author: 'Priya Sharma',
+                    authorInitial: 'P',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup rice (soaked)', '1/4 cup urad dal', '1/2 tsp fenugreek', 'Salt', 'Oil',
+                        '3 potatoes', '1 onion', 'Turmeric', 'Mustard seeds', 'Curry leaves', 'Green chili'
+                    ],
+                    steps: ['Grind rice, dal, fenugreek to smooth batter. Ferment overnight.',
+                        'Heat oil, add mustard, curry leaves, onion, green chili. Sauté.',
+                        'Add boiled potatoes, turmeric, salt. Mash and cook 5 min.',
+                        'Heat tawa, pour batter, spread thin. Drizzle oil.',
+                        'Cook until golden. Add filling, fold, serve hot.'
+                    ]
+                }, {
+                    id: 2,
+                    category: 'breakfast',
+                    title: 'Poha (Flattened Rice)',
+                    description: 'Light and healthy breakfast made with flattened rice, peanuts, and fresh herbs.',
+                    time: '20 min',
+                    level: 'Easy',
+                    rating: 4.6,
+                    author: 'Ananya Reddy',
+                    authorInitial: 'A',
+                    img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups poha', '1 onion', '1 potato', '1/2 cup peanuts', '1 tsp mustard',
+                        '1/2 tsp turmeric', 'Curry leaves', 'Green chili', 'Lemon juice', 'Coriander'
+                    ],
+                    steps: ['Wash poha, drain, sit 5 min.', 'Heat oil, fry peanuts golden. Set aside.',
+                        'Add mustard, curry leaves, chili, onion, potato. Sauté until soft.',
+                        'Add turmeric, salt, poha. Mix gently.',
+                        'Add peanuts, lemon juice, coriander. Serve hot.'
+                    ]
+                }, {
+                    id: 3,
+                    category: 'breakfast',
+                    title: 'Uttapam',
+                    description: 'Thick and fluffy pancake made with fermented rice and lentil batter, topped with veggies.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.5,
+                    author: 'Kavya Nair',
+                    authorInitial: 'K',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup dosa batter', '1 onion', '1 tomato', '1/2 capsicum', '1 green chili',
+                        'Coriander', 'Oil'
+                    ],
+                    steps: ['Mix vegetables into batter.', 'Heat tawa, pour batter thick.',
+                        'Sprinkle more veggies on top, press.',
+                        'Drizzle oil, cook both sides golden.', 'Serve with chutney and sambar.'
+                    ]
+                }, {
+                    id: 4,
+                    category: 'breakfast',
+                    title: 'Idli with Sambar',
+                    description: 'Soft and fluffy steamed rice cakes served with flavorful lentil vegetable stew.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.7,
+                    author: 'Lakshmi Narayan',
+                    authorInitial: 'L',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups idli rice', '1 cup urad dal', 'Salt', 'For sambar: toor dal, vegetables',
+                        'Tamarind, sambar powder, curry leaves'
+                    ],
+                    steps: ['Soak rice and dal 4 hrs. Grind to smooth batter. Ferment 8 hrs.',
+                        'Steam batter in idli molds for 10 min.',
+                        'For sambar: cook dal, add vegetables, tamarind, sambar powder, curry leaves.',
+                        'Simmer until vegetables soft. Serve idli with sambar and chutney.'
+                    ]
+                }, {
+                    id: 5,
+                    category: 'breakfast',
+                    title: 'Upma',
+                    description: 'Savory semolina porridge with vegetables, nuts, and aromatic spices.',
+                    time: '20 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Manoj Singh',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup semolina (rava)', '1 onion', '1/2 cup mixed vegetables', '1/4 cup peanuts',
+                        'Mustard seeds', 'Curry leaves', 'Green chili', 'Ghee'
+                    ],
+                    steps: ['Dry roast semolina until fragrant. Set aside.',
+                        'Heat ghee, add mustard, curry leaves, chili, onion, vegetables. Sauté.',
+                        'Add water, salt, bring to boil.', 'Slowly add roasted semolina, stirring constantly.',
+                        'Cover and cook 5 min. Garnish with coriander and serve hot.'
+                    ]
+                }, {
+                    id: 6,
+                    category: 'breakfast',
+                    title: 'Aloo Paratha',
+                    description: 'Stuffed whole wheat flatbread filled with spiced mashed potatoes, served with butter and pickle.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.8,
+                    author: 'Harpreet Kaur',
+                    authorInitial: 'H',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups whole wheat flour', '3 potatoes boiled', '1 onion', 'Green chili',
+                        'Coriander', 'Garam masala', 'Salt', 'Ghee'
+                    ],
+                    steps: ['Knead flour into soft dough. Rest 15 min.',
+                        'Mash potatoes, add onion, chili, coriander, garam masala, salt.',
+                        'Divide dough into balls. Stuff with potato filling, roll flat.',
+                        'Cook on tawa with ghee until golden on both sides.',
+                        'Serve hot with butter and pickle.'
+                    ]
+                }, {
+                    id: 7,
+                    category: 'breakfast',
+                    title: 'Chole Bhature',
+                    description: 'Spicy chickpea curry served with deep-fried fluffy bread.',
+                    time: '60 min',
+                    level: 'Hard',
+                    rating: 4.9,
+                    author: 'Rohit Mehra',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1626808642875-0aa545482dfb?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups chickpeas soaked', '2 onions', '3 tomatoes', 'Ginger-garlic paste',
+                        'Chole masala', '1/2 tsp baking soda', '2 cups flour', 'Yogurt'
+                    ],
+                    steps: ['Pressure cook chickpeas with salt and tea bag for color.',
+                        'Sauté onions, add ginger-garlic, tomato, spices. Cook until oil separates.',
+                        'Add cooked chickpeas with water. Simmer 20 min.',
+                        'For bhature: mix flour, yogurt, baking soda. Knead, rest 2 hrs.',
+                        'Deep fry rolled dough until puffed. Serve with chole.'
+                    ]
+                }, {
+                    id: 8,
+                    category: 'breakfast',
+                    title: 'Medu Vada',
+                    description: 'Crispy golden lentil donuts with a soft center, served with coconut chutney and sambar.',
+                    time: '30 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Sridhar Rao',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup urad dal', '1 onion', 'Green chili', 'Ginger', 'Curry leaves', 'Salt',
+                        'Black pepper'
+                    ],
+                    steps: ['Soak urad dal 3 hrs. Grind to smooth batter.',
+                        'Mix in onion, chili, ginger, curry leaves, salt, pepper.',
+                        'Heat oil. Wet hands, shape batter into donuts with hole.',
+                        'Deep fry until golden and crisp.', 'Serve with chutney and sambar.'
+                    ]
+                }, {
+                    id: 9,
+                    category: 'breakfast',
+                    title: 'Pesarattu (Green Gram Dosa)',
+                    description: 'Healthy dosa made from whole green gram, served with ginger chutney.',
+                    time: '25 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Sneha Reddy',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup whole green gram', '1/2 cup rice', 'Ginger', 'Green chili', 'Salt',
+                        'Onion (optional)'
+                    ],
+                    steps: ['Soak green gram and rice 4 hrs. Grind with ginger and chili.',
+                        'Add salt, mix well. Batter should be pouring consistency.',
+                        'Heat tawa, pour batter, spread thin. Drizzle oil.',
+                        'Cook until golden and crisp. Serve with ginger chutney.'
+                    ]
+                }, {
+                    id: 10,
+                    category: 'breakfast',
+                    title: 'Appam with Stew',
+                    description: 'Lacy fermented rice pancakes served with creamy vegetable or chicken stew.',
+                    time: '45 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Mariam Joseph',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups rice', '1/2 cup coconut milk', '1/2 tsp yeast', 'Salt', 'Sugar',
+                        'For stew: mixed vegetables, coconut milk, cinnamon'
+                    ],
+                    steps: ['Grind rice with coconut milk. Add yeast, sugar, ferment 6 hrs.',
+                        'Heat appam pan, pour batter, swirl to form thin edges.',
+                        'Cook covered until edges crisp and center soft.',
+                        'For stew: sauté vegetables, add coconut milk, cinnamon, simmer.',
+                        'Serve appam with hot stew.'
+                    ]
+                }, {
+                    id: 11,
+                    category: 'breakfast',
+                    title: 'Bread Pakora',
+                    description: 'Spiced bread slices dipped in chickpea batter and deep fried until crispy.',
+                    time: '25 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Vikas Gupta',
+                    authorInitial: 'V',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['8 bread slices', '1 cup chickpea flour', '1/2 tsp red chili powder',
+                        '1/4 tsp turmeric', 'Salt', 'Oil for frying'
+                    ],
+                    steps: ['Mix chickpea flour, chili powder, turmeric, salt into thick batter.',
+                        'Cut bread into triangles or squares.',
+                        'Dip bread in batter, coat well.',
+                        'Deep fry until golden and crispy.',
+                        'Serve hot with ketchup or chutney.'
+                    ]
+                }, {
+                    id: 12,
+                    category: 'breakfast',
+                    title: 'Rava Dosa',
+                    description: 'Crispy thin dosa made with semolina, rice flour, and spices.',
+                    time: '20 min',
+                    level: 'Easy',
+                    rating: 4.5,
+                    author: 'Geetha Krishnan',
+                    authorInitial: 'G',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup semolina', '1/2 cup rice flour', '1/4 cup all-purpose flour', '1 onion',
+                        'Green chili', 'Curry leaves', 'Cumin seeds', 'Salt'
+                    ],
+                    steps: ['Mix all flours with water to make thin batter. Add salt.',
+                        'Add chopped onion, chili, curry leaves, cumin seeds.',
+                        'Heat tawa, pour batter from height to make thin crepe.',
+                        'Drizzle oil, cook until golden and crispy.',
+                        'Serve with chutney.'
+                    ]
+                }, {
+                    id: 13,
+                    category: 'breakfast',
+                    title: 'Kanda Poha (Onion Poha)',
+                    description: 'Maharashtrian style flattened rice with onions, peanuts, and spices.',
+                    time: '20 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Suhas Joshi',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups poha', '2 onions sliced', '1/4 cup peanuts', '1/2 tsp turmeric',
+                        '1 tsp mustard seeds', 'Curry leaves', 'Green chili', 'Coriander', 'Lemon juice'
+                    ],
+                    steps: ['Wash poha, drain. Let sit 5 min.',
+                        'Heat oil, add peanuts fry golden. Set aside.',
+                        'Add mustard, curry leaves, chili, onions. Sauté until brown.',
+                        'Add turmeric, salt, poha. Mix well.',
+                        'Add peanuts, coriander, lemon juice. Serve hot.'
+                    ]
+                }, {
+                    id: 14,
+                    category: 'breakfast',
+                    title: 'Puri Bhaji',
+                    description: 'Deep-fried fluffy puris served with spicy potato curry.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Rani Sharma',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups whole wheat flour', '3 potatoes', '1 onion', 'Green chili', 'Ginger',
+                        'Turmeric', 'Cumin seeds', 'Oil'
+                    ],
+                    steps: ['Knead flour with salt and water. Rest 15 min.',
+                        'Roll into small circles. Deep fry until puffed and golden.',
+                        'For bhaji: sauté cumin, onion, chili, ginger. Add potatoes, turmeric, salt, water.',
+                        'Cook until potatoes soft and gravy thickens.',
+                        'Serve puri with hot bhaji.'
+                    ]
+                }, {
+                    id: 15,
+                    category: 'breakfast',
+                    title: 'Sheera (Semolina Halwa)',
+                    description: 'Sweet semolina pudding with ghee, nuts, and cardamom.',
+                    time: '20 min',
+                    level: 'Easy',
+                    rating: 4.5,
+                    author: 'Shanta Devi',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup semolina', '1 cup sugar', '1/4 cup ghee', '2 cups milk or water',
+                        'Cardamom powder', 'Cashews', 'Raisins'
+                    ],
+                    steps: ['Roast semolina in ghee until fragrant and golden.',
+                        'Add milk/water, sugar, cardamom. Stir continuously.',
+                        'Cook until semolina absorbs liquid and thickens.',
+                        'Add roasted nuts and raisins. Cook 2 more min.',
+                        'Serve warm as breakfast or dessert.'
+                    ]
+                },
+
+                // ----- LUNCH (20 recipes) -----
+                {
+                    id: 16,
+                    category: 'lunch',
+                    title: 'Chicken Biryani',
+                    description: 'Aromatic basmati rice layered with tender chicken, caramelized onions, and Indian spices.',
+                    time: '60 min',
+                    level: 'Hard',
+                    rating: 4.9,
+                    author: 'Arjun Kumar',
+                    authorInitial: 'A',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g chicken', '2 cups basmati rice', '2 onions sliced', '2 tomatoes',
+                        '1/2 cup yogurt', 'Ginger-garlic paste', 'Biryani masala', 'Saffron', 'Ghee',
+                        'Mint', 'Coriander'
+                    ],
+                    steps: ['Marinate chicken with yogurt, masala, ginger-garlic 1 hr.',
+                        'Fry onions golden. Set aside.',
+                        'Cook rice with whole spices until 70% done. Drain.',
+                        'Layer chicken, rice, fried onions, mint, coriander, saffron.',
+                        'Cook covered on low heat (dum) 20-25 min. Serve with raita.'
+                    ]
+                }, {
+                    id: 17,
+                    category: 'lunch',
+                    title: 'Paneer Butter Masala',
+                    description: 'Creamy and rich paneer curry cooked in a tomato and butter-based gravy.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.7,
+                    author: 'Meera Iyer',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['250g paneer', '2 tbsp butter', '2 onions pureed', '3 tomatoes pureed',
+                        '1/2 cup cream', '1 tsp garam masala', 'Kashmiri chili powder', 'Kasuri methi',
+                        'Honey'
+                    ],
+                    steps: ['Heat butter, add onion puree. Cook golden.',
+                        'Add tomato puree, salt, chili powder. Cook until oil separates.',
+                        'Add garam masala and cream. Simmer 5 min.',
+                        'Add paneer cubes. Cook 5 min.',
+                        'Add honey and crushed kasuri methi. Garnish with cream. Serve with naan.'
+                    ]
+                }, {
+                    id: 18,
+                    category: 'lunch',
+                    title: 'Rajma Chawal',
+                    description: 'Comfort food - red kidney beans in thick spicy gravy served with rice.',
+                    time: '50 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Vikram Sharma',
+                    authorInitial: 'V',
+                    img: 'https://images.unsplash.com/photo-1618572753839-5f2d24be6c9f?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup rajma soaked', '2 onions', '2 tomatoes pureed', 'Ginger-garlic paste',
+                        'Rajma masala', 'Chili powder', 'Cumin seeds', 'Coriander'
+                    ],
+                    steps: ['Pressure cook rajma with salt until soft.',
+                        'Heat oil, add cumin, onions. Sauté brown.',
+                        'Add ginger-garlic, tomato puree. Cook until oil separates.',
+                        'Add rajma masala, chili powder, salt. Cook 2 min.',
+                        'Add cooked rajma and water. Simmer 15 min.',
+                        'Garnish with coriander. Serve with rice.'
+                    ]
+                }, {
+                    id: 19,
+                    category: 'lunch',
+                    title: 'Fish Curry (Bengali Style)',
+                    description: 'Tangy fish curry with mustard and coconut, typical Bengali cuisine.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Ananya Mukherjee',
+                    authorInitial: 'A',
+                    img: 'https://images.unsplash.com/photo-1626808642875-0aa545482dfb?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g fish (rohu or sea bass)', '2 tbsp mustard paste', '1/2 cup coconut milk',
+                        '1 onion', 'Ginger-garlic', 'Turmeric', 'Chili powder', 'Mustard oil'
+                    ],
+                    steps: ['Marinate fish with turmeric, salt. Fry lightly.',
+                        'Heat mustard oil, add onion, ginger-garlic. Sauté.',
+                        'Add mustard paste, chili powder, turmeric. Cook 2 min.',
+                        'Add coconut milk and water. Bring to simmer.',
+                        'Add fried fish. Cook 10 min. Serve with rice.'
+                    ]
+                }, {
+                    id: 20,
+                    category: 'lunch',
+                    title: 'Chana Masala',
+                    description: 'Spicy and tangy chickpea curry with aromatic spices.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.5,
+                    author: 'Sunita Kapoor',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups chickpeas cooked', '2 onions', '3 tomatoes', 'Ginger-garlic paste',
+                        'Chana masala', 'Amchur powder', 'Coriander'
+                    ],
+                    steps: ['Sauté onions until brown. Add ginger-garlic.',
+                        'Add tomatoes, cook until soft.',
+                        'Add chana masala, amchur, salt. Cook 2 min.',
+                        'Add cooked chickpeas with water. Simmer 15 min.',
+                        'Garnish with coriander. Serve with rice or bhature.'
+                    ]
+                }, {
+                    id: 21,
+                    category: 'lunch',
+                    title: 'Egg Curry (Anda Curry)',
+                    description: 'Hard-boiled eggs in a rich and spicy onion-tomato gravy.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Rajesh Singh',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['6 boiled eggs', '2 onions', '3 tomatoes', 'Ginger-garlic paste', 'Turmeric',
+                        'Chili powder', 'Garam masala', 'Oil'
+                    ],
+                    steps: ['Sauté onions until brown. Add ginger-garlic.',
+                        'Add tomatoes, turmeric, chili powder. Cook soft.',
+                        'Add garam masala, salt. Cook 5 min.',
+                        'Add water and bring to boil.',
+                        'Add boiled eggs, simmer 10 min. Serve with rice.'
+                    ]
+                }, {
+                    id: 22,
+                    category: 'lunch',
+                    title: 'Dal Tadka',
+                    description: 'Comforting yellow lentil soup tempered with ghee and aromatic spices.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Nandita Desai',
+                    authorInitial: 'N',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup toor dal', '1 onion', '2 tomatoes', 'Ginger-garlic', 'Ghee', 'Cumin seeds',
+                        'Asafoetida', 'Dry red chili', 'Coriander'
+                    ],
+                    steps: ['Pressure cook dal with turmeric and salt.',
+                        'Heat ghee, add cumin, asafoetida, red chili.',
+                        'Add onion, ginger-garlic. Sauté brown.',
+                        'Add tomatoes, cook soft. Add to dal.',
+                        'Temper with more ghee and spices. Garnish with coriander.'
+                    ]
+                }, {
+                    id: 23,
+                    category: 'lunch',
+                    title: 'Palak Paneer',
+                    description: 'Fresh spinach gravy with soft paneer cubes, seasoned with garam masala and cream.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Neha Jain',
+                    authorInitial: 'N',
+                    img: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['250g paneer', '2 bunches spinach', '1 onion', '1 tomato', 'Ginger-garlic',
+                        'Garam masala', 'Cream', 'Butter'
+                    ],
+                    steps: ['Blanch spinach and blend to puree.',
+                        'Sauté onion, ginger-garlic until golden.',
+                        'Add tomato puree, cook soft.',
+                        'Add spinach puree, garam masala, salt. Cook 10 min.',
+                        'Add paneer cubes and cream. Simmer 5 min. Serve with naan.'
+                    ]
+                }, {
+                    id: 24,
+                    category: 'lunch',
+                    title: 'Kadhi Pakora',
+                    description: 'Tangy yogurt-based curry with crispy chickpea flour fritters.',
+                    time: '45 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Ritu Aggarwal',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup yogurt', '2 tbsp chickpea flour', '1 onion', 'Green chili', 'Ginger',
+                        'Cumin seeds', 'Turmeric', 'Oil'
+                    ],
+                    steps: ['Mix yogurt, chickpea flour, water, turmeric, salt. Whisk smooth.',
+                        'For pakoras: make thick batter with chickpea flour, onion, chili.',
+                        'Deep fry pakoras until golden. Set aside.',
+                        'Boil yogurt mixture, add pakoras, simmer 15 min.',
+                        'Temper with cumin, red chili. Serve with rice.'
+                    ]
+                }, {
+                    id: 25,
+                    category: 'lunch',
+                    title: 'Bhindi Masala',
+                    description: 'Stir-fried okra with onions, tomatoes, and Indian spices.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Ashok Kumar',
+                    authorInitial: 'A',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g okra (bhindi)', '2 onions', '2 tomatoes', 'Ginger-garlic paste',
+                        'Turmeric', 'Cumin seeds', 'Amchur powder', 'Oil'
+                    ],
+                    steps: ['Wash okra and pat dry. Cut into pieces.',
+                        'Heat oil, fry okra until brown spots appear. Set aside.',
+                        'Sauté cumin, onions until brown. Add ginger-garlic.',
+                        'Add tomatoes, turmeric, amchur, salt. Cook soft.',
+                        'Add fried okra, mix well. Cook 5 min. Serve with roti.'
+                    ]
+                }, {
+                    id: 26,
+                    category: 'lunch',
+                    title: 'Mutter Paneer',
+                    description: 'Paneer and green peas in a rich tomato-based gravy.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Sonal Sharma',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['250g paneer', '1 cup green peas', '2 onions', '3 tomatoes', 'Ginger-garlic',
+                        'Garam masala', 'Cream', 'Oil'
+                    ],
+                    steps: ['Sauté onion, ginger-garlic until golden.',
+                        'Add tomato puree, cook until oil separates.',
+                        'Add garam masala, salt, and green peas. Cook 5 min.',
+                        'Add paneer cubes and cream. Simmer 10 min.',
+                        'Garnish with coriander. Serve with naan or rice.'
+                    ]
+                }, {
+                    id: 27,
+                    category: 'lunch',
+                    title: 'Malai Kofta',
+                    description: 'Vegetable and paneer dumplings in a rich creamy tomato gravy.',
+                    time: '50 min',
+                    level: 'Hard',
+                    rating: 4.6,
+                    author: 'Swati Reddy',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['200g paneer', '1 potato', '1/2 cup mixed vegetables', '2 onions', '3 tomatoes',
+                        'Cream', 'Cashews', 'Garam masala', 'Oil'
+                    ],
+                    steps: ['Mash paneer, potato, vegetables. Form into balls. Deep fry.',
+                        'Sauté onions, ginger-garlic. Add tomato puree.',
+                        'Add soaked cashew paste, garam masala, salt. Cook 15 min.',
+                        'Add cream and simmer. Add fried koftas.',
+                        'Garnish with cream and serve with naan.'
+                    ]
+                }, {
+                    id: 28,
+                    category: 'lunch',
+                    title: 'Aloo Gobi',
+                    description: 'Classic Punjabi dish with potatoes and cauliflower in aromatic spices.',
+                    time: '35 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Gurpreet Singh',
+                    authorInitial: 'G',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['3 potatoes', '1 cauliflower', '2 onions', 'Ginger-garlic', 'Turmeric',
+                        'Cumin seeds', 'Garam masala', 'Coriander'
+                    ],
+                    steps: ['Heat oil, add cumin, onion, ginger-garlic. Sauté.',
+                        'Add cauliflower, potatoes, turmeric, salt. Cook 5 min.',
+                        'Add garam masala, coriander. Cover and cook until vegetables soft.',
+                        'Garnish with fresh coriander. Serve with roti.'
+                    ]
+                }, {
+                    id: 29,
+                    category: 'lunch',
+                    title: 'Baingan Bharta',
+                    description: 'Smoked eggplant mashed and cooked with onions, tomatoes, and spices.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Dev Raj',
+                    authorInitial: 'D',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 large eggplants', '2 onions', '3 tomatoes', 'Ginger-garlic', 'Cumin seeds',
+                        'Garam masala', 'Coriander', 'Oil'
+                    ],
+                    steps: ['Roast eggplants until skin charred. Peel and mash.',
+                        'Sauté cumin, onions until brown. Add ginger-garlic.',
+                        'Add tomatoes, cook soft. Add garam masala, salt.',
+                        'Add mashed eggplant, cook 15 min.',
+                        'Garnish with coriander. Serve with roti or naan.'
+                    ]
+                }, {
+                    id: 30,
+                    category: 'lunch',
+                    title: 'Prawn Curry',
+                    description: 'Coastal Indian prawn curry with coconut and aromatic spices.',
+                    time: '30 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Kiran Fernandez',
+                    authorInitial: 'K',
+                    img: 'https://images.unsplash.com/photo-1626808642875-0aa545482dfb?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g prawns', '1 onion', '2 tomatoes', '1/2 cup coconut milk', 'Ginger-garlic',
+                        'Turmeric', 'Chili powder', 'Curry leaves', 'Oil'
+                    ],
+                    steps: ['Sauté onion, ginger-garlic until golden.',
+                        'Add tomatoes, turmeric, chili powder. Cook soft.',
+                        'Add coconut milk, salt, curry leaves. Simmer 5 min.',
+                        'Add prawns, cook 10 min until pink.',
+                        'Serve with steamed rice.'
+                    ]
+                }, {
+                    id: 31,
+                    category: 'lunch',
+                    title: 'Sambar Rice',
+                    description: 'Comfort one-pot meal with rice, lentils, and mixed vegetables in sambar masala.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.4,
+                    author: 'Lakshmi Rangaswamy',
+                    authorInitial: 'L',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup rice', '1/2 cup toor dal', 'Mixed vegetables', 'Sambar powder',
+                        'Tamarind', 'Mustard seeds', 'Curry leaves', 'Ghee'
+                    ],
+                    steps: ['Pressure cook rice and dal together.',
+                        'Cook vegetables with sambar powder, tamarind, salt.',
+                        'Add cooked rice and dal. Simmer 10 min.',
+                        'Temper with mustard, curry leaves, ghee.',
+                        'Serve hot with papad.'
+                    ]
+                }, {
+                    id: 32,
+                    category: 'lunch',
+                    title: 'Mutton Curry',
+                    description: 'Slow-cooked mutton curry with whole spices and rich gravy.',
+                    time: '70 min',
+                    level: 'Hard',
+                    rating: 4.8,
+                    author: 'Shahid Khan',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g mutton', '2 onions', '3 tomatoes', 'Ginger-garlic paste', 'Yogurt',
+                        'Mutton masala', 'Whole spices', 'Oil'
+                    ],
+                    steps: ['Marinate mutton with yogurt and masala 2 hrs.',
+                        'Heat oil, add whole spices, onions. Sauté brown.',
+                        'Add ginger-garlic, tomatoes. Cook until oil separates.',
+                        'Add marinated mutton, cook 15 min.',
+                        'Add water, pressure cook until tender 6-7 whistles.',
+                        'Garnish with coriander. Serve with rice or roti.'
+                    ]
+                }, {
+                    id: 33,
+                    category: 'lunch',
+                    title: 'Kerala Fish Curry',
+                    description: 'Spicy and tangy fish curry with kokum and coconut from Kerala.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.7,
+                    author: 'Mary Jacob',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1626808642875-0aa545482dfb?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g fish', '2 onions', '1/2 cup coconut milk', 'Kokum (or tamarind)',
+                        'Red chili powder', 'Turmeric', 'Curry leaves', 'Coconut oil'
+                    ],
+                    steps: ['Heat coconut oil, add onions, curry leaves. Sauté.',
+                        'Add chili powder, turmeric, salt. Cook 2 min.',
+                        'Add kokum and water. Bring to boil.',
+                        'Add fish, cook 10 min. Add coconut milk.',
+                        'Simmer 5 min. Serve with rice.'
+                    ]
+                }, {
+                    id: 34,
+                    category: 'lunch',
+                    title: 'Bengal Gram Curry (Chole)',
+                    description: 'Spicy chickpea curry with onions and tomatoes, popular street food.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Baldev Singh',
+                    authorInitial: 'B',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups chickpeas', '2 onions', '3 tomatoes', 'Ginger-garlic', 'Chole masala',
+                        'Tea bag', 'Coriander'
+                    ],
+                    steps: ['Pressure cook chickpeas with tea bag for color.',
+                        'Sauté onions, ginger-garlic until brown.',
+                        'Add tomatoes, chole masala, salt. Cook soft.',
+                        'Add cooked chickpeas and water. Simmer 20 min.',
+                        'Garnish with coriander. Serve with rice or bhature.'
+                    ]
+                }, {
+                    id: 35,
+                    category: 'lunch',
+                    title: 'Dum Aloo',
+                    description: 'Baby potatoes cooked in a rich and creamy yogurt-based gravy.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.4,
+                    author: 'Priyanka Chopra',
+                    authorInitial: 'P',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['12 baby potatoes', '1 onion', '1/2 cup yogurt', 'Ginger-garlic', 'Cashew paste',
+                        'Garam masala', 'Kasuri methi', 'Oil'
+                    ],
+                    steps: ['Peel and prick potatoes. Fry lightly until brown.',
+                        'Sauté onion, ginger-garlic until golden.',
+                        'Add cashew paste, yogurt, garam masala, salt.',
+                        'Add potatoes and water. Cover and cook 20 min.',
+                        'Add crushed kasuri methi. Serve with naan.'
+                    ]
+                },
+
+                // ----- DINNER (15 recipes) -----
+                {
+                    id: 36,
+                    category: 'dinner',
+                    title: 'Butter Naan',
+                    description: 'Soft and pillowy Indian bread brushed with butter and garlic.',
+                    time: '60 min',
+                    level: 'Hard',
+                    rating: 4.7,
+                    author: 'Suresh Kumar',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups flour', '1/2 cup yogurt', '1 tsp sugar', '1/2 tsp salt',
+                        '1/2 tsp baking powder', '1/4 tsp baking soda', '2 tbsp oil', 'Butter', 'Garlic'
+                    ],
+                    steps: ['Mix flour, baking powder, baking soda, sugar, salt.',
+                        'Add yogurt and oil. Knead soft dough with warm water.',
+                        'Rest 1 hr. Divide into balls, roll oval.',
+                        'Stretch slightly. Cook in hot pan or tandoor.',
+                        'Brush with butter and garlic. Serve hot with curry.'
+                    ]
+                }, {
+                    id: 37,
+                    category: 'dinner',
+                    title: 'Chicken Curry',
+                    description: 'Classic Indian chicken curry with onions, tomatoes, and aromatic spices.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Rahul Singh',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g chicken', '2 onions', '3 tomatoes', 'Ginger-garlic paste',
+                        '1 tsp turmeric', '1 tsp chili powder', '1 tsp garam masala', 'Coriander', 'Oil'
+                    ],
+                    steps: ['Heat oil, add onions. Sauté golden.',
+                        'Add ginger-garlic paste. Cook 2 min.',
+                        'Add tomatoes, turmeric, chili powder. Cook soft.',
+                        'Add chicken and salt. Cook 10 min, stirring.',
+                        'Add water, simmer until chicken tender.',
+                        'Add garam masala and coriander. Serve with rice.'
+                    ]
+                }, {
+                    id: 38,
+                    category: 'dinner',
+                    title: 'Rogan Josh',
+                    description: 'Kashmiri lamb curry with aromatic spices and rich red gravy.',
+                    time: '70 min',
+                    level: 'Hard',
+                    rating: 4.8,
+                    author: 'Farah Mirza',
+                    authorInitial: 'F',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g lamb', '2 onions', '1/2 cup yogurt', 'Kashmiri chili', 'Fennel powder',
+                        'Ginger-garlic', 'Cardamom', 'Cloves', 'Bay leaves', 'Oil'
+                    ],
+                    steps: ['Fry onions golden. Blend to paste.',
+                        'Heat oil, add whole spices. Add onion paste.',
+                        'Add ginger-garlic, chili, fennel powder. Cook.',
+                        'Add lamb and yogurt. Cook 15 min.',
+                        'Add water, pressure cook 5-6 whistles.',
+                        'Garnish with coriander. Serve with rice.'
+                    ]
+                }, {
+                    id: 39,
+                    category: 'dinner',
+                    title: 'Tandoori Chicken',
+                    description: 'Chicken marinated in yogurt and spices, roasted in a tandoor (or oven).',
+                    time: '45 min',
+                    level: 'Medium',
+                    rating: 4.7,
+                    author: 'Ranveer Singh',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g chicken', '1/2 cup yogurt', 'Tandoori masala', 'Lemon juice',
+                        'Ginger-garlic paste', 'Red chili powder', 'Oil'
+                    ],
+                    steps: ['Make deep cuts on chicken.',
+                        'Mix yogurt, tandoori masala, lemon juice, ginger-garlic, chili, salt.',
+                        'Marinate chicken 4 hrs.',
+                        'Grill or bake at 400°F for 30 min, basting with oil.',
+                        'Serve with mint chutney and onion rings.'
+                    ]
+                }, {
+                    id: 40,
+                    category: 'dinner',
+                    title: 'Paneer Tikka',
+                    description: 'Marinated paneer and vegetables grilled to perfection.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Amit Kumar',
+                    authorInitial: 'A',
+                    img: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['250g paneer', '1 capsicum', '1 onion', '1 tomato', '1/2 cup yogurt',
+                        'Tikka masala', 'Ginger-garlic', 'Lemon juice'
+                    ],
+                    steps: ['Cut paneer and vegetables into chunks.',
+                        'Mix yogurt, tikka masala, ginger-garlic, lemon juice, salt.',
+                        'Marinate paneer and vegetables 2 hrs.',
+                        'Skewer and grill or bake at 400°F for 15 min.',
+                        'Serve with mint chutney.'
+                    ]
+                }, {
+                    id: 41,
+                    category: 'dinner',
+                    title: 'Lamb Biryani',
+                    description: 'Fragrant rice layered with tender lamb, saffron, and fried onions.',
+                    time: '70 min',
+                    level: 'Hard',
+                    rating: 4.9,
+                    author: 'Imran Ali',
+                    authorInitial: 'I',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g lamb', '2 cups basmati rice', '2 onions', 'Yogurt', 'Biryani masala',
+                        'Saffron', 'Mint', 'Ghee'
+                    ],
+                    steps: ['Marinate lamb with yogurt and masala 2 hrs.',
+                        'Fry onions golden. Set aside.',
+                        'Cook rice until 70% done. Drain.',
+                        'Layer lamb, rice, onions, saffron in pot.',
+                        'Cook covered on low heat (dum) 30 min.',
+                        'Serve with raita.'
+                    ]
+                }, {
+                    id: 42,
+                    category: 'dinner',
+                    title: 'Mushroom Curry',
+                    description: 'Flavorful mushroom curry with peas, tomatoes, and aromatic spices.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Preeti Kapoor',
+                    authorInitial: 'P',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g mushrooms', '1 cup green peas', '2 onions', '3 tomatoes', 'Ginger-garlic',
+                        'Garam masala', 'Coriander'
+                    ],
+                    steps: ['Sauté onion, ginger-garlic until golden.',
+                        'Add tomatoes, cook soft.',
+                        'Add garam masala, salt, and mushrooms. Cook 10 min.',
+                        'Add green peas, cook 5 more min.',
+                        'Garnish with coriander. Serve with rice or roti.'
+                    ]
+                }, {
+                    id: 43,
+                    category: 'dinner',
+                    title: 'Dal Makhani',
+                    description: 'Creamy black lentil curry cooked overnight on slow fire with butter and cream.',
+                    time: '60 min',
+                    level: 'Medium',
+                    rating: 4.7,
+                    author: 'Jaspreet Singh',
+                    authorInitial: 'J',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup whole black urad dal', '1/4 cup kidney beans', 'Butter', 'Cream',
+                        '2 onions', '3 tomatoes', 'Ginger-garlic', 'Garam masala'
+                    ],
+                    steps: ['Soak dal and beans overnight. Pressure cook soft.',
+                        'Sauté onion, ginger-garlic until brown.',
+                        'Add tomato puree, cook until oil separates.',
+                        'Add cooked dal, butter, garam masala, salt.',
+                        'Simmer 30 min. Add cream. Serve with naan.'
+                    ]
+                }, {
+                    id: 44,
+                    category: 'dinner',
+                    title: 'Jeera Rice',
+                    description: 'Fragrant basmati rice tempered with cumin seeds and whole spices.',
+                    time: '20 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Neeta Sharma',
+                    authorInitial: 'N',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups basmati rice', '1 tbsp cumin seeds', '1 bay leaf', '1 black cardamom',
+                        'Ghee', 'Salt'
+                    ],
+                    steps: ['Wash and soak rice 30 min.',
+                        'Heat ghee, add cumin, bay leaf, cardamom.',
+                        'Add rice and sauté 2 min.',
+                        'Add 3.5 cups water and salt. Bring to boil.',
+                        'Cover and cook until water absorbed. Fluff with fork.'
+                    ]
+                }, {
+                    id: 45,
+                    category: 'dinner',
+                    title: 'Stuffed Tinda (Gourd)',
+                    description: 'Baby gourds stuffed with spiced potato filling and cooked in gravy.',
+                    time: '45 min',
+                    level: 'Medium',
+                    rating: 4.2,
+                    author: 'Shakti Singh',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['6 tinda (Indian gourd)', '2 potatoes', '1 onion', 'Ginger-garlic', 'Turmeric',
+                        'Cumin seeds', 'Coriander'
+                    ],
+                    steps: ['Peel tinda and scoop out seeds.',
+                        'Mash potatoes with spices. Stuff into tinda.',
+                        'Sauté cumin, onion, ginger-garlic.',
+                        'Add turmeric, coriander, salt. Cook 2 min.',
+                        'Add stuffed tinda and water. Cook 20 min.',
+                        'Serve with roti.'
+                    ]
+                }, {
+                    id: 46,
+                    category: 'dinner',
+                    title: 'Shahi Paneer',
+                    description: 'Royal paneer curry with cashew, cream, and aromatic spices.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Rukhsana Begum',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['250g paneer', '1/2 cup cashew paste', '2 onions', '3 tomatoes', 'Cream',
+                        'Garam masala', 'Kasuri methi', 'Butter'
+                    ],
+                    steps: ['Sauté onions until golden. Add tomato puree.',
+                        'Add cashew paste, garam masala, salt. Cook 10 min.',
+                        'Add paneer cubes and cream. Simmer 10 min.',
+                        'Add crushed kasuri methi. Serve with naan.'
+                    ]
+                }, {
+                    id: 47,
+                    category: 'dinner',
+                    title: 'Kadhi Chawal',
+                    description: 'Gram flour curry with yogurt and spices, served with rice.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.4,
+                    author: 'Sunita Mehra',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup yogurt', '2 tbsp chickpea flour', '1 onion', 'Green chili', 'Ginger',
+                        'Cumin seeds', 'Turmeric'
+                    ],
+                    steps: ['Whisk yogurt, chickpea flour, water, turmeric, salt.',
+                        'Bring to boil, stirring constantly.',
+                        'Sauté cumin, onion, chili, ginger. Add to kadhi.',
+                        'Simmer 20 min. Serve with steamed rice.'
+                    ]
+                }, {
+                    id: 48,
+                    category: 'dinner',
+                    title: 'Bhuna Chicken',
+                    description: 'Dry chicken curry with thick masala coating, cooked on slow flame.',
+                    time: '45 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Ayesha Khan',
+                    authorInitial: 'A',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g chicken', '2 onions', '3 tomatoes', 'Ginger-garlic', 'Bhuna masala',
+                        'Coriander', 'Oil'
+                    ],
+                    steps: ['Sauté onions until brown. Add ginger-garlic.',
+                        'Add tomatoes, bhuna masala. Cook until oil separates.',
+                        'Add chicken, cook 15 min.',
+                        'Add water, cook until dry and coated.',
+                        'Garnish with coriander. Serve with roti.'
+                    ]
+                }, {
+                    id: 49,
+                    category: 'dinner',
+                    title: 'Stuffed Capsicum',
+                    description: 'Capsicum stuffed with spiced potato and paneer filling, cooked in gravy.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.3,
+                    author: 'Mukesh Sharma',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['4 capsicum', '2 potatoes', '100g paneer', '1 onion', 'Ginger-garlic',
+                        'Garam masala', 'Coriander'
+                    ],
+                    steps: ['Blanch capsicum and remove seeds.',
+                        'Mash potatoes, paneer with spices. Stuff into capsicum.',
+                        'Sauté onion, ginger-garlic. Add tomatoes.',
+                        'Add stuffed capsicum and water. Cook 20 min.',
+                        'Serve with rice or roti.'
+                    ]
+                }, {
+                    id: 50,
+                    category: 'dinner',
+                    title: 'Afghani Chicken',
+                    description: 'Creamy chicken curry with cashew, melon seeds, and aromatic spices.',
+                    time: '45 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Zara Khan',
+                    authorInitial: 'Z',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g chicken', '2 onions', '1/2 cup cashew paste', 'Melon seed paste',
+                        'Yogurt', 'Garam masala', 'Cream'
+                    ],
+                    steps: ['Sauté onions until golden. Add ginger-garlic.',
+                        'Add cashew and melon seed paste. Cook 5 min.',
+                        'Add yogurt, garam masala, salt. Cook 5 min.',
+                        'Add chicken, cook 15 min. Add cream.',
+                        'Garnish with coriander. Serve with naan.'
+                    ]
+                },
+
+                // ----- DESSERT (12 recipes) -----
+                {
+                    id: 51,
+                    category: 'dessert',
+                    title: 'Gulab Jamun',
+                    description: 'Soft milk dumplings soaked in aromatic rose-flavored sugar syrup.',
+                    time: '50 min',
+                    level: 'Medium',
+                    rating: 4.8,
+                    author: 'Sneha Patel',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup milk powder', '1/4 cup flour', '2 tbsp ghee', '1/4 cup milk',
+                        '1 cup sugar', '1 cup water', 'Cardamom', 'Rose water'
+                    ],
+                    steps: ['Mix milk powder, flour, ghee. Add milk to make soft dough.',
+                        'Rest 10 min. Make small smooth balls.',
+                        'Heat sugar and water for syrup. Add cardamom, rose water.',
+                        'Fry balls in medium hot oil until golden brown.',
+                        'Soak in warm syrup for 30 min. Serve warm.'
+                    ]
+                }, {
+                    id: 52,
+                    category: 'dessert',
+                    title: 'Rasgulla',
+                    description: 'Soft and spongy cottage cheese balls soaked in light sugar syrup.',
+                    time: '45 min',
+                    level: 'Hard',
+                    rating: 4.6,
+                    author: 'Suman Das',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 liter milk (for chenna)', '2 tbsp lemon juice', '1 cup sugar',
+                        '4 cups water', 'Cardamom'
+                    ],
+                    steps: ['Heat milk, add lemon juice to curdle. Strain chenna.',
+                        'Knead chenna until smooth. Make small balls.',
+                        'Cook sugar and water for syrup.',
+                        'Drop chenna balls in boiling syrup. Cook 15 min.',
+                        'Soak for 2 hrs. Serve chilled.'
+                    ]
+                }, {
+                    id: 53,
+                    category: 'dessert',
+                    title: 'Jalebi',
+                    description: 'Crispy spiral-shaped deep-fried sweets soaked in sugar syrup.',
+                    time: '50 min',
+                    level: 'Hard',
+                    rating: 4.7,
+                    author: 'Ravi Kapoor',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup flour', '1/2 cup yogurt', 'Baking soda', '1 cup sugar', '1/2 cup water',
+                        'Cardamom', 'Saffron', 'Oil'
+                    ],
+                    steps: ['Mix flour, yogurt, baking soda into a smooth batter. Ferment 6 hrs.',
+                        'Make sugar syrup with cardamom and saffron.',
+                        'Heat oil, pour batter in spiral shapes.',
+                        'Fry until golden and crisp. Soak in syrup 2 min.',
+                        'Serve warm.'
+                    ]
+                }, {
+                    id: 54,
+                    category: 'dessert',
+                    title: 'Kheer (Rice Pudding)',
+                    description: 'Creamy rice pudding with milk, sugar, nuts, and cardamom.',
+                    time: '40 min',
+                    level: 'Easy',
+                    rating: 4.5,
+                    author: 'Meera Srinivasan',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1/2 cup rice', '1 liter milk', '1/2 cup sugar', 'Cardamom powder',
+                        'Cashews', 'Almonds', 'Raisins'
+                    ],
+                    steps: ['Wash and soak rice 30 min.',
+                        'Heat milk, add rice. Cook until rice soft.',
+                        'Add sugar and cardamom. Cook 10 more min.',
+                        'Add roasted nuts and raisins.',
+                        'Serve warm or chilled.'
+                    ]
+                }, {
+                    id: 55,
+                    category: 'dessert',
+                    title: 'Gajar Ka Halwa',
+                    description: 'Rich carrot pudding with ghee, milk, sugar, and nuts.',
+                    time: '50 min',
+                    level: 'Medium',
+                    rating: 4.7,
+                    author: 'Rajni Gupta',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 kg carrots', '1 liter milk', '1 cup sugar', '1/2 cup ghee',
+                        'Cardamom powder', 'Cashews', 'Almonds'
+                    ],
+                    steps: ['Grate carrots. Heat ghee, add carrots. Sauté 10 min.',
+                        'Add milk, cook until milk evaporates.',
+                        'Add sugar and cardamom. Cook until thick.',
+                        'Add roasted nuts. Serve warm.'
+                    ]
+                }, {
+                    id: 56,
+                    category: 'dessert',
+                    title: 'Ladoo',
+                    description: 'Sweet flour and ghee balls flavored with cardamom and nuts.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Shobha Patel',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups chickpea flour', '1 cup ghee', '1 cup sugar', 'Cardamom powder',
+                        'Nuts (cashews, almonds)'
+                    ],
+                    steps: ['Roast chickpea flour in ghee until aromatic.',
+                        'Cool slightly. Add sugar, cardamom, nuts.',
+                        'Shape into small balls while warm.',
+                        'Store in airtight container.'
+                    ]
+                }, {
+                    id: 57,
+                    category: 'dessert',
+                    title: 'Shrikhand',
+                    description: 'Creamy strained yogurt dessert flavored with saffron and cardamom.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Mitali Desai',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups yogurt', '1/2 cup sugar', 'Saffron strands', 'Cardamom powder',
+                        'Chopped nuts'
+                    ],
+                    steps: ['Hang yogurt in cheesecloth for 2 hrs to drain whey.',
+                        'Whisk the thickened yogurt until smooth.',
+                        'Add sugar, saffron, cardamom. Mix well.',
+                        'Garnish with nuts. Serve chilled.'
+                    ]
+                }, {
+                    id: 58,
+                    category: 'dessert',
+                    title: 'Rava Kesari',
+                    description: 'Semolina sweet pudding with ghee, saffron, and nuts.',
+                    time: '25 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Lakshmi Raman',
+                    authorInitial: 'L',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup semolina', '1 cup sugar', '1/4 cup ghee', '2 cups water', 'Saffron',
+                        'Cardamom', 'Cashews'
+                    ],
+                    steps: ['Roast semolina in ghee until fragrant.',
+                        'Add water, sugar, saffron, cardamom. Cook stirring.',
+                        'Cook until thick and semolina cooked.',
+                        'Add roasted cashews. Serve warm.'
+                    ]
+                }, {
+                    id: 59,
+                    category: 'dessert',
+                    title: 'Puran Poli',
+                    description: 'Sweet flatbread stuffed with lentil and jaggery filling.',
+                    time: '55 min',
+                    level: 'Hard',
+                    rating: 4.6,
+                    author: 'Sulochana Joshi',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups flour', '1 cup chana dal', '1 cup jaggery', 'Cardamom powder',
+                        'Ghee'
+                    ],
+                    steps: ['Cook chana dal with water until soft. Drain.',
+                        'Grind dal with jaggery into smooth paste.',
+                        'Knead flour soft. Make balls, stuff with filling.',
+                        'Roll flat and cook on tawa with ghee.',
+                        'Serve warm with ghee.'
+                    ]
+                }, {
+                    id: 60,
+                    category: 'dessert',
+                    title: 'Mango Lassi',
+                    description: 'Refreshing yogurt drink with sweet mangoes and cardamom.',
+                    time: '10 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Preeti Sharma',
+                    authorInitial: 'P',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups yogurt', '1 ripe mango', '2 tbsp sugar', 'Cardamom powder',
+                        'Ice cubes'
+                    ],
+                    steps: ['Peel and chop mango. Blend with yogurt.',
+                        'Add sugar and cardamom. Blend smooth.',
+                        'Pour over ice cubes. Serve chilled.'
+                    ]
+                }, {
+                    id: 61,
+                    category: 'dessert',
+                    title: 'Kaju Katli',
+                    description: 'Rich diamond-shaped cashew fudge with edible silver leaf.',
+                    time: '40 min',
+                    level: 'Hard',
+                    rating: 4.8,
+                    author: 'Anita Mehta',
+                    authorInitial: 'A',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups cashews', '1 cup sugar', '1/2 cup water', 'Ghee', 'Cardamom',
+                        'Silver leaf (optional)'
+                    ],
+                    steps: ['Grind cashews to fine powder.',
+                        'Boil sugar and water to one-string consistency.',
+                        'Add cashew powder and cardamom. Mix well.',
+                        'Spread on greased plate. Cut into diamonds.',
+                        'Decorate with silver leaf.'
+                    ]
+                }, {
+                    id: 62,
+                    category: 'dessert',
+                    title: 'Payasam (South Indian Kheer)',
+                    description: 'Creamy rice pudding with coconut milk and jaggery, flavored with cardamom.',
+                    time: '35 min',
+                    level: 'Easy',
+                    rating: 4.5,
+                    author: 'Parvathi Krishnan',
+                    authorInitial: 'P',
+                    img: 'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1/2 cup rice', '1 cup coconut milk', '2 cups milk', '1/2 cup jaggery',
+                        'Cardamom', 'Cashews', 'Raisins'
+                    ],
+                    steps: ['Cook rice in milk until soft and creamy.',
+                        'Add coconut milk, jaggery, cardamom. Cook 10 min.',
+                        'Add roasted cashews and raisins.',
+                        'Serve warm or chilled.'
+                    ]
+                },
+
+                // ----- SNACKS (15 recipes) -----
+                {
+                    id: 63,
+                    category: 'snacks',
+                    title: 'Samosa',
+                    description: 'Crispy pastry triangles filled with spiced potato and peas.',
+                    time: '50 min',
+                    level: 'Hard',
+                    rating: 4.8,
+                    author: 'Sanjay Arora',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups flour', '1/4 cup oil', '3 potatoes', '1/2 cup peas', 'Cumin seeds',
+                        'Garam masala', 'Oil for frying'
+                    ],
+                    steps: ['Make dough with flour and oil. Rest 30 min.',
+                        'Mash potatoes with peas and spices.',
+                        'Roll dough, cut into strips. Form cones.',
+                        'Fill with potato mixture, seal edges.',
+                        'Deep fry until golden. Serve with chutney.'
+                    ]
+                }, {
+                    id: 64,
+                    category: 'snacks',
+                    title: 'Bhel Puri',
+                    description: 'Mumbai street food with puffed rice, vegetables, and tangy chutneys.',
+                    time: '15 min',
+                    level: 'Easy',
+                    rating: 4.5,
+                    author: 'Mumbai Foodie',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups puffed rice', '1 onion chopped', '1 tomato chopped', '1/2 cup sev',
+                        'Tamarind chutney', 'Green chutney', 'Coriander'
+                    ],
+                    steps: ['Mix puffed rice with vegetables.',
+                        'Add both chutneys, salt, and mix well.',
+                        'Top with sev and coriander.',
+                        'Serve immediately for crispy texture.'
+                    ]
+                }, {
+                    id: 65,
+                    category: 'snacks',
+                    title: 'Pani Puri',
+                    description: 'Crispy hollow puris filled with spiced water and potato filling.',
+                    time: '40 min',
+                    level: 'Hard',
+                    rating: 4.9,
+                    author: 'Street Food India',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup semolina', '1/4 cup flour', 'Potatoes', 'Chickpeas', 'Tamarind',
+                        'Mint', 'Coriander', 'Spices'
+                    ],
+                    steps: ['Mix semolina and flour into stiff dough. Roll thin circles.',
+                        'Deep fry until puffed and crispy.',
+                        'Prepare spiced water with mint, tamarind, spices.',
+                        'Fill puris with potato and chickpeas.',
+                        'Serve with spiced water.'
+                    ]
+                }, {
+                    id: 66,
+                    category: 'snacks',
+                    title: 'Dahi Vada',
+                    description: 'Soft lentil fritters soaked in spiced yogurt and topped with chutneys.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Priya Anand',
+                    authorInitial: 'P',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup urad dal', '2 cups yogurt', 'Tamarind chutney', 'Green chutney',
+                        'Cumin powder', 'Coriander'
+                    ],
+                    steps: ['Soak urad dal 3 hrs. Grind smooth.',
+                        'Drop batter in hot oil, fry golden.',
+                        'Soak vadas in water 10 min, squeeze.',
+                        'Whisk yogurt with salt. Pour over vadas.',
+                        'Top with chutneys and spices.'
+                    ]
+                }, {
+                    id: 67,
+                    category: 'snacks',
+                    title: 'Aloo Tikki',
+                    description: 'Crispy potato patties with a spiced filling, served with chutney.',
+                    time: '30 min',
+                    level: 'Medium',
+                    rating: 4.4,
+                    author: 'Rama Devi',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['4 potatoes', '1/2 cup breadcrumbs', 'Green chili', 'Ginger', 'Coriander',
+                        'Chaat masala', 'Oil'
+                    ],
+                    steps: ['Boil and mash potatoes.', 'Add spices and breadcrumbs, mix well.',
+                        'Shape into patties.',
+                        'Pan fry until golden and crisp on both sides.',
+                        'Serve with mint chutney.'
+                    ]
+                }, {
+                    id: 68,
+                    category: 'snacks',
+                    title: 'Onion Pakora',
+                    description: 'Crispy onion fritters in chickpea batter with spices.',
+                    time: '20 min',
+                    level: 'Easy',
+                    rating: 4.5,
+                    author: 'Deepak Sharma',
+                    authorInitial: 'D',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 onions sliced', '1 cup chickpea flour', '1/2 tsp red chili powder',
+                        '1/4 tsp turmeric', 'Salt', 'Oil for frying'
+                    ],
+                    steps: ['Mix chickpea flour with spices and water to form batter.',
+                        'Add sliced onions and mix well.',
+                        'Drop spoonfuls in hot oil.',
+                        'Fry until golden and crisp.',
+                        'Serve with ketchup or chutney.'
+                    ]
+                }, {
+                    id: 69,
+                    category: 'snacks',
+                    title: 'Vada Pav',
+                    description: 'Mumbai\'s famous street food - spicy potato fritter in a bun with chutneys.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.7,
+                    author: 'Vada Pav King',
+                    authorInitial: 'V',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['4 potatoes', '1 cup chickpea flour', '4 pav buns', 'Green chutney',
+                        'Tamarind chutney', 'Garlic chutney', 'Oil'
+                    ],
+                    steps: ['Boil and mash potatoes with spices.',
+                        'Make thick batter with chickpea flour.',
+                        'Form potato balls, dip in batter, deep fry.',
+                        'Toast buns, apply chutneys.',
+                        'Place vada in bun. Serve hot.'
+                    ]
+                }, {
+                    id: 70,
+                    category: 'snacks',
+                    title: 'Corn Bhel',
+                    description: 'Healthy and tasty corn chaat with vegetables and spices.',
+                    time: '15 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Health Kitchen',
+                    authorInitial: 'H',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups corn', '1 onion', '1 tomato', 'Green chili', 'Lemon juice',
+                        'Chaat masala', 'Coriander'
+                    ],
+                    steps: ['Boil corn until tender. Drain.',
+                        'Mix with chopped vegetables and spices.',
+                        'Add lemon juice and coriander.',
+                        'Serve immediately.'
+                    ]
+                }, {
+                    id: 71,
+                    category: 'snacks',
+                    title: 'Kachori',
+                    description: 'Spicy lentil or onion-filled flaky pastries, deep fried.',
+                    time: '45 min',
+                    level: 'Hard',
+                    rating: 4.5,
+                    author: 'Rajasthan Kitchen',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups flour', '1 cup yellow moong dal', 'Fennel seeds', 'Cumin seeds',
+                        'Ginger', 'Green chili', 'Oil'
+                    ],
+                    steps: ['Soak dal 2 hrs. Grind coarse.',
+                        'Mix dal with spices for filling.',
+                        'Make dough with flour and oil. Roll into balls.',
+                        'Stuff with filling, roll flat.',
+                        'Deep fry until golden. Serve with chutney.'
+                    ]
+                }, {
+                    id: 72,
+                    category: 'snacks',
+                    title: 'Sev Puri',
+                    description: 'Crispy puris topped with potatoes, chutneys, and sev.',
+                    time: '20 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Street Food Lover',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['12 puris', '1 potato boiled', '1 onion', 'Tamarind chutney', 'Green chutney',
+                        'Sev', 'Coriander'
+                    ],
+                    steps: ['Arrange puris on plate.',
+                        'Top with mashed potato and onion.',
+                        'Add both chutneys and sev.',
+                        'Garnish with coriander. Serve immediately.'
+                    ]
+                }, {
+                    id: 73,
+                    category: 'snacks',
+                    title: 'Mirchi Bajji',
+                    description: 'Spicy chili peppers stuffed and dipped in chickpea batter, deep fried.',
+                    time: '25 min',
+                    level: 'Medium',
+                    rating: 4.3,
+                    author: 'Andhra Kitchen',
+                    authorInitial: 'A',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['6 large chili peppers', '1 cup chickpea flour', 'Tamarind', 'Salt',
+                        'Red chili powder', 'Oil for frying'
+                    ],
+                    steps: ['Slit chili and remove seeds.',
+                        'Stuff with tamarind and salt mixture.',
+                        'Make batter with chickpea flour and spices.',
+                        'Dip chili in batter and deep fry.',
+                        'Serve with tomato ketchup.'
+                    ]
+                }, {
+                    id: 74,
+                    category: 'snacks',
+                    title: 'Paneer Pakora',
+                    description: 'Soft paneer cubes coated in chickpea batter and fried until crisp.',
+                    time: '20 min',
+                    level: 'Easy',
+                    rating: 4.5,
+                    author: 'Snack Corner',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['250g paneer', '1 cup chickpea flour', 'Red chili powder', 'Garam masala',
+                        'Salt', 'Oil'
+                    ],
+                    steps: ['Cut paneer into cubes.',
+                        'Make batter with chickpea flour and spices.',
+                        'Dip paneer cubes in batter.',
+                        'Deep fry until golden and crisp.',
+                        'Serve with mint chutney.'
+                    ]
+                }, {
+                    id: 75,
+                    category: 'snacks',
+                    title: 'Dhokla',
+                    description: 'Soft and fluffy steamed chickpea flour cakes from Gujarat.',
+                    time: '30 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Gujarat Delight',
+                    authorInitial: 'G',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup chickpea flour', '1/2 cup yogurt', '1 tsp ginger paste', 'Green chili',
+                        'Citric acid', 'Enos fruit salt', 'Mustard seeds', 'Curry leaves'
+                    ],
+                    steps: ['Mix chickpea flour, yogurt, ginger, chili, water into batter.',
+                        'Add enos fruit salt just before steaming.',
+                        'Steam in dhokla pan for 15 min.',
+                        'Temper with mustard seeds and curry leaves.',
+                        'Cut into squares. Serve with chutney.'
+                    ]
+                }, {
+                    id: 76,
+                    category: 'snacks',
+                    title: 'Masala Peanuts',
+                    description: 'Spicy roasted peanuts with Indian spices and curry leaves.',
+                    time: '15 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Snack Time',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups peanuts', '1 tbsp oil', 'Red chili powder', 'Garam masala',
+                        'Amchur powder', 'Curry leaves', 'Salt'
+                    ],
+                    steps: ['Heat oil, add curry leaves and peanuts. Roast 5 min.',
+                        'Add all spices and salt. Mix well.',
+                        'Cool and store in airtight container.',
+                        'Serve as a snack.'
+                    ]
+                }, {
+                    id: 77,
+                    category: 'snacks',
+                    title: 'Cheese Balls',
+                    description: 'Crispy cheese and potato balls filled with melting cheese.',
+                    time: '30 min',
+                    level: 'Medium',
+                    rating: 4.4,
+                    author: 'Cheesy Kitchen',
+                    authorInitial: 'C',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['3 potatoes', '100g cheese', '1/2 cup breadcrumbs', 'Ginger', 'Green chili',
+                        'Salt', 'Oil'
+                    ],
+                    steps: ['Boil and mash potatoes.', 'Add ginger, chili, salt, and breadcrumbs.',
+                        'Make small balls with cheese cube inside.',
+                        'Roll in breadcrumbs and deep fry.',
+                        'Serve with ketchup.'
+                    ]
+                },
+
+                // ----- BREADS (10 recipes) -----
+                {
+                    id: 78,
+                    category: 'breads',
+                    title: 'Tandoori Roti',
+                    description: 'Traditional whole wheat flatbread cooked in a tandoor.',
+                    time: '30 min',
+                    level: 'Medium',
+                    rating: 4.4,
+                    author: 'Tandoor Master',
+                    authorInitial: 'T',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups whole wheat flour', '1/2 tsp salt', 'Water', 'Ghee'
+                    ],
+                    steps: ['Knead flour with salt and water into soft dough. Rest 30 min.',
+                        'Divide into balls. Roll into circles.',
+                        'Stretch and slap on tandoor wall.',
+                        'Cook until brown spots appear. Brush with ghee.'
+                    ]
+                }, {
+                    id: 79,
+                    category: 'breads',
+                    title: 'Garlic Naan',
+                    description: 'Soft naan bread brushed with garlic butter and fresh coriander.',
+                    time: '60 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'Naan House',
+                    authorInitial: 'N',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups flour', '1/2 cup yogurt', '1 tsp sugar', '1/2 tsp baking powder',
+                        '1/4 tsp baking soda', 'Garlic', 'Butter', 'Coriander'
+                    ],
+                    steps: ['Mix dry ingredients. Add yogurt and knead soft dough. Rest 1 hr.',
+                        'Roll into oval shapes.',
+                        'Cook in hot pan or tandoor.',
+                        'Mix melted butter with minced garlic and coriander.',
+                        'Brush naan with garlic butter.'
+                    ]
+                }, {
+                    id: 80,
+                    category: 'breads',
+                    title: 'Paratha',
+                    description: 'Layered whole wheat flatbread cooked with ghee until flaky.',
+                    time: '30 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Punjab Kitchen',
+                    authorInitial: 'P',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups whole wheat flour', 'Salt', 'Ghee', 'Water'
+                    ],
+                    steps: ['Knead flour with salt and water into soft dough. Rest 20 min.',
+                        'Divide into balls. Roll thin, spread ghee.',
+                        'Fold into layers, roll again.',
+                        'Cook on tawa with ghee until golden and flaky.'
+                    ]
+                }, {
+                    id: 81,
+                    category: 'breads',
+                    title: 'Kulcha',
+                    description: 'Soft and fluffy leavened bread, popular in North India.',
+                    time: '45 min',
+                    level: 'Medium',
+                    rating: 4.4,
+                    author: 'Bread Artisan',
+                    authorInitial: 'B',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups flour', '1/2 tsp yeast', '1 tsp sugar', '1/2 cup milk', 'Yogurt',
+                        'Ghee'
+                    ],
+                    steps: ['Activate yeast in warm milk with sugar.',
+                        'Mix flour, yeast mixture, yogurt. Knead soft dough. Rest 1 hr.',
+                        'Divide into balls. Roll into oval shapes.',
+                        'Cook in tandoor or on tawa with ghee.',
+                        'Serve hot with curry.'
+                    ]
+                }, {
+                    id: 82,
+                    category: 'breads',
+                    title: 'Bhatura',
+                    description: 'Deep-fried fluffy bread made with refined flour and yogurt.',
+                    time: '60 min',
+                    level: 'Hard',
+                    rating: 4.5,
+                    author: 'Chole Bhature Wala',
+                    authorInitial: 'C',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups flour', '1/2 cup yogurt', '1/2 tsp baking soda', '1 tsp sugar',
+                        'Salt', 'Oil for frying'
+                    ],
+                    steps: ['Mix flour, yogurt, baking soda, sugar, salt. Knead soft dough. Rest 2 hrs.',
+                        'Divide into balls. Roll into circles.',
+                        'Deep fry until puffed and golden.',
+                        'Serve with chole.'
+                    ]
+                }, {
+                    id: 83,
+                    category: 'breads',
+                    title: 'Roomali Roti',
+                    description: 'Thin and soft roti as fine as a handkerchief.',
+                    time: '30 min',
+                    level: 'Hard',
+                    rating: 4.3,
+                    author: 'Roti Master',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups flour', 'Salt', 'Water', 'Ghee'
+                    ],
+                    steps: ['Knead flour with salt into very soft dough. Rest 30 min.',
+                        'Roll paper-thin on a flat surface.',
+                        'Cook on an inverted tawa or kadai.',
+                        'Brush with ghee and fold like a handkerchief.'
+                    ]
+                }, {
+                    id: 84,
+                    category: 'breads',
+                    title: 'Ragi Roti',
+                    description: 'Healthy flatbread made with finger millet flour.',
+                    time: '25 min',
+                    level: 'Easy',
+                    rating: 4.2,
+                    author: 'Healthy Kitchen',
+                    authorInitial: 'H',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups ragi flour', '1 onion', 'Green chili', 'Coriander', 'Salt',
+                        'Water'
+                    ],
+                    steps: ['Mix ragi flour with chopped onion, chili, coriander, salt.',
+                        'Add water and knead soft dough.',
+                        'Roll into roti and cook on tawa.',
+                        'Serve with chutney or curry.'
+                    ]
+                }, {
+                    id: 85,
+                    category: 'breads',
+                    title: 'Jowar Roti',
+                    description: 'Traditional flatbread made from sorghum flour.',
+                    time: '25 min',
+                    level: 'Easy',
+                    rating: 4.2,
+                    author: 'Maharashtra Kitchen',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups jowar flour', 'Salt', 'Hot water'
+                    ],
+                    steps: ['Mix flour and salt. Add hot water and knead into soft dough.',
+                        'Divide into balls. Roll flat using a rolling pin.',
+                        'Cook on tawa until brown spots appear.',
+                        'Serve with ghee.'
+                    ]
+                }, {
+                    id: 86,
+                    category: 'breads',
+                    title: 'Missi Roti',
+                    description: 'Punjabi chickpea flour flatbread with onion and spices.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Punjabi Kitchen',
+                    authorInitial: 'P',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup chickpea flour', '1 cup whole wheat flour', '1 onion', 'Green chili',
+                        'Coriander', 'Cumin seeds', 'Oil'
+                    ],
+                    steps: ['Mix both flours with onion, chili, coriander, cumin, salt.',
+                        'Add water and knead soft dough.',
+                        'Roll into roti and cook on tawa with oil.',
+                        'Serve with pickle and yogurt.'
+                    ]
+                }, {
+                    id: 87,
+                    category: 'breads',
+                    title: 'Thepla',
+                    description: 'Gujarati fenugreek flatbread perfect for travel.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Gujarat Delight',
+                    authorInitial: 'G',
+                    img: 'https://images.unsplash.com/photo-1614659808021-df7d35b37b02?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups whole wheat flour', '1 cup fenugreek leaves', '1/2 cup yogurt',
+                        'Turmeric', 'Red chili powder', 'Salt', 'Oil'
+                    ],
+                    steps: ['Mix flour with fenugreek leaves, yogurt, spices, salt.',
+                        'Knead soft dough. Rest 15 min.',
+                        'Roll into thin roti.',
+                        'Cook on tawa with oil until golden.'
+                    ]
+                },
+
+                // ----- More LUNCH recipes (10 more to reach 100+) -----
+                {
+                    id: 88,
+                    category: 'lunch',
+                    title: 'Soya Chunk Curry',
+                    description: 'Healthy soya chunks cooked in a spicy onion-tomato gravy.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Green Kitchen',
+                    authorInitial: 'G',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups soya chunks', '2 onions', '3 tomatoes', 'Ginger-garlic', 'Garam masala',
+                        'Coriander', 'Oil'
+                    ],
+                    steps: ['Soak soya chunks in hot water 10 min. Squeeze and set aside.',
+                        'Sauté onion, ginger-garlic until brown.',
+                        'Add tomatoes, garam masala, salt. Cook soft.',
+                        'Add soya chunks and water. Simmer 15 min.',
+                        'Garnish with coriander. Serve with rice.'
+                    ]
+                }, {
+                    id: 89,
+                    category: 'lunch',
+                    title: 'Veg Kolhapuri',
+                    description: 'Spicy vegetable curry from Maharashtra with coconut and red chilies.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Kolhapuri Kitchen',
+                    authorInitial: 'K',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['Mixed vegetables', '2 onions', 'Coconut', 'Kolhapuri masala', 'Ginger-garlic',
+                        'Red chilies', 'Oil'
+                    ],
+                    steps: ['Sauté onions, ginger-garlic until golden.',
+                        'Add vegetables and kolhapuri masala. Cook 10 min.',
+                        'Add coconut milk and water. Simmer 20 min.',
+                        'Garnish with coriander. Serve with roti.'
+                    ]
+                }, {
+                    id: 90,
+                    category: 'lunch',
+                    title: 'Pav Bhaji',
+                    description: 'Mumbai street food - spicy mashed vegetable curry served with buttered buns.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.7,
+                    author: 'Mumbai Masala',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['Mixed vegetables', '2 onions', '3 tomatoes', 'Pav bhaji masala', 'Butter',
+                        'Pav buns', 'Coriander'
+                    ],
+                    steps: ['Cook vegetables and mash coarsely.',
+                        'Sauté onions, tomatoes with pav bhaji masala.',
+                        'Add mashed vegetables and water. Simmer 15 min.',
+                        'Toast pav with butter.',
+                        'Serve bhaji with pav and onion.'
+                    ]
+                }, {
+                    id: 91,
+                    category: 'lunch',
+                    title: 'Veg Pulao',
+                    description: 'Fragrant rice cooked with vegetables and aromatic whole spices.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.3,
+                    author: 'Pulao House',
+                    authorInitial: 'P',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['2 cups basmati rice', 'Mixed vegetables', 'Whole spices', 'Ghee',
+                        'Salt'
+                    ],
+                    steps: ['Wash and soak rice 30 min.',
+                        'Heat ghee, add whole spices. Sauté.',
+                        'Add vegetables and rice. Sauté 2 min.',
+                        'Add water and salt. Cook covered 15 min.',
+                        'Fluff with fork. Serve with raita.'
+                    ]
+                }, {
+                    id: 92,
+                    category: 'lunch',
+                    title: 'Keema Matar',
+                    description: 'Spicy minced meat curry with green peas and aromatic spices.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Meat Master',
+                    authorInitial: 'M',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g minced lamb/chicken', '1 cup green peas', '2 onions', 'Ginger-garlic',
+                        'Garam masala', 'Coriander', 'Oil'
+                    ],
+                    steps: ['Sauté onions, ginger-garlic until brown.',
+                        'Add minced meat, cook until browned.',
+                        'Add tomatoes, garam masala, salt. Cook 5 min.',
+                        'Add green peas and water. Simmer 15 min.',
+                        'Garnish with coriander. Serve with rice or roti.'
+                    ]
+                }, {
+                    id: 93,
+                    category: 'lunch',
+                    title: 'Mushroom Biryani',
+                    description: 'Fragrant biryani with mushrooms and aromatic spices.',
+                    time: '45 min',
+                    level: 'Medium',
+                    rating: 4.4,
+                    author: 'Biryani Express',
+                    authorInitial: 'B',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g mushrooms', '2 cups basmati rice', '2 onions', 'Yogurt', 'Biryani masala',
+                        'Saffron', 'Mint'
+                    ],
+                    steps: ['Sauté mushrooms with onions and spices.',
+                        'Cook rice until 70% done. Drain.',
+                        'Layer mushrooms and rice in pot with saffron.',
+                        'Cook covered on low heat (dum) 20 min.',
+                        'Serve with raita.'
+                    ]
+                }, {
+                    id: 94,
+                    category: 'lunch',
+                    title: 'Kerala Egg Curry',
+                    description: 'Creamy egg curry with coconut milk from Kerala cuisine.',
+                    time: '30 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Kerala Kitchen',
+                    authorInitial: 'K',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['6 boiled eggs', '2 onions', '1 cup coconut milk', 'Ginger-garlic',
+                        'Curry leaves', 'Red chili powder', 'Turmeric', 'Oil'
+                    ],
+                    steps: ['Sauté onions, ginger-garlic, curry leaves.',
+                        'Add turmeric, chili powder. Cook 2 min.',
+                        'Add coconut milk and salt. Simmer 5 min.',
+                        'Add boiled eggs and simmer 10 min.',
+                        'Serve with rice or appam.'
+                    ]
+                }, {
+                    id: 95,
+                    category: 'lunch',
+                    title: 'Vegetable Korma',
+                    description: 'Rich and creamy vegetable curry with cashew and coconut.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Royal Kitchen',
+                    authorInitial: 'R',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['Mixed vegetables', '2 onions', '1/2 cup cashew paste', 'Coconut milk',
+                        'Ginger-garlic', 'Garam masala', 'Oil'
+                    ],
+                    steps: ['Sauté onions, ginger-garlic until golden.',
+                        'Add vegetables and cook 5 min.',
+                        'Add cashew paste, coconut milk, salt.',
+                        'Simmer 20 min until vegetables soft.',
+                        'Add garam masala. Serve with naan.'
+                    ]
+                }, {
+                    id: 96,
+                    category: 'lunch',
+                    title: 'Chicken 65',
+                    description: 'Spicy deep-fried chicken dish from South India.',
+                    time: '35 min',
+                    level: 'Medium',
+                    rating: 4.6,
+                    author: 'South Indian Spice',
+                    authorInitial: 'S',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g chicken', 'Red chili powder', 'Ginger-garlic paste', 'Yogurt',
+                        'Curry leaves', 'Oil'
+                    ],
+                    steps: ['Marinate chicken with spices and yogurt 30 min.',
+                        'Deep fry chicken until golden and crisp.',
+                        'Temper with curry leaves and more spices.',
+                        'Serve hot with onion rings.'
+                    ]
+                }, {
+                    id: 97,
+                    category: 'lunch',
+                    title: 'Hyderabadi Dum Biryani',
+                    description: 'Authentic Hyderabadi biryani with layers of rice and meat.',
+                    time: '70 min',
+                    level: 'Hard',
+                    rating: 4.9,
+                    author: 'Biryani Master',
+                    authorInitial: 'B',
+                    img: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['500g chicken/mutton', '2 cups basmati rice', '2 onions', 'Yogurt',
+                        'Biryani masala', 'Saffron', 'Mint', 'Ghee'
+                    ],
+                    steps: ['Marinate meat with yogurt and spices 2 hrs.',
+                        'Fry onions golden. Set aside.',
+                        'Cook rice 70% done. Drain.',
+                        'Layer meat, rice, onions, saffron in heavy pot.',
+                        'Cook sealed on low heat (dum) 30 min.',
+                        'Serve with raita.'
+                    ]
+                }, {
+                    id: 98,
+                    category: 'lunch',
+                    title: 'Punjabi Kadhi Pakora',
+                    description: 'Rich and tangy Punjabi kadhi with crispy pakoras.',
+                    time: '50 min',
+                    level: 'Medium',
+                    rating: 4.5,
+                    author: 'Punjab Da Swad',
+                    authorInitial: 'P',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup yogurt', '2 tbsp chickpea flour', '1 onion', 'Green chili', 'Ginger',
+                        'Cumin seeds', 'Turmeric', 'Oil'
+                    ],
+                    steps: ['Make pakora batter with chickpea flour and spices.',
+                        'Deep fry pakoras. Set aside.',
+                        'Whisk yogurt, chickpea flour, water, turmeric, salt. Boil.',
+                        'Add pakoras and simmer 15 min.',
+                        'Temper with cumin and red chili. Serve with rice.'
+                    ]
+                }, {
+                    id: 99,
+                    category: 'lunch',
+                    title: 'Stuffed Brinjal Curry',
+                    description: 'Baby brinjals stuffed with spices and cooked in thick gravy.',
+                    time: '40 min',
+                    level: 'Medium',
+                    rating: 4.4,
+                    author: 'Brinjal Delight',
+                    authorInitial: 'B',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['6 baby brinjals', '2 onions', '3 tomatoes', 'Peanut powder', 'Sesame seeds',
+                        'Ginger-garlic', 'Garam masala'
+                    ],
+                    steps: ['Slit brinjals. Stuff with peanut-sesame masala.',
+                        'Sauté onions, ginger-garlic until brown.',
+                        'Add tomatoes, garam masala, salt. Cook soft.',
+                        'Add stuffed brinjals and water. Cook 20 min.',
+                        'Serve with roti.'
+                    ]
+                }, {
+                    id: 100,
+                    category: 'lunch',
+                    title: 'Masala Khichdi',
+                    description: 'Comfort one-pot meal with rice, lentils, and vegetables.',
+                    time: '35 min',
+                    level: 'Easy',
+                    rating: 4.4,
+                    author: 'Healthy Food',
+                    authorInitial: 'H',
+                    img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85',
+                    ingredients: ['1 cup rice', '1/2 cup moong dal', 'Mixed vegetables', 'Cumin seeds',
+                        'Ginger', 'Turmeric', 'Ghee'
+                    ],
+                    steps: ['Wash rice and dal together.',
+                        'Heat ghee, add cumin, ginger, vegetables. Sauté.',
+                        'Add rice, dal, turmeric, salt. Sauté 2 min.',
+                        'Add water and pressure cook 3 whistles.',
+                        'Serve with pickle and papad.'
+                    ]
+                }
+            ];
+
+            // ============================================================
+            // CONFIGURATION
+            // ============================================================
+            const RECIPES_PER_PAGE = 15;
+            let currentPage = 1;
+            let currentFilter = 'all';
+            let currentSearch = '';
+
+            // ============================================================
+            // DOM REFS
+            // ============================================================
+            const grid = document.getElementById('recipeGrid');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const navSearch = document.getElementById('navSearch');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const recipeCount = document.getElementById('recipeCount');
+
+            // Modal
+            const modal = document.getElementById('recipeModal');
+            const modalClose = document.getElementById('modalClose');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalTime = document.getElementById('modalTime');
+            const modalLevel = document.getElementById('modalLevel');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalIngredients = document.getElementById('modalIngredients');
+            const modalSteps = document.getElementById('modalSteps');
+            const modalAuthorInitial = document.getElementById('modalAuthorInitial');
+            const modalAuthorName = document.getElementById('modalAuthorName');
+            const modalRating = document.getElementById('modalRating');
+
+            // Toast
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            let toastTimer;
+
+            // ============================================================
+            // HELPER FUNCTIONS
+            // ============================================================
+            function getFilteredRecipes() {
+                return allRecipes.filter(r => {
+                    const matchCategory = currentFilter === 'all' || r.category === currentFilter;
+                    const matchSearch = r.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                        r.description.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                        r.author.toLowerCase().includes(currentSearch.toLowerCase());
+                    return matchCategory && matchSearch;
+                });
+            }
+
+            function getPaginatedRecipes(recipes) {
+                const start = 0;
+                const end = currentPage * RECIPES_PER_PAGE;
+                return recipes.slice(start, end);
+            }
+
+            // ============================================================
+            // RENDER CARDS
+            // ============================================================
+            function renderCards() {
+                const filtered = getFilteredRecipes();
+                const paginated = getPaginatedRecipes(filtered);
+                const total = filtered.length;
+                const shown = paginated.length;
+
+                // Update count
+                recipeCount.textContent = `Showing ${shown} of ${total} recipes`;
+
+                if (paginated.length === 0) {
+                    grid.innerHTML =
+                        `<p style="grid-column:1/-1; text-align:center; font-size:20px; color:#999; padding:40px 0;">No recipes found 😕</p>`;
+                    loadMoreBtn.style.display = 'none';
+                    return;
+                }
+
+                grid.innerHTML = paginated.map(r => `
+                        <article class="recipe-card" data-id="${r.id}" data-category="${r.category}">
+                            <div class="recipe-image">
+                                <img src="${r.img}" alt="${r.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85'">
+                                <span class="recipe-label">Recipe</span>
+                                <span class="rating"><i class="fa-solid fa-star"></i> ${r.rating}</span>
+                            </div>
+                            <div class="recipe-body">
+                                <div class="recipe-meta">
+                                    <span><i class="fa-regular fa-clock"></i> ${r.time}</span>
+                                    <span>${r.level}</span>
+                                </div>
+                                <h3>${r.title}</h3>
+                                <p>${r.description}</p>
+                                <div class="recipe-footer">
+                                    <div class="author">
+                                        <div class="author-img">${r.authorInitial}</div>
+                                        <span>${r.author}</span>
+                                    </div>
+                                    <button class="favorite" data-id="${r.id}"><i class="fa-regular fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </article>
+                    `).join('');
+
+                // Show/hide load more button
+                if (shown < total) {
+                    loadMoreBtn.style.display = 'block';
+                    loadMoreBtn.disabled = false;
+                    loadMoreBtn.textContent = `Load More Recipes (${shown}/${total})`;
+                } else {
+                    loadMoreBtn.style.display = 'none';
+                }
+
+                // Click card -> open modal
+                document.querySelectorAll('.recipe-card').forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        if (e.target.closest('.favorite')) return;
+                        const id = parseInt(this.dataset.id);
+                        const recipe = allRecipes.find(r => r.id === id);
+                        if (recipe) openModal(recipe);
+                    });
+                });
+
+                // Favorite buttons
+                document.querySelectorAll('.favorite').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const icon = this.querySelector('i');
+                        this.classList.toggle('liked');
+                        if (this.classList.contains('liked')) {
+                            icon.classList.remove('fa-regular');
+                            icon.classList.add('fa-solid');
+                            showToast('Added to favorites ❤️');
+                        } else {
+                            icon.classList.remove('fa-solid');
+                            icon.classList.add('fa-regular');
+                            showToast('Removed from favorites');
+                        }
+                    });
+                });
+            }
+
+            // ============================================================
+            // MODAL
+            // ============================================================
+            function openModal(recipe) {
+                modalImage.innerHTML = `<img src="${recipe.img}" alt="${recipe.title}" onerror="this.src='https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85'">`;
+                modalTitle.textContent = recipe.title;
+                modalTime.textContent = recipe.time;
+                modalLevel.textContent = recipe.level;
+                modalDesc.textContent = recipe.description;
+                modalIngredients.innerHTML = recipe.ingredients.map(i => `<li>${i}</li>`).join('');
+                modalSteps.innerHTML = recipe.steps.map((s, idx) => `<li>${s}</li>`).join('');
+                modalAuthorInitial.textContent = recipe.authorInitial;
+                modalAuthorName.textContent = recipe.author;
+                modalRating.innerHTML = `⭐ ${recipe.rating}`;
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            // ============================================================
+            // FILTER & SEARCH
+            // ============================================================
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.filter;
+                    currentPage = 1;
+                    renderCards();
+                });
+            });
+
+            navSearch.addEventListener('input', function() {
+                currentSearch = this.value.trim();
+                currentPage = 1;
+                renderCards();
+            });
+
+            // ============================================================
+            // LOAD MORE
+            // ============================================================
+            loadMoreBtn.addEventListener('click', function() {
+                const filtered = getFilteredRecipes();
+                if (currentPage * RECIPES_PER_PAGE < filtered.length) {
+                    currentPage++;
+                    renderCards();
+                }
+            });
+
+            // ============================================================
+            // TOAST
+            // ============================================================
+            function showToast(msg) {
+                toastMsg.textContent = msg;
+                toast.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+            }
+
+            // ============================================================
+            // NEWSLETTER
+            // ============================================================
+            document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('newsletterEmail').value.trim();
+                if (!email) { showToast('Please enter your email'); return; }
+                showToast('Successfully subscribed! 🎉');
+                this.reset();
+            });
+
+            // ============================================================
+            // WRITE BUTTON
+            // ============================================================
+            document.getElementById('writeBtn').addEventListener('click', function() {
+                showToast('Blog editor coming soon ✍️');
+            });
+
+            // ============================================================
+            // MOBILE MENU
+            // ============================================================
+            const menuBtn = document.getElementById('menuBtn');
+            const navLinks = document.getElementById('navLinks');
+            menuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+                document.body.classList.toggle('menu-open');
+                const icon = this.querySelector('i');
+                if (navLinks.classList.contains('show')) {
+                    icon.className = 'fa-solid fa-xmark';
+                } else {
+                    icon.className = 'fa-solid fa-bars';
+                }
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('show');
+                    document.body.classList.remove('menu-open');
+                    menuBtn.querySelector('i').className = 'fa-solid fa-bars';
+                });
+            });
+
+            // ============================================================
+            // NAVBAR SCROLL
+            // ============================================================
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', function() {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            // ============================================================
+            // HERO SLIDER
+            // ============================================================
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.dot');
+            let currentSlide = 0;
+            let slideTimer;
+
+            function showSlide(index) {
+                slides.forEach(s => s.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                showSlide((currentSlide + 1) % slides.length);
+            }
+
+            function startSlider() {
+                slideTimer = setInterval(nextSlide, 5000);
+            }
+            startSlider();
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    clearInterval(slideTimer);
+                    showSlide(parseInt(this.dataset.slide));
+                    startSlider();
+                });
+            });
+
+            // ============================================================
+            // SCROLL REVEAL
+            // ============================================================
+            const revealEls = document.querySelectorAll('.recipe-card, .feature-section, .write-section, .newsletter');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('show');
+                        observer.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            revealEls.forEach(el => {
+                el.classList.add('reveal');
+                observer.observe(el);
+            });
+
+            // ============================================================
+            // ACTIVE NAV
+            // ============================================================
+            const sections = document.querySelectorAll('section[id]');
+            const navLinksAll = document.querySelectorAll('.nav-links a');
+            window.addEventListener('scroll', function() {
+                let current = '';
+                sections.forEach(section => {
+                    const top = section.offsetTop - 150;
+                    if (window.scrollY >= top) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinksAll.forEach(link => {
+                    link.classList.remove('current');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('current');
+                    }
+                });
+            });
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            renderCards();
+
+            // Log total recipes count
+            console.log(`✅ Loaded ${allRecipes.length} Indian recipes!`);
+
+        })();
+    </script>
+
+</body>
+
+</html>
