@@ -1596,6 +1596,263 @@
                 gap: 25px;
             }
         }
+
+        /* ===== ACCOUNT MODAL ===== */
+
+        .account-modal {
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .account-icon {
+            width: 75px;
+            height: 75px;
+            margin: 5px auto 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #FFD0D2;
+            color: #FE4A51;
+
+            border-radius: 50%;
+            font-size: 30px;
+        }
+
+        .account-modal h2 {
+            margin-bottom: 5px;
+        }
+
+        .account-subtitle {
+            margin-bottom: 25px;
+            color: #777;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #222;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .input-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            border: 1px solid #C3C4C4;
+            border-radius: 12px;
+
+            padding: 0 15px;
+            height: 52px;
+
+            transition: 0.3s;
+        }
+
+        .input-box:focus-within {
+            border-color: #FE4A51;
+            box-shadow: 0 0 0 4px rgba(254, 74, 81, 0.10);
+        }
+
+        .input-box i {
+            color: #FE4A51;
+        }
+
+        .input-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .account-submit {
+            width: 100%;
+            padding: 14px;
+
+            border-radius: 30px;
+
+            background: #FE4A51;
+            color: white;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .account-submit:hover {
+            background: #C81118;
+            transform: translateY(-2px);
+        }
+
+        .account-switch {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .account-switch button {
+            background: none;
+            color: #FE4A51;
+            font-weight: 700;
+            margin-left: 5px;
+        }
+
+        .account-switch button:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== WRITE BLOG MODAL ===== */
+
+        .write-blog-modal {
+            max-width: 650px;
+        }
+
+        .write-blog-modal h2 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .write-blog-subtitle {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #777;
+        }
+
+        .write-blog-icon {
+            width: 70px;
+            height: 70px;
+
+            margin: 5px auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #FFD0D2;
+            color: #FE4A51;
+
+            border-radius: 50%;
+
+            font-size: 28px;
+        }
+
+        .write-blog-modal input,
+        .write-blog-modal select,
+        .write-blog-modal textarea {
+
+            width: 100%;
+
+            border: 1px solid #C3C4C4;
+            border-radius: 12px;
+
+            padding: 13px 15px;
+
+            font-family: "Lato", sans-serif;
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        .write-blog-modal input,
+        .write-blog-modal select {
+            height: 50px;
+        }
+
+        .write-blog-modal textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .write-blog-modal input:focus,
+        .write-blog-modal select:focus,
+        .write-blog-modal textarea:focus {
+
+            border-color: #FE4A51;
+
+            box-shadow:
+                0 0 0 4px rgba(254, 74, 81, 0.10);
+        }
+
+        .write-blog-modal .form-group {
+            margin-bottom: 18px;
+        }
+
+        .write-blog-modal .account-submit {
+            margin-top: 5px;
+        }
+
+        /* ===== WRITE BLOG MODAL ===== */
+
+        .write-blog-modal {
+            max-width: 650px;
+        }
+
+        .write-blog-modal h2 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .write-blog-subtitle {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #777;
+        }
+
+        .write-blog-icon {
+            width: 70px;
+            height: 70px;
+            margin: 5px auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #FFD0D2;
+            color: #FE4A51;
+
+            border-radius: 50%;
+            font-size: 28px;
+        }
+
+        .write-blog-modal input,
+        .write-blog-modal select,
+        .write-blog-modal textarea {
+            width: 100%;
+            border: 1px solid #C3C4C4;
+            border-radius: 12px;
+            padding: 13px 15px;
+
+            font-family: "Lato", sans-serif;
+            font-size: 15px;
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        .write-blog-modal input,
+        .write-blog-modal select {
+            height: 50px;
+        }
+
+        .write-blog-modal textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .write-blog-modal input:focus,
+        .write-blog-modal select:focus,
+        .write-blog-modal textarea:focus {
+            border-color: #FE4A51;
+            box-shadow: 0 0 0 4px rgba(254, 74, 81, 0.10);
+        }
     </style>
 </head>
 
@@ -1851,6 +2108,124 @@
             </div>
         </div>
     </div>
+    <!-- ===== ACCOUNT MODAL ===== -->
+    <div class="modal-overlay" id="accountModal">
+
+        <div class="modal-box account-modal">
+
+            <button class="modal-close" id="accountClose">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="account-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <h2 id="accountTitle">Welcome Back!</h2>
+
+            <p class="account-subtitle">
+                Login to your Chef'sTable account
+            </p>
+
+            <form id="accountForm">
+
+                <div class="form-group">
+                    <label>Email Address</label>
+
+                    <div class="input-box">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" id="accountEmail" placeholder="Enter your email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+
+                    <div class="input-box">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="accountPassword" placeholder="Enter your password" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="account-submit">
+                    Login
+                </button>
+
+            </form>
+
+            <p class="account-switch">
+                Don't have an account?
+                <button type="button" id="signupBtn">
+                    Create Account
+                </button>
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ===== WRITE BLOG MODAL ===== -->
+    <div class="modal-overlay" id="writeBlogModal">
+
+        <div class="modal-box write-blog-modal">
+
+            <button class="modal-close" id="writeBlogClose">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="write-blog-icon">
+                <i class="fa-solid fa-pen"></i>
+            </div>
+
+            <h2>Write Your Blog</h2>
+
+            <p class="write-blog-subtitle">
+                Share your favorite recipe and food story with our community.
+            </p>
+
+            <form id="writeBlogForm">
+
+                <div class="form-group">
+                    <label>Blog Title</label>
+                    <input type="text" id="blogTitle" placeholder="Enter your blog title" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Author Name</label>
+                    <input type="text" id="blogAuthor" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+
+                    <select id="blogCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Breakfast">Breakfast</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Dessert">Dessert</option>
+                        <option value="Street Food">Street Food</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Blog Content</label>
+
+                    <textarea id="blogContent" rows="6" placeholder="Write your recipe or food story..."
+                        required></textarea>
+                </div>
+
+                <button type="submit" class="account-submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Publish Blog
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
@@ -5307,10 +5682,94 @@
                 this.reset();
             });
 
-            // ==================== WRITE BUTTON ====================
-            document.getElementById('writeBtn').addEventListener('click', function () {
-                showToast('Blog editor coming soon ✍️');
-            });
+            // ==================== WRITE BLOG ====================
+
+            const writeBtn = document.getElementById('writeBtn');
+            const writeBlogModal = document.getElementById('writeBlogModal');
+            const writeBlogClose = document.getElementById('writeBlogClose');
+            const writeBlogForm = document.getElementById('writeBlogForm');
+
+
+            // OPEN WRITE BLOG
+            if (writeBtn && writeBlogModal) {
+
+                writeBtn.addEventListener('click', function (e) {
+
+                    e.preventDefault();
+
+                    writeBlogModal.classList.add('open');
+
+                });
+
+            }
+
+
+            // CLOSE WRITE BLOG
+            if (writeBlogClose && writeBlogModal) {
+
+                writeBlogClose.addEventListener('click', function () {
+
+                    writeBlogModal.classList.remove('open');
+
+                });
+
+            }
+
+
+            // CLICK OUTSIDE TO CLOSE
+            if (writeBlogModal) {
+
+                writeBlogModal.addEventListener('click', function (e) {
+
+                    if (e.target === writeBlogModal) {
+
+                        writeBlogModal.classList.remove('open');
+
+                    }
+
+                });
+
+            }
+
+
+            // PUBLISH BLOG
+            if (writeBlogForm) {
+
+                writeBlogForm.addEventListener('submit', function (e) {
+
+                    e.preventDefault();
+
+                    const title =
+                        document.getElementById('blogTitle').value.trim();
+
+                    const author =
+                        document.getElementById('blogAuthor').value.trim();
+
+                    const category =
+                        document.getElementById('blogCategory').value;
+
+                    const content =
+                        document.getElementById('blogContent').value.trim();
+
+
+                    if (!title || !author || !category || !content) {
+
+                        showToast('Please fill all fields');
+
+                        return;
+
+                    }
+
+
+                    showToast('Blog published successfully! 🎉');
+
+                    writeBlogForm.reset();
+
+                    writeBlogModal.classList.remove('open');
+
+                });
+
+            }
 
             // ==================== MOBILE MENU ====================
             const menuBtn = document.getElementById('menuBtn');
@@ -5433,6 +5892,63 @@
                         link.classList.add('current');
                     }
                 });
+            });
+
+            // ==================== ACCOUNT MODAL ====================
+
+            const accountLink = document.querySelector(".account");
+            const accountModal = document.getElementById("accountModal");
+            const accountClose = document.getElementById("accountClose");
+            const accountForm = document.getElementById("accountForm");
+
+            accountLink.addEventListener("click", function (e) {
+
+                e.preventDefault();
+
+                accountModal.classList.add("open");
+
+            });
+
+            accountClose.addEventListener("click", function () {
+
+                accountModal.classList.remove("open");
+
+            });
+
+            accountModal.addEventListener("click", function (e) {
+
+                if (e.target === accountModal) {
+
+                    accountModal.classList.remove("open");
+
+                }
+
+            });
+
+            accountForm.addEventListener("submit", function (e) {
+
+                e.preventDefault();
+
+                const email =
+                    document.getElementById("accountEmail").value;
+
+                const password =
+                    document.getElementById("accountPassword").value;
+
+                if (email === "" || password === "") {
+
+                    alert("Please fill all fields.");
+
+                    return;
+
+                }
+
+                showToast("Login successful! Welcome back.");
+
+                accountModal.classList.remove("open");
+
+                accountForm.reset();
+
             });
 
             // ==================== INIT ====================
