@@ -963,7 +963,7 @@
 
         /* ===== FOOTER ===== */
         footer {
-            background: #21a876;
+            background: #7e372d;
             color: #C3C4C4;
             padding: 70px 35px 25px;
         }
@@ -1876,7 +1876,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#blogs">Blogs</a></li>
                 <li><a href="#recipes">Recipes</a></li>
-                <li><a href="#write">Write</a></li>
+                <li><a href="#" id="navWriteBtn">Write</a></li>
             </ul>
             <div class="nav-right">
                 <a href="#account" class="account">Account</a>
@@ -1916,7 +1916,7 @@
         </div>
         <!-- Slide 3 -->
         <div class="hero-slide"
-            style="background-image: linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=2000&q=90');">
+            style="background-image: linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.4)), url('https://6a74091e0e32446493cbcb04.imgix.net/sandbox/Pratos%20Orientais%20Irresist%C3%ADveis.jpg');">
             <div class="hero-content">
                 <span class="hero-tag">FOOD LOVERS</span>
                 <h1>Taste The Joy <span>In Every Bite</span></h1>
@@ -1990,7 +1990,7 @@
     <!-- ===== FEATURE ===== -->
     <section class="feature-section" id="blogs">
         <div class="feature-image">
-            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=85"
+            <img src="https://6a74091e0e32446493cbcb04.imgix.net/sandbox/Hawaii-Christmas-Gifts-for-Foodies-Featured-Image.webp"
                 alt="Cooking">
         </div>
         <div class="feature-content">
@@ -5951,6 +5951,19 @@
                 accountForm.reset();
 
             });
+
+            // Navbar Write button
+
+const navWriteBtn =
+    document.getElementById("navWriteBtn");
+
+navWriteBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();
+
+    writeBlogModal.classList.add("open");
+
+});
 
             // ==================== INIT ====================
             resetAndRender('all', '');
